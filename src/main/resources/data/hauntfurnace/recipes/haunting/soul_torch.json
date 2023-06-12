@@ -1,0 +1,8 @@
+{
+  "type": "hauntfurnace:haunting",
+  "ingredient": {
+    "item": "minecraft:torch"
+  },
+  "result": "minecraft:soul_torch",
+  "experience": 0.1
+}

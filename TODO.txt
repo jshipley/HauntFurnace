@@ -1,0 +1,3 @@
+JEI (and EMI?) compat
+Powered Haunt Furnace (use RF instead of fuel)
+Visual Overhaul compat?

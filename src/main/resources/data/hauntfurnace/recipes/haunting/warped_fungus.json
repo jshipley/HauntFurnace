@@ -1,0 +1,8 @@
+{
+  "type": "hauntfurnace:haunting",
+  "ingredient": {
+    "item": "minecraft:brown_mushroom"
+  },
+  "result": "minecraft:warped_fungus",
+  "experience": 0.1
+}

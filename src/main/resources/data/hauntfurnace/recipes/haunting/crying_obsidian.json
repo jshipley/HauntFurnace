@@ -1,0 +1,8 @@
+{
+  "type": "hauntfurnace:haunting",
+  "ingredient": {
+    "item": "minecraft:obsidian"
+  },
+  "result": "minecraft:crying_obsidian",
+  "experience": 0.1
+}

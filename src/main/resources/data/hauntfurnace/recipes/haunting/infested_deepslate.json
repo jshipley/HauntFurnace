@@ -1,0 +1,8 @@
+{
+  "type": "hauntfurnace:haunting",
+  "ingredient": {
+    "item": "minecraft:deepslate"
+  },
+  "result": "minecraft:infested_deepslate",
+  "experience": 0.1
+}
