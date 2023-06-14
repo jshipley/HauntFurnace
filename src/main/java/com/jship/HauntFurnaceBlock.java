@@ -27,6 +27,7 @@ public class HauntFurnaceBlock extends AbstractFurnaceBlock {
     }
 
     @Nullable
+    @SuppressWarnings("unchecked")
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return checkType(world, type, HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY);
     }
@@ -52,12 +53,12 @@ public class HauntFurnaceBlock extends AbstractFurnaceBlock {
             Direction.Axis axis = direction.getAxis();
             double g = 0.52;
             double h = random.nextDouble() * 0.6 - 0.3;
-            double i = axis == Direction.Axis.X ? (double)direction.getOffsetX() * 0.52 : h;
+            double i = axis == Direction.Axis.X ? (double)direction.getOffsetX() * g : h;
             // change j to change y level of particles? furnace = 6, blast furnace = 9
             double j = random.nextDouble() * 9.0 / 16.0;
-            double k = axis == Direction.Axis.Z ? (double)direction.getOffsetZ() * 0.52 : h;
+            double k = axis == Direction.Axis.Z ? (double)direction.getOffsetZ() * g : h;
             world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
-            world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+            world.addParticle(ParticleTypes.SOUL, d + i, e + j, f + k, 0.0, 0.0, 0.0);
         }
     }
 }

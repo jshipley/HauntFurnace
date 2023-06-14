@@ -56,6 +56,10 @@ dependencies {
 
 	modCompileOnly ("me.shedaniel:RoughlyEnoughItems-api-fabric:$rei_version")
 	modRuntimeOnly ("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version")
+
+	include modApi("teamreborn:energy:$reborn_energy_version") {
+		exclude(group: "net.fabricmc.fabric-api")
+	}
 }
 
 processResources {
@@ -68,6 +72,7 @@ processResources {
 
 tasks.withType(JavaCompile).configureEach {
 	it.options.release = 17
+	options.compilerArgs << "-Xlint:deprecation" << "-Xlint:unchecked"
 }
 
 java {

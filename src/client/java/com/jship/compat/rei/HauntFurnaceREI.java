@@ -24,6 +24,7 @@ public class HauntFurnaceREI implements REIClientPlugin {
     public void registerCategories(CategoryRegistry registry) {
         registry.add(new HauntingRecipeCategory());
         registry.addWorkstations(HAUNTING, EntryStacks.of(HauntFurnace.HAUNT_FURNACE_BLOCK));
+        registry.addWorkstations(HAUNTING, EntryStacks.of(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK));
     }
 
     @Override
