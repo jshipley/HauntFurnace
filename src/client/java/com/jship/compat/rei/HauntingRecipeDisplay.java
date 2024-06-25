@@ -16,31 +16,30 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeEntry;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class HauntingRecipeDisplay extends BasicDisplay implements SimpleGridMenuDisplay {
-    private Recipe<?> recipe;
+    RecipeEntry<?> recipe;
     private float xp;
-    private double cookTime;
+    private int cookTime;
 
-    public HauntingRecipeDisplay(HauntingRecipe recipe) {
-        this(EntryIngredients.ofIngredients(recipe.getIngredients()), Collections.singletonList(EntryIngredients.of(recipe.getResultItem())),
-                recipe, recipe.getExperience(), recipe.getCookingTime());
+    public HauntingRecipeDisplay(RecipeEntry<HauntingRecipe> recipe) {
+        this(EntryIngredients.ofIngredients(recipe.value().getIngredients()), Collections.singletonList(EntryIngredients.of(recipe.value().getResultItem())),
+                recipe, recipe.value().getExperience(), recipe.value().getCookingTime());
     }
 
     public HauntingRecipeDisplay(List<EntryIngredient> input, List<EntryIngredient> output, NbtCompound tag) {
         this(input, output, RecipeManagerContext.getInstance().byId(tag, "location"),
-                tag.getFloat("xp"), tag.getDouble("cookTime"));
+                tag.getFloat("xp"), tag.getInt("cookTime"));
     }
 
-    public HauntingRecipeDisplay(List<EntryIngredient> input, List<EntryIngredient> output, Recipe<?> recipe, float xp, double cookTime) {
-        super(input, output, Optional.ofNullable(recipe).map(Recipe::getId));
+    public HauntingRecipeDisplay(List<EntryIngredient> input, List<EntryIngredient> output, RecipeEntry<?> recipe, float xp, int cookTime) {
+        super(input, output, Optional.ofNullable(recipe).map(RecipeEntry::id));
         this.recipe = recipe;
         this.xp = xp;
         this.cookTime = cookTime;

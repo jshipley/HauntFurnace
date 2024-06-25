@@ -1,8 +1,0 @@
-{
-  "type": "hauntfurnace:haunting",
-  "ingredient": {
-    "item": "minecraft:sweet_berries"
-  },
-  "result": "minecraft:glow_berries",
-  "experience": 0.1
-}

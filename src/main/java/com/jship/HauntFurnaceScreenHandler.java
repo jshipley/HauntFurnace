@@ -5,7 +5,6 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.screen.AbstractFurnaceScreenHandler;
 import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandlerType;
 
 public class HauntFurnaceScreenHandler extends AbstractFurnaceScreenHandler {
     public HauntFurnaceScreenHandler(int syncId, PlayerInventory playerInventory) {

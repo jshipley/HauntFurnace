@@ -1,8 +1,0 @@
-{
-  "type": "hauntfurnace:haunting",
-  "ingredient": {
-    "item": "minecraft:stone"
-  },
-  "result": "minecraft:infested_stone",
-  "experience": 0.1
-}

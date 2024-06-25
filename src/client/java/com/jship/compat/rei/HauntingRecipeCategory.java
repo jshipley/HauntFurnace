@@ -28,7 +28,7 @@ import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDisplay> {
-    private static final Identifier GUI_TEXTURE = new Identifier(HauntFurnace.MOD_ID, "textures/gui/container/haunt_furnace.png");
+    private static final Identifier GUI_TEXTURE = Identifier.of(HauntFurnace.MOD_ID, "textures/gui/container/haunt_furnace.png");
 
     @Override
     public Renderer getIcon() {

@@ -1,8 +1,0 @@
-{
-  "type": "hauntfurnace:haunting",
-  "ingredient": {
-    "tag": "minecraft:dirt"
-  },
-  "result": "minecraft:soul_soil",
-  "experience": 0.1
-}

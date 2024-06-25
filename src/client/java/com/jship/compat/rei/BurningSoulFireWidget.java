@@ -24,7 +24,6 @@
 package com.jship.compat.rei;
 
 import com.jship.HauntFurnace;
-import com.jship.HauntFurnaceScreen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.shedaniel.clothconfig2.api.animator.NumberAnimator;
 import me.shedaniel.clothconfig2.api.animator.ValueAnimator;
@@ -40,8 +39,8 @@ import java.util.List;
 import java.util.Objects;
 
 public final class BurningSoulFireWidget extends BurningFire {
-    public static final Identifier TEXTURE = new Identifier(HauntFurnace.MOD_ID, "textures/gui/container/display.png");
-    public static final Identifier TEXTURE_DARK = new Identifier(HauntFurnace.MOD_ID, "textures/gui/container/display_dark.png");
+    public static final Identifier TEXTURE = Identifier.of(HauntFurnace.MOD_ID, "textures/gui/container/display.png");
+    public static final Identifier TEXTURE_DARK = Identifier.of(HauntFurnace.MOD_ID, "textures/gui/container/display_dark.png");
     private Rectangle bounds;
     private double animationDuration = -1;
     private final NumberAnimator<Float> darkBackgroundAlpha = ValueAnimator.ofFloat()

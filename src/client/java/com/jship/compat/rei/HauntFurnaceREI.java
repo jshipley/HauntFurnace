@@ -17,7 +17,7 @@ import net.minecraft.util.Identifier;
 import java.awt.*;
 
 public class HauntFurnaceREI implements REIClientPlugin {
-    private static final Identifier ID = new Identifier(HauntFurnace.MOD_ID, "rei_plugin");
+    private static final Identifier ID = Identifier.of(HauntFurnace.MOD_ID, "rei_plugin");
     public static final CategoryIdentifier<HauntingRecipeDisplay> HAUNTING = CategoryIdentifier.of(HauntFurnace.MOD_ID, "haunting");
 
     @Override

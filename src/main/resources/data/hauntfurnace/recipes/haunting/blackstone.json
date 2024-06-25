@@ -1,8 +1,0 @@
-{
-  "type": "hauntfurnace:haunting",
-  "ingredient": {
-    "tag": "c:cobblestone"
-  },
-  "result": "minecraft:blackstone",
-  "experience": 0.1
-}

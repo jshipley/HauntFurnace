@@ -1,14 +1,12 @@
 package com.jship;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import team.reborn.energy.api.EnergyStorage;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -44,49 +42,49 @@ public class HauntFurnace implements ModInitializer {
     public static final RecipeSerializer<HauntingRecipe> HAUNTING_RECIPE_SERIALIZER;
     public static final ScreenHandlerType<HauntFurnaceScreenHandler> HAUNT_FURNACE_SCREEN_HANDLER;
     public static final ScreenHandlerType<PoweredHauntFurnaceScreenHandler> POWERED_HAUNT_FURNACE_SCREEN_HANDLER;
-    public static final Identifier INTERACT_WITH_HAUNT_FURNACE = new Identifier(MOD_ID, "interact_with_haunt_furnace");
+    public static final Identifier INTERACT_WITH_HAUNT_FURNACE = Identifier.of(MOD_ID, "interact_with_haunt_furnace");
 
     static {
         HAUNT_FURNACE_BLOCK = Registry.register(
                 Registries.BLOCK,
-                new Identifier(MOD_ID, "haunt_furnace"),
-                new HauntFurnaceBlock(FabricBlockSettings.copyOf(Blocks.FURNACE)));
+                Identifier.of(MOD_ID, "haunt_furnace"),
+                new HauntFurnaceBlock(AbstractBlock.Settings.copy(Blocks.FURNACE)));
         POWERED_HAUNT_FURNACE_BLOCK = Registry.register(
                 Registries.BLOCK,
-                new Identifier(MOD_ID, "powered_haunt_furnace"),
-                new PoweredHauntFurnaceBlock(FabricBlockSettings.copyOf(Blocks.FURNACE)));
+                Identifier.of(MOD_ID, "powered_haunt_furnace"),
+                new PoweredHauntFurnaceBlock(AbstractBlock.Settings.copy(Blocks.FURNACE)));
         HAUNT_FURNACE_ITEM = Registry.register(
                 Registries.ITEM,
-                new Identifier(MOD_ID, "haunt_furnace"),
-                new BlockItem(HAUNT_FURNACE_BLOCK, new FabricItemSettings()));
+                Identifier.of(MOD_ID, "haunt_furnace"),
+                new BlockItem(HAUNT_FURNACE_BLOCK, new Item.Settings()));
         POWERED_HAUNT_FURNACE_ITEM = Registry.register(
                 Registries.ITEM,
-                new Identifier(MOD_ID, "powered_haunt_furnace"),
-                new BlockItem(POWERED_HAUNT_FURNACE_BLOCK, new FabricItemSettings()));
+                Identifier.of(MOD_ID, "powered_haunt_furnace"),
+                new BlockItem(POWERED_HAUNT_FURNACE_BLOCK, new Item.Settings()));
         HAUNT_FURNACE_BLOCK_ENTITY = Registry.register(
                 Registries.BLOCK_ENTITY_TYPE,
-                new Identifier(MOD_ID, "haunt_furnace"),
-                FabricBlockEntityTypeBuilder.create(HauntFurnaceBlockEntity::new, HAUNT_FURNACE_BLOCK).build(null));
+                Identifier.of(MOD_ID, "haunt_furnace"),
+                BlockEntityType.Builder.create(HauntFurnaceBlockEntity::new, HAUNT_FURNACE_BLOCK).build(null));
         POWERED_HAUNT_FURNACE_BLOCK_ENTITY = Registry.register(
                 Registries.BLOCK_ENTITY_TYPE,
-                new Identifier(MOD_ID, "powered_haunt_furnace"),
-                FabricBlockEntityTypeBuilder.create(PoweredHauntFurnaceBlockEntity::new, POWERED_HAUNT_FURNACE_BLOCK).build(null));
+                Identifier.of(MOD_ID, "powered_haunt_furnace"),
+                BlockEntityType.Builder.create(PoweredHauntFurnaceBlockEntity::new, POWERED_HAUNT_FURNACE_BLOCK).build(null));
         EnergyStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> ((PoweredHauntFurnaceBlockEntity)blockEntity).energyStorage, POWERED_HAUNT_FURNACE_BLOCK_ENTITY);
-        HAUNTING_RECIPE = Registry.register(Registries.RECIPE_TYPE, new Identifier(MOD_ID, "haunting"), new RecipeType<HauntingRecipe>() {
+        HAUNTING_RECIPE = Registry.register(Registries.RECIPE_TYPE, Identifier.of(MOD_ID, "haunting"), new RecipeType<HauntingRecipe>() {
             @Override
             public String toString() {return "hauntfurnace:haunting";}
         });
         HAUNTING_RECIPE_SERIALIZER = Registry.register(
                 Registries.RECIPE_SERIALIZER,
-                new Identifier(MOD_ID, "haunting"),
+                Identifier.of(MOD_ID, "haunting"),
                 new CookingRecipeSerializer<>(HauntingRecipe::new, 200));
         HAUNT_FURNACE_SCREEN_HANDLER = Registry.register(
                 Registries.SCREEN_HANDLER,
-                new Identifier(MOD_ID, "haunt_furnace"),
+                Identifier.of(MOD_ID, "haunt_furnace"),
                 new ScreenHandlerType<>(HauntFurnaceScreenHandler::new, FeatureFlags.VANILLA_FEATURES));
         POWERED_HAUNT_FURNACE_SCREEN_HANDLER = Registry.register(
                 Registries.SCREEN_HANDLER,
-                new Identifier(MOD_ID, "powered_haunt_furnace"),
+                Identifier.of(MOD_ID, "powered_haunt_furnace"),
                 new ScreenHandlerType<>(PoweredHauntFurnaceScreenHandler::new, FeatureFlags.VANILLA_FEATURES));
     }
 

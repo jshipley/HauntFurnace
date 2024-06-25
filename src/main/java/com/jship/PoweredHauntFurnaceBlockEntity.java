@@ -5,7 +5,6 @@ import team.reborn.energy.api.base.SimpleEnergyStorage;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
@@ -17,7 +16,9 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.*;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -34,7 +35,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Iterator;
 import java.util.List;
 
-public class PoweredHauntFurnaceBlockEntity extends LockableContainerBlockEntity implements RecipeUnlocker, RecipeInputProvider, Inventory {
+public class PoweredHauntFurnaceBlockEntity extends LockableContainerBlockEntity implements RecipeUnlocker, RecipeInputProvider {
     public static final int INPUT_SLOT = 0;
     public static final int OUTPUT_SLOT = 1;
     public static final int ENERGY_STORAGE_PROPERTY_INDEX = 0;
@@ -60,7 +61,7 @@ public class PoweredHauntFurnaceBlockEntity extends LockableContainerBlockEntity
     int unpoweredCount = 0;
     protected final PropertyDelegate propertyDelegate;
     private final Object2IntOpenHashMap<Identifier> recipesUsed;
-    private final RecipeManager.MatchGetter<Inventory, ? extends HauntingRecipe> matchGetter;
+    private final RecipeManager.MatchGetter<SingleStackRecipeInput, ? extends HauntingRecipe> matchGetter;
 
     protected PoweredHauntFurnaceBlockEntity(BlockPos pos, BlockState state) {
         super(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK_ENTITY, pos, state);
@@ -112,29 +113,25 @@ public class PoweredHauntFurnaceBlockEntity extends LockableContainerBlockEntity
         return new PoweredHauntFurnaceScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
     }
 
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
+    public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.readNbt(nbt, registryLookup);
         this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
-        Inventories.readNbt(nbt, this.inventory);
+        Inventories.readNbt(nbt, this.inventory, registryLookup);
         this.energyStorage.amount = nbt.getLong("EnergyStorage");
         this.cookTime = nbt.getShort("CookTime");
         this.cookTimeTotal = nbt.getShort("CookTimeTotal");
         NbtCompound nbtCompound = nbt.getCompound("RecipesUsed");
-        Iterator recipesUsed = nbtCompound.getKeys().iterator();
-
-        while (recipesUsed.hasNext()) {
-            String string = (String) recipesUsed.next();
-            this.recipesUsed.put(new Identifier(string), nbtCompound.getInt(string));
+        for (String string : nbtCompound.getKeys()) {
+            this.recipesUsed.put(Identifier.of(string), nbtCompound.getInt(string));
         }
-
     }
 
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
         nbt.putLong("EnergyStorage", (long) this.energyStorage.amount);
         nbt.putShort("CookTime", (short) this.cookTime);
         nbt.putShort("CookTimeTotal", (short) this.cookTimeTotal);
-        Inventories.writeNbt(nbt, this.inventory);
+        Inventories.writeNbt(nbt, this.inventory, registryLookup);
         NbtCompound nbtCompound = new NbtCompound();
         this.recipesUsed.forEach((identifier, count) -> {
             nbtCompound.putInt(identifier.toString(), count);
@@ -148,19 +145,18 @@ public class PoweredHauntFurnaceBlockEntity extends LockableContainerBlockEntity
         }
 
         ItemStack inputItems = (ItemStack) blockEntity.inventory.get(0);
-        ItemStack outputItems = (ItemStack) blockEntity.inventory.get(1);
-        Recipe recipe = !inputItems.isEmpty() ?
-                (Recipe) blockEntity.matchGetter.getFirstMatch(blockEntity, world).orElse(null)
+        RecipeEntry recipeEntry = !inputItems.isEmpty() ?
+                (RecipeEntry) blockEntity.matchGetter.getFirstMatch(new SingleStackRecipeInput(inputItems), world).orElse(null)
                 : null;
         boolean hasEnergy = blockEntity.energyStorage.amount > ENERGY_USAGE_PER_TICK;
         int stackMax = blockEntity.getMaxCountPerStack();
         boolean canOutput = canAcceptRecipeOutput(world.getRegistryManager(),
-                recipe, blockEntity.inventory, stackMax);
+                recipeEntry, blockEntity.inventory, stackMax);
 
         boolean isBurning = false;
         boolean stateChanged = false;
 
-        if (hasEnergy && recipe != null && canOutput) {
+        if (hasEnergy && recipeEntry != null && canOutput) {
             isBurning = true;
             blockEntity.unpoweredCount = 0;
             blockEntity.energyStorage.amount -= ENERGY_USAGE_PER_TICK;
@@ -168,11 +164,11 @@ public class PoweredHauntFurnaceBlockEntity extends LockableContainerBlockEntity
             if (blockEntity.cookTime >= blockEntity.cookTimeTotal) {
                 blockEntity.cookTime = 0;
                 blockEntity.cookTimeTotal = getCookTime(world, blockEntity);
-                if (craftRecipe(world.getRegistryManager(), recipe, blockEntity.inventory, stackMax)) {
-                    blockEntity.setLastRecipe(recipe);
+                if (craftRecipe(world.getRegistryManager(), recipeEntry, blockEntity.inventory, stackMax)) {
+                    blockEntity.setLastRecipe(recipeEntry);
                 }
             }
-        } else if (recipe != null && canOutput) {
+        } else if (recipeEntry != null && canOutput) {
             // we could craft if we had energy... lose progress on cooking
             blockEntity.cookTime = MathHelper.clamp(blockEntity.cookTime - 2, 0, blockEntity.cookTimeTotal);
         } else {
@@ -202,9 +198,9 @@ public class PoweredHauntFurnaceBlockEntity extends LockableContainerBlockEntity
         return isBurning;
     }
 
-    private static boolean canAcceptRecipeOutput(DynamicRegistryManager registryManager, @Nullable Recipe<?> recipe, DefaultedList<ItemStack> slots, int stackMax) {
+    private static boolean canAcceptRecipeOutput(DynamicRegistryManager registryManager, @Nullable RecipeEntry<?> recipe, DefaultedList<ItemStack> slots, int stackMax) {
         if (!((ItemStack) slots.get(INPUT_SLOT)).isEmpty() && recipe != null) {
-            ItemStack recipeOutput = recipe.getOutput(registryManager);
+            ItemStack recipeOutput = recipe.value().getResult(registryManager);
             if (recipeOutput.isEmpty()) {
                 return false;
             } else {
@@ -224,10 +220,10 @@ public class PoweredHauntFurnaceBlockEntity extends LockableContainerBlockEntity
         }
     }
 
-    private static boolean craftRecipe(DynamicRegistryManager registryManager, @Nullable Recipe<?> recipe, DefaultedList<ItemStack> slots, int count) {
+    private static boolean craftRecipe(DynamicRegistryManager registryManager, @Nullable RecipeEntry<?> recipe, DefaultedList<ItemStack> slots, int count) {
         if (recipe != null && canAcceptRecipeOutput(registryManager, recipe, slots, count)) {
             ItemStack inputStack = (ItemStack) slots.get(INPUT_SLOT);
-            ItemStack recipeOutput = recipe.getOutput(registryManager);
+            ItemStack recipeOutput = recipe.value().getResult(registryManager);
             ItemStack outputStack = (ItemStack) slots.get(OUTPUT_SLOT);
             if (outputStack.isEmpty()) {
                 slots.set(OUTPUT_SLOT, recipeOutput.copy());
@@ -243,11 +239,19 @@ public class PoweredHauntFurnaceBlockEntity extends LockableContainerBlockEntity
     }
 
     private static int getCookTime(World world, PoweredHauntFurnaceBlockEntity furnace) {
-        return (Integer) furnace.matchGetter.getFirstMatch(furnace, world).map(AbstractCookingRecipe::getCookTime).orElse(DEFAULT_COOK_TIME);
+        return (Integer) furnace.matchGetter.getFirstMatch(new SingleStackRecipeInput(furnace.getStack(0)), world).map(recipe -> ((AbstractCookingRecipe) recipe.value()).getCookingTime()).orElse(DEFAULT_COOK_TIME);
     }
 
     public int size() {
         return this.inventory.size();
+    }
+
+    public DefaultedList<ItemStack> getHeldStacks() {
+        return this.inventory;
+    }
+
+    public void setHeldStacks(DefaultedList<ItemStack> inventory) {
+        this.inventory = inventory;
     }
 
     public boolean isEmpty() {
@@ -279,7 +283,7 @@ public class PoweredHauntFurnaceBlockEntity extends LockableContainerBlockEntity
 
     public void setStack(int slot, ItemStack stack) {
         ItemStack itemStack = (ItemStack) this.inventory.get(slot);
-        boolean canCombine = !stack.isEmpty() && ItemStack.canCombine(itemStack, stack);
+        boolean canCombine = !stack.isEmpty() && ItemStack.areItemsAndComponentsEqual(itemStack, stack);
         this.inventory.set(slot, stack);
         if (stack.getCount() > this.getMaxCountPerStack()) {
             stack.setCount(this.getMaxCountPerStack());
@@ -303,16 +307,16 @@ public class PoweredHauntFurnaceBlockEntity extends LockableContainerBlockEntity
         this.inventory.clear();
     }
 
-    public void setLastRecipe(@Nullable Recipe<?> recipe) {
+    public void setLastRecipe(@Nullable RecipeEntry<?> recipe) {
         if (recipe != null) {
-            Identifier identifier = recipe.getId();
+            Identifier identifier = recipe.id();
             this.recipesUsed.addTo(identifier, 1);
         }
 
     }
 
     @Nullable
-    public Recipe<?> getLastRecipe() {
+    public RecipeEntry<?> getLastRecipe() {
         return null;
     }
 
@@ -320,29 +324,23 @@ public class PoweredHauntFurnaceBlockEntity extends LockableContainerBlockEntity
     }
 
     public void dropExperienceForRecipesUsed(ServerPlayerEntity player) {
-        List<Recipe<?>> list = this.getRecipesUsedAndDropExperience(player.getServerWorld(), player.getPos());
+        List<RecipeEntry<?>> list = this.getRecipesUsedAndDropExperience(player.getServerWorld(), player.getPos());
         player.unlockRecipes(list);
-        Iterator recipes = list.iterator();
-
-        while (recipes.hasNext()) {
-            Recipe<?> recipe = (Recipe) recipes.next();
+        for (RecipeEntry<?> recipe : list) {
             if (recipe != null) {
-                player.unlockCraftedRecipe(recipe, this.inventory);
+                player.onRecipeCrafted(recipe, this.inventory);
             }
         }
 
         this.recipesUsed.clear();
     }
 
-    public List<Recipe<?>> getRecipesUsedAndDropExperience(ServerWorld world, Vec3d pos) {
-        List<Recipe<?>> list = Lists.newArrayList();
-        ObjectIterator<Object2IntMap.Entry<Identifier>> recipes = this.recipesUsed.object2IntEntrySet().iterator();
-
-        while (recipes.hasNext()) {
-            Object2IntMap.Entry<Identifier> entry = (Object2IntMap.Entry<Identifier>) recipes.next();
+    public List<RecipeEntry<?>> getRecipesUsedAndDropExperience(ServerWorld world, Vec3d pos) {
+        List<RecipeEntry<?>> list = Lists.newArrayList();
+        for (Object2IntMap.Entry entry : this.recipesUsed.object2IntEntrySet()) {
             world.getRecipeManager().get((Identifier) entry.getKey()).ifPresent((recipe) -> {
                 list.add(recipe);
-                dropExperience(world, pos, entry.getIntValue(), ((AbstractCookingRecipe) recipe).getExperience());
+                dropExperience(world, pos, entry.getIntValue(), ((AbstractCookingRecipe) recipe.value()).getExperience());
             });
         }
 
@@ -360,10 +358,7 @@ public class PoweredHauntFurnaceBlockEntity extends LockableContainerBlockEntity
     }
 
     public void provideRecipeInputs(RecipeMatcher finder) {
-        Iterator inv = this.inventory.iterator();
-
-        while (inv.hasNext()) {
-            ItemStack itemStack = (ItemStack) inv.next();
+        for (ItemStack itemStack : this.inventory) {
             finder.addInput(itemStack);
         }
     }

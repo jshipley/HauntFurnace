@@ -7,10 +7,12 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.AbstractCookingRecipe;
 import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeInputProvider;
 import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.book.RecipeBookCategory;
+import net.minecraft.recipe.input.SingleStackRecipeInput;
 import net.minecraft.screen.AbstractRecipeScreenHandler;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
@@ -18,7 +20,7 @@ import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.world.World;
 
-public class PoweredHauntFurnaceScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
+public class PoweredHauntFurnaceScreenHandler extends AbstractRecipeScreenHandler<SingleStackRecipeInput, AbstractCookingRecipe> {
     public static final int INPUT_SLOT = 0;
     public static final int OUTPUT_SLOT = 1;
     public static final int CRAFT_SLOTS = 2;
@@ -43,7 +45,6 @@ public class PoweredHauntFurnaceScreenHandler extends AbstractRecipeScreenHandle
         this.propertyDelegate = propertyDelegate;
         this.world = playerInventory.player.getWorld();
         this.addSlot(new Slot(inventory, INPUT_SLOT, 56, 35));
-        //this.addSlot(new FurnaceFuelSlot((this, inventory, 1, 56, 53));
         this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, OUTPUT_SLOT, 116, 35));
 
         int i;
@@ -72,8 +73,8 @@ public class PoweredHauntFurnaceScreenHandler extends AbstractRecipeScreenHandle
         this.getSlot(OUTPUT_SLOT).setStackNoCallbacks(ItemStack.EMPTY);
     }
 
-    public boolean matches(Recipe<? super Inventory> recipe) {
-        return recipe.matches(this.inventory, this.world);
+    public boolean matches(RecipeEntry<AbstractCookingRecipe> recipe) {
+        return recipe.value().matches(new SingleStackRecipeInput(this.inventory.getStack(0)), this.world);
     }
 
     public int getCraftingResultSlotIndex() {
@@ -141,7 +142,7 @@ public class PoweredHauntFurnaceScreenHandler extends AbstractRecipeScreenHandle
     }
 
     protected boolean isHauntable(ItemStack itemStack) {
-        return this.world.getRecipeManager().getFirstMatch(this.recipeType, new SimpleInventory(new ItemStack[]{itemStack}), this.world).isPresent();
+        return this.world.getRecipeManager().getFirstMatch(this.recipeType, new SingleStackRecipeInput(itemStack), this.world).isPresent();
     }
 
     public int getCookProgress() {

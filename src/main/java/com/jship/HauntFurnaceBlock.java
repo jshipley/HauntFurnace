@@ -1,5 +1,6 @@
 package com.jship;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.entity.BlockEntity;
@@ -18,8 +19,14 @@ import org.jetbrains.annotations.Nullable;
 
 public class HauntFurnaceBlock extends AbstractFurnaceBlock {
 
+    public static final MapCodec<HauntFurnaceBlock> CODEC;
+
     public HauntFurnaceBlock(Settings settings) {
         super(settings);
+    }
+
+    public MapCodec<HauntFurnaceBlock> getCodec() {
+        return CODEC;
     }
 
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
@@ -29,7 +36,7 @@ public class HauntFurnaceBlock extends AbstractFurnaceBlock {
     @Nullable
     @SuppressWarnings("unchecked")
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(world, type, HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY);
+        return HauntFurnaceBlock.validateTicker(world, type, HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY);
     }
 
     protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
@@ -60,5 +67,9 @@ public class HauntFurnaceBlock extends AbstractFurnaceBlock {
             world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
             world.addParticle(ParticleTypes.SOUL, d + i, e + j, f + k, 0.0, 0.0, 0.0);
         }
+    }
+
+    static {
+        CODEC = HauntFurnaceBlock.createCodec(HauntFurnaceBlock::new);
     }
 }

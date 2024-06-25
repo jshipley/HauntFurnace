@@ -1,8 +1,0 @@
-{
-	"type": "hauntfurnace:haunting",
-	"ingredient": {
-		"item": "minecraft:redstone"
-	},
-	"result": "minecraft:glowstone_dust",
-	"experience": 0.1
-}

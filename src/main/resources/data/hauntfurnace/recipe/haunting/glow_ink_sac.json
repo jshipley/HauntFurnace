@@ -1,0 +1,10 @@
+{
+	"type": "hauntfurnace:haunting",
+	"ingredient": {
+		"item": "minecraft:ink_sac"
+	},
+	"result": {
+		"id": "minecraft:glow_ink_sac"
+	},
+	"experience": 0.1
+}
