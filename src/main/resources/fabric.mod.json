@@ -20,6 +20,12 @@
 		],
 		"client": [
 			"com.jship.HauntFurnaceClient"
+		],
+		"rei_client": [
+			"com.jship.compat.rei.HauntFurnaceREI"
+		],
+		"jei_mod_plugin": [
+			"com.jship.compat.jei.HauntFurnaceJEI"
 		]
 	},
 	"depends": {

@@ -39,8 +39,8 @@ import java.util.List;
 import java.util.Objects;
 
 public final class BurningSoulFireWidget extends BurningFire {
-    public static final Identifier TEXTURE = Identifier.of(HauntFurnace.MOD_ID, "textures/gui/container/display.png");
-    public static final Identifier TEXTURE_DARK = Identifier.of(HauntFurnace.MOD_ID, "textures/gui/container/display_dark.png");
+    public static final Identifier TEXTURE = Identifier.of(HauntFurnace.MOD_ID, "textures/gui/container/rei_display.png");
+    public static final Identifier TEXTURE_DARK = Identifier.of(HauntFurnace.MOD_ID, "textures/gui/container/rei_display_dark.png");
     private Rectangle bounds;
     private double animationDuration = -1;
     private final NumberAnimator<Float> darkBackgroundAlpha = ValueAnimator.ofFloat()

@@ -77,10 +77,10 @@ public class PoweredHauntFurnaceScreen extends HandledScreen<PoweredHauntFurnace
         int j = this.y;
         context.drawTexture(TEXTURE, i, j, 0, 0, this.backgroundWidth, this.backgroundHeight);
         int energyLevel = ((PoweredHauntFurnaceScreenHandler) this.handler).energyLevel();
-        context.drawGuiTexture(POWERED_PROGRESS_TEXTURE, i + 10, j + 27 + 32 - energyLevel, 32 - energyLevel, 12, energyLevel);
+        context.drawGuiTexture(POWERED_PROGRESS_TEXTURE, 12, 32, 0, 32 - energyLevel, i + 10, j + 27 + 32 - energyLevel, energyLevel, 12, energyLevel);
 
-        int k = ((PoweredHauntFurnaceScreenHandler) this.handler).getCookProgress();
-        context.drawGuiTexture(BURN_PROGRESS_TEXTURE, i + 79, j + 35, 32, k + 1, 16);
+        int cookProgress = ((PoweredHauntFurnaceScreenHandler) this.handler).getCookProgress();
+        context.drawGuiTexture(BURN_PROGRESS_TEXTURE, 24, 16, 0, 0, i + 79, j + 35, 32, cookProgress + 1, 16);
     }
 
     public boolean mouseClicked(double mouseX, double mouseY, int button) {

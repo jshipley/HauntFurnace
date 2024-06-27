@@ -14,11 +14,9 @@ import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
 import net.minecraft.util.Identifier;
 
-import java.awt.*;
-
 public class HauntFurnaceREI implements REIClientPlugin {
     private static final Identifier ID = Identifier.of(HauntFurnace.MOD_ID, "rei_plugin");
-    public static final CategoryIdentifier<HauntingRecipeDisplay> HAUNTING = CategoryIdentifier.of(HauntFurnace.MOD_ID, "haunting");
+    public static final CategoryIdentifier<HauntingRecipeDisplay> HAUNTING = CategoryIdentifier.of(HauntFurnace.MOD_ID, "rei_haunting_category");
 
     @Override
     public void registerCategories(CategoryRegistry registry) {

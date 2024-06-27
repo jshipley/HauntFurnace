@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.6-SNAPSHOT'
+	id 'fabric-loom' version '1.7-SNAPSHOT'
 	id 'maven-publish'
         id 'idea'
 }
@@ -24,6 +24,8 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 	maven { url = "https://maven.shedaniel.me/" } // REI
+	//maven { url = "https://maven.blamejared.com/" } // JEI
+	maven { url = "https://api.modrinth.com/maven" } // for JEI, temporary workaround to fix mappings issue
 }
 
 loom {
@@ -35,9 +37,6 @@ loom {
             sourceSet sourceSets.client
         }
     }
-
-	//accessWidenerPath = file("src/main/resources/hauntfurnace.accesswidener")
-
 }
 
 dependencies {
@@ -59,6 +58,11 @@ dependencies {
 	modCompileOnly "dev.architectury:architectury-neoforge:13.0.1"
 	modCompileOnly ("me.shedaniel:RoughlyEnoughItems-api-fabric:$rei_version")
 	modRuntimeOnly ("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version")
+
+	//modCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+	//modCompileOnly("mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}")
+	//modRuntimeOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}")
+	modImplementation("maven.modrinth:jei:ENnncZW9")
 
 	include modApi("teamreborn:energy:$reborn_energy_version") {
 		exclude(group: "net.fabricmc.fabric-api")

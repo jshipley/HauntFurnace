@@ -19,16 +19,13 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDisplay> {
-    private static final Identifier GUI_TEXTURE = Identifier.of(HauntFurnace.MOD_ID, "textures/gui/container/haunt_furnace.png");
 
     @Override
     public Renderer getIcon() {
@@ -37,7 +34,7 @@ public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDis
 
     @Override
     public Text getTitle() {
-        return Text.translatable("hauntfurnace.rei.haunting");
+        return Text.translatable("hauntfurnace.action.haunting");
     }
 
     @Override

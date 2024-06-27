@@ -1,9 +1,6 @@
 package com.jship.compat.rei;
 
-import com.google.common.collect.ImmutableList;
-import com.jship.HauntFurnace;
 import com.jship.HauntingRecipe;
-import com.jship.compat.rei.HauntFurnaceREI;
 
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
