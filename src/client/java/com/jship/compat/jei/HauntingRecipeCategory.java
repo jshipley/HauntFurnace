@@ -59,8 +59,7 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
             });
     }
 
-    private IDrawableAnimated getArrow(RecipeEntry<HauntingRecipe> RecipeEntry) {
-        HauntingRecipe recipe = RecipeEntry.value();
+    private IDrawableAnimated getArrow(HauntingRecipe recipe) {
         int cookTime = recipe.getCookingTime();
         if (cookTime <= 0) {
             cookTime = regularCookTime;
@@ -78,18 +77,18 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
         return icon;
     }
 
-    public void draw(RecipeEntry<HauntingRecipe> RecipeEntry, IRecipeSlotsView recipeSlotsView, DrawContext context, double mouseX, double mouseY) {
+    @Override
+    public void draw(HauntingRecipe recipe, IRecipeSlotsView recipeSlotsView, DrawContext context, double mouseX, double mouseY) {
         animatedFlame.draw(context, 1, 20);
 
-        IDrawableAnimated arrow = getArrow(RecipeEntry);
+        IDrawableAnimated arrow = getArrow(recipe);
         arrow.draw(context, 24, 18);
 
-        drawExperience(RecipeEntry, context, 0);
-        drawCookTime(RecipeEntry, context, 45);
+        drawExperience(recipe, context, 0);
+        drawCookTime(recipe, context, 45);
     }
 
-    private void drawExperience(RecipeEntry<HauntingRecipe> RecipeEntry, DrawContext context, int y) {
-        HauntingRecipe recipe = RecipeEntry.value();
+    private void drawExperience(HauntingRecipe recipe, DrawContext context, int y) {
         float experience = recipe.getExperience();
         if (experience > 0) {
 			Text experienceString = Text.translatable("gui.jei.category.smelting.experience", experience);
@@ -100,8 +99,7 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
 		}
 	}
 
-	private void drawCookTime(RecipeEntry<HauntingRecipe> RecipeEntry, DrawContext context, int y) {
-		HauntingRecipe recipe = RecipeEntry.value();
+	private void drawCookTime(HauntingRecipe recipe, DrawContext context, int y) {
 		int cookTime = recipe.getCookingTime();
 		if (cookTime > 0) {
 			int cookTimeSeconds = cookTime / 20;
@@ -131,9 +129,5 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
         
         builder.addSlot(OUTPUT, 61, 19)
             .addItemStack(RecipeUtil.getResultItem(recipe));
-    }
-
-    public boolean isHandled(HauntingRecipe recipe) {
-        return !recipe.isIgnoredInRecipeBook();
     }
 }
