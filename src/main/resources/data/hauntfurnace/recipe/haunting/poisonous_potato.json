@@ -1,10 +1,10 @@
 {
-  "type": "hauntfurnace:haunting",
-  "ingredient": {
-    "item": "minecraft:potato"
-  },
-  "result": {
-    "id": "minecraft:poisonous_potato"
-  },
-  "experience": 0.1
+    "type": "hauntfurnace:haunting",
+    "ingredient": {
+        "item": "minecraft:potato"
+    },
+    "result": {
+        "id": "minecraft:poisonous_potato"
+    },
+    "experience": 0.1
 }

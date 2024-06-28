@@ -1,10 +1,10 @@
 {
-  "type": "hauntfurnace:haunting",
-  "ingredient": {
-    "item": "minecraft:red_mushroom"
-  },
-  "result": {
-    "id": "minecraft:crimson_fungus"
-  },
-  "experience": 0.1
+    "type": "hauntfurnace:haunting",
+    "ingredient": {
+        "item": "minecraft:red_mushroom"
+    },
+    "result": {
+        "id": "minecraft:crimson_fungus"
+    },
+    "experience": 0.1
 }

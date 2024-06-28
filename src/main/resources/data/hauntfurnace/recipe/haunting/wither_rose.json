@@ -1,0 +1,10 @@
+{
+    "type": "hauntfurnace:haunting",
+    "ingredient": {
+        "tag": "hauntfurnace:hauntable_flowers"
+    },
+    "result": {
+        "id": "minecraft:wither_rose"
+    },
+    "experience": 0.1
+}

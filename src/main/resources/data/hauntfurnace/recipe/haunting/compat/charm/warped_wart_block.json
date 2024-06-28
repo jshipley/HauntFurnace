@@ -1,0 +1,20 @@
+{
+    "type": "hauntfurnace:haunting",
+    "ingredient": [
+        {
+            "item": "charm:ebony_leaves"
+        }
+    ],
+    "result": {
+        "id": "minecraft:warped_wart_block"
+    },
+    "experience": 0.1,
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "charm"
+            ]
+        }
+    ]
+}

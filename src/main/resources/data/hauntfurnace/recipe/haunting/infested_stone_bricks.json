@@ -1,10 +1,10 @@
 {
-  "type": "hauntfurnace:haunting",
-  "ingredient": {
-    "item": "minecraft:stone_bricks"
-  },
-  "result": {
-    "id": "minecraft:infested_stone_bricks"
-  },
-  "experience": 0.1
+    "type": "hauntfurnace:haunting",
+    "ingredient": {
+        "item": "minecraft:stone_bricks"
+    },
+    "result": {
+        "id": "minecraft:infested_stone_bricks"
+    },
+    "experience": 0.1
 }

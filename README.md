@@ -8,6 +8,8 @@ There are currently 24 haunting recipes. New recipes can easily be added through
 
 Inspired by the Create mod. This is a furnace variant of the "Bulk Haunting" recipes from Create.
 
-The haunt furnace is a standalone mod. It has all of the same recipes as Create, plus a few more. If the Create mod is installed, the new recipes will be available as bulk haunting recipes.
+The haunt furnace is a standalone mod. It has all of the same recipes as Create, and adds a bunch more. If the Create mod is installed, the new recipes will be available as bulk haunting recipes.
 
-REI is supported. JEI support may come in the future.
+Has support for Croptopia, Farmer's Delight, Charm, More Berries, and Create.
+
+REI and JEI are supported.

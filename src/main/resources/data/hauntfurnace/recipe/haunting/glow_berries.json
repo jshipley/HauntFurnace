@@ -1,10 +1,10 @@
 {
-  "type": "hauntfurnace:haunting",
-  "ingredient": {
-    "item": "minecraft:sweet_berries"
-  },
-  "result": {
-    "id": "minecraft:glow_berries"
-  },
-  "experience": 0.1
+    "type": "hauntfurnace:haunting",
+    "ingredient": {
+        "tag": "hauntfurnace:hauntable_berries"
+    },
+    "result": {
+        "id": "minecraft:glow_berries"
+    },
+    "experience": 0.1
 }

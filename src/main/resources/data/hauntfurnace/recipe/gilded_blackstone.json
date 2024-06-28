@@ -1,14 +1,19 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "minecraft:gold_ingot"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "NNN",
+        "NBN",
+        "NNN"
+    ],
+    "key": {
+        "B": {
+            "item": "minecraft:blackstone"
+        },
+        "N": {
+            "item": "minecraft:gold_nugget"
+        }
     },
-    {
-      "item": "minecraft:blackstone"
+    "result": {
+        "id": "minecraft:gilded_blackstone"
     }
-  ],
-  "result": {
-    "id": "minecraft:gilded_blackstone"
-  }
 }

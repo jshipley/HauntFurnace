@@ -1,0 +1,21 @@
+{
+    "type": "hauntfurnace:haunting",
+    "ingredient": [
+        {
+            "item": "minecraft:dark_oak_leaves"
+        },
+        {
+            "item": "minecraft:oak_leaves"
+        },
+        {
+            "item": "minecraft:birch_leaves"
+        },
+        {
+            "item": "minecraft:spruce_leaves"
+        }
+    ],
+    "result": {
+        "id": "minecraft:warped_wart_block"
+    },
+    "experience": 0.1
+}
