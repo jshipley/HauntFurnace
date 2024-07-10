@@ -1,0 +1,8 @@
+{
+    "type": "hauntfurnace:haunting",
+    "ingredient": {
+        "tag": "c:saplings"
+    },
+    "result": "minecraft:dead_bush",
+    "experience": 0.1
+}

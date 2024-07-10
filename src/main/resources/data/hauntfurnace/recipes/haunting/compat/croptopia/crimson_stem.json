@@ -1,0 +1,27 @@
+{
+    "type": "hauntfurnace:haunting",
+    "ingredient": [
+        {
+            "item": "croptopia:cinnamon_log"
+        },
+        {
+            "item": "croptopia:stripped_cinnamon_log"
+        },
+        {
+            "item": "croptopia:cinnamon_wood"
+        },
+        {
+            "item": "croptopia:stripped_cinnamon_wood"
+        }
+    ],
+    "result": "minecraft:crimson_stem",
+    "experience": 0.1,
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "croptopia"
+            ]
+        }
+    ]
+}

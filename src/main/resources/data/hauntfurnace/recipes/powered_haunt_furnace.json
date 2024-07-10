@@ -1,22 +1,22 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "GGG",
-    "GHG",
-    "GRG"
-  ],
-  "key": {
-    "G": {
-      "item": "minecraft:gilded_blackstone"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "GGG",
+        "GHG",
+        "GRG"
+    ],
+    "key": {
+        "G": {
+            "item": "minecraft:gilded_blackstone"
+        },
+        "H": {
+            "item": "hauntfurnace:haunt_furnace"
+        },
+        "R": {
+            "item": "minecraft:redstone"
+        }
     },
-    "H": {
-      "item": "hauntfurnace:haunt_furnace"
-    },
-    "R": {
-      "item": "minecraft:redstone"
+    "result": {
+        "item": "hauntfurnace:powered_haunt_furnace"
     }
-  },
-  "result": {
-    "item": "hauntfurnace:powered_haunt_furnace"
-  }
 }

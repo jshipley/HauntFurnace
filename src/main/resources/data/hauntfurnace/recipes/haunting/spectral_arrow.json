@@ -1,0 +1,8 @@
+{
+    "type": "hauntfurnace:haunting",
+    "ingredient": {
+        "item": "minecraft:arrow"
+    },
+    "result": "minecraft:spectral_arrow",
+    "experience": 0.1
+}

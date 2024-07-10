@@ -23,11 +23,14 @@
 		],
 		"rei_client": [
 			"com.jship.compat.rei.HauntFurnaceREI"
+		],
+		"jei_mod_plugin": [
+			"com.jship.compat.jei.HauntFurnaceJEI"
 		]
 	},
 	"accessWidener": "hauntfurnace.accesswidener",
 	"depends": {
-		"fabricloader": ">=0.14.21",
+		"fabricloader": ">=0.15.11",
 		"minecraft": "~1.20.1",
 		"java": ">=17",
 		"fabric-api": "*"

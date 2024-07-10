@@ -327,7 +327,7 @@ public class PoweredHauntFurnaceBlockEntity extends LockableContainerBlockEntity
         while (recipes.hasNext()) {
             Recipe<?> recipe = (Recipe) recipes.next();
             if (recipe != null) {
-                player.unlockCraftedRecipe(recipe, this.inventory);
+                player.onRecipeCrafted(recipe, this.inventory);
             }
         }
 

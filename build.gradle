@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.2-SNAPSHOT'
+	id 'fabric-loom' version '1.7-SNAPSHOT'
 	id 'maven-publish'
         id 'idea'
 }
@@ -24,6 +24,8 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 	maven { url = "https://maven.shedaniel.me/" } // REI
+
+	maven { url = "https://api.modrinth.com/maven" } // for JEI, temporary workaround to fix mappings issue
 }
 
 loom {
@@ -56,6 +58,8 @@ dependencies {
 
 	modCompileOnly ("me.shedaniel:RoughlyEnoughItems-api-fabric:$rei_version")
 	modRuntimeOnly ("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version")
+
+	modImplementation("maven.modrinth:jei:MtHhjBC2")
 
 	include modApi("teamreborn:energy:$reborn_energy_version") {
 		exclude(group: "net.fabricmc.fabric-api")

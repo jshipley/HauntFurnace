@@ -1,19 +1,19 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "BBB",
-    "BSB",
-    "BBB"
-  ],
-  "key": {
-    "B": {
-      "item": "minecraft:blackstone"
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "BBB",
+        "BSB",
+        "BBB"
+    ],
+    "key": {
+        "B": {
+            "item": "minecraft:blackstone"
+        },
+        "S": {
+            "tag": "minecraft:soul_fire_base_blocks"
+        }
     },
-    "S": {
-      "tag": "minecraft:soul_fire_base_blocks"
+    "result": {
+        "item": "hauntfurnace:haunt_furnace"
     }
-  },
-  "result": {
-    "item": "hauntfurnace:haunt_furnace"
-  }
 }

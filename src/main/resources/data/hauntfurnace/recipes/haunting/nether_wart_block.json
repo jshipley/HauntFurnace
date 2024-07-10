@@ -1,0 +1,25 @@
+{
+    "type": "hauntfurnace:haunting",
+    "ingredient": [
+        {
+            "item": "minecraft:jungle_leaves"
+        },
+        {
+            "item": "minecraft:cherry_leaves"
+        },
+        {
+            "item": "minecraft:acacia_leaves"
+        },
+        {
+            "item": "minecraft:mangrove_leaves"
+        },
+        {
+            "item": "minecraft:azalea_leaves"
+        },
+        {
+            "item": "minecraft:flowering_azalea_leaves"
+        }
+    ],
+    "result": "minecraft:nether_wart_block",
+    "experience": 0.1
+}
