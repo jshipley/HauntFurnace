@@ -1,0 +1,41 @@
+{
+    "schemaVersion": 1,
+    "id": "${mod_id}",
+    "version": "${version}",
+    "name": "${mod_name}",
+    "description": "${description}",
+    "authors": [
+        "${mod_author}"
+    ],
+    "contact": {
+        "homepage": "https://fabricmc.net/",
+        "sources": "https://github.com/FabricMC/fabric-example-mod"
+    },
+    "license": "${license}",
+    "icon": "assets/modid/${mod_id}.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.jship.hauntfurnace.HauntFurnaceFabric"
+        ],
+        "client": [
+            "com.jship.hauntfurnace.client.HauntFurnaceClientFabric"
+        ],
+        "jei_mod_plugin": [
+            "com.jship.hauntfurnace.client.compat.jei.HauntFurnaceJEI"
+        ],
+        "rei_client": [
+            "com.jship.hauntfurnace.client.compat.rei.HauntFurnaceREI"
+        ]
+    },
+    "depends": {
+        "fabricloader": ">=0.14",
+        "fabric": "*",
+        "minecraft": "${minecraft_version}",
+        "java": ">=17"
+    },
+    "suggests": {
+        "another-mod": "*"
+    }
+}
+  
