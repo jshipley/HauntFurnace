@@ -5,13 +5,7 @@ plugins {
     id 'org.spongepowered.mixin'
 }
 base {
-    archivesName = "${mod_name}-forge-${minecraft_version}"
-}
-mixin {
-    add(sourceSets.main, "${mod_id}.refmap.json")
-
-    config("${mod_id}.mixins.json")
-    config("${mod_id}.forge.mixins.json")
+    archivesName = "${mod_id}-forge-${minecraft_version}"
 }
 
 minecraft {
@@ -80,6 +74,8 @@ dependencies {
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
 
     runtimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    compileOnly("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
+    testCompileOnly("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
 
     implementation fg.deobf ("me.shedaniel:RoughlyEnoughItems-forge:$rei_version")
     //compileOnly("me.shedaniel:RoughlyEnoughItems-api-forge:$rei_version")

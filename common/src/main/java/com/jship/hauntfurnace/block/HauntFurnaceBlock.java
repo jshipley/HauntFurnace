@@ -59,7 +59,7 @@ public class HauntFurnaceBlock extends AbstractFurnaceBlock {
                 level.playLocalSound(x, y, z, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
             if (randomSource.nextDouble() < 0.02) {
-                level.playLocalSound(x, y, z, SoundEvents.PHANTOM_AMBIENT, SoundSource.BLOCKS, 0.4F, 0.4F, false);
+                level.playLocalSound(x, y, z, SoundEvents.PHANTOM_AMBIENT, SoundSource.BLOCKS, 0.2F, 0.2F, false);
             }
 
             Direction direction = (Direction) blockState.getValue(FACING);

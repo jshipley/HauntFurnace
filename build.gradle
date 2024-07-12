@@ -54,8 +54,8 @@ subprojects {
     }
 
     dependencies {
-        compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
-        testCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+        // compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+        // testCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
         // compileOnly("me.shedaniel:RoughlyEnoughItems-api:$rei_version")
         // testCompileOnly("me.shedaniel:RoughlyEnoughItems-api:$rei_version")
     }

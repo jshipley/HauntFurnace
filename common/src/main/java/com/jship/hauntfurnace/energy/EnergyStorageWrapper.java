@@ -1,8 +1,6 @@
 package com.jship.hauntfurnace.energy;
 
-public interface EnergyStorage {
-    abstract int consumeEnergy(int consume, boolean simulate);
-
+public interface EnergyStorageWrapper {
     abstract boolean canExtract();
     abstract int extractEnergy(int maxExtract, boolean simulate);
 

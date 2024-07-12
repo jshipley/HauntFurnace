@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 
 import com.jship.hauntfurnace.block.entity.HauntFurnaceBlockEntity;
 import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
-import com.jship.hauntfurnace.energy.EnergyStorage;
+import com.jship.hauntfurnace.energy.EnergyStorageWrapper;
 import com.jship.hauntfurnace.energy.EnergyStorageFactory;
 import com.jship.hauntfurnace.menu.HauntFurnaceMenu;
 import com.jship.hauntfurnace.menu.PoweredHauntFurnaceMenu;
@@ -39,7 +39,7 @@ public class HauntFurnace {
     public static MenuType<HauntFurnaceMenu> HAUNT_FURNACE_MENU;
     public static MenuType<PoweredHauntFurnaceMenu> POWERED_HAUNT_FURNACE_MENU;
 
-    public static EnergyStorageFactory<EnergyStorage> ENERGY_STORAGE_FACTORY;
+    public static EnergyStorageFactory<EnergyStorageWrapper> ENERGY_STORAGE_FACTORY;
 
     public static ResourceLocation INTERACT_WITH_HAUNT_FURNACE = new ResourceLocation(MOD_ID, "interact_with_haunt_furnace");
 }

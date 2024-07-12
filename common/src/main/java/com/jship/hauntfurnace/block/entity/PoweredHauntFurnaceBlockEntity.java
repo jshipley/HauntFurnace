@@ -1,6 +1,6 @@
 package com.jship.hauntfurnace.block.entity;
 
-import com.jship.hauntfurnace.energy.EnergyStorage;
+import com.jship.hauntfurnace.energy.EnergyStorageWrapper;
 import com.jship.hauntfurnace.menu.PoweredHauntFurnaceMenu;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 
@@ -59,15 +59,15 @@ public class PoweredHauntFurnaceBlockEntity extends BaseContainerBlockEntity
     public static final int COOK_TIME_TOTAL_PROPERTY_INDEX = 2;
     public static final int PROPERTY_COUNT = 3;
     public static final int DEFAULT_COOK_TIME = 100;
+    private static final int ENERGY_USAGE_PER_TICK = 10;
     protected NonNullList<ItemStack> items;
     public static final int ENERGY_CAPACITY = 1024;
     public static final int ENERGY_MAX_INSERT = 32;
-    public static final int ENERGY_MAX_EXTRACT = 0;
-    private static final int ENERGY_USAGE_PER_TICK = 10;
+    public static final int ENERGY_MAX_EXTRACT = ENERGY_USAGE_PER_TICK;
 
     // This is a custom interface that should be implemented in the Forge/Fabric
     // specific code.
-    public final EnergyStorage energyStorage;
+    public final EnergyStorageWrapper energyStorage;
 
     int cookingProgress;
     int cookingTotalTime;
@@ -187,7 +187,7 @@ public class PoweredHauntFurnaceBlockEntity extends BaseContainerBlockEntity
         boolean stateChanged = false;
 
         if (canOutput
-                && (blockEntity.energyStorage.consumeEnergy(ENERGY_USAGE_PER_TICK, false) == ENERGY_USAGE_PER_TICK)) {
+                && (blockEntity.energyStorage.extractEnergy(ENERGY_USAGE_PER_TICK, false) == ENERGY_USAGE_PER_TICK)) {
             isLit = true;
             blockEntity.unpoweredCount = 0;
             blockEntity.cookingProgress += 2;
@@ -292,6 +292,7 @@ public class PoweredHauntFurnaceBlockEntity extends BaseContainerBlockEntity
     }
 
     public boolean canTakeItemThroughFace(int i, ItemStack itemStack, Direction direction) {
+        HauntFurnace.LOGGER.info("[Haunt Furnace] canTakeItemThroughFace {}, {}, {}", i, direction, direction == Direction.DOWN && i == OUTPUT_SLOT);
         return direction == Direction.DOWN && i == OUTPUT_SLOT;
     }
 

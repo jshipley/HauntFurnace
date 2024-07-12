@@ -6,6 +6,7 @@ import com.jship.hauntfurnace.HauntFurnace;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 
 import mezz.jei.api.IModPlugin;
+import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.recipe.RecipeType;
@@ -17,6 +18,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 
+@JeiPlugin
 public class HauntFurnaceJEI implements IModPlugin {
     public static final ResourceLocation ID = new ResourceLocation(HauntFurnace.MOD_ID, "jei_plugin");
     public static final RecipeType<HauntingRecipe> HAUNTING_RECIPE_TYPE = RecipeType.create(HauntFurnace.MOD_ID, "haunting", HauntingRecipe.class);

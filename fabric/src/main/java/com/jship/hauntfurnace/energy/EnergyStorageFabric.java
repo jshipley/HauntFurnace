@@ -1,11 +1,10 @@
 package com.jship.hauntfurnace.energy;
 
-import net.fabricmc.fabric.api.transfer.v1.storage.StoragePreconditions;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-public class EnergyStorageFabric implements EnergyStorage {
+public class EnergyStorageFabric implements EnergyStorageWrapper {
     public final SimpleEnergyStorage fabricEnergyStorage;
     public final BlockEntity blockEntity;
 
@@ -17,23 +16,6 @@ public class EnergyStorageFabric implements EnergyStorage {
                 blockEntity.setChanged();
             }
         };
-    }
-
-    public int consumeEnergy(int consume, boolean simulate) {
-        StoragePreconditions.notNegative(consume);
-
-        try (Transaction tx = Transaction.openOuter()) {
-            int consumed = (int)Math.min(consume, this.fabricEnergyStorage.amount);
-            if (consumed == consume) {
-                if (!simulate) {
-                    this.fabricEnergyStorage.updateSnapshots(tx);
-                    this.fabricEnergyStorage.amount -= consumed;
-                    tx.commit();
-                }
-                return consumed;
-            }
-            return 0;
-        }
     }
 
     public boolean canExtract() {
