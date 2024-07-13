@@ -18,8 +18,6 @@ import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityT
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.stats.StatFormatter;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
@@ -96,12 +94,5 @@ public class HauntFurnaceFabric implements ModInitializer {
                 ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(content -> {
                         content.addAfter(Items.BLAST_FURNACE, HauntFurnace.HAUNT_FURNACE_BLOCK, HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK);
                 });
-
-                Registry.register(
-                                BuiltInRegistries.CUSTOM_STAT,
-                                "interact_with_haunt_furnace",
-                                HauntFurnace.INTERACT_WITH_HAUNT_FURNACE);
-                Stats.CUSTOM.get(HauntFurnace.INTERACT_WITH_HAUNT_FURNACE, StatFormatter.DEFAULT);
-
         }
 }

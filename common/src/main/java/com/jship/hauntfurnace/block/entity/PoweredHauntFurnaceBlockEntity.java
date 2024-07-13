@@ -12,9 +12,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.LockCode;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
@@ -29,7 +33,7 @@ import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
@@ -46,14 +50,14 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 
 // This needs to use FE instead of fuel, so it needed to change a lot from the AbstractFurnaceBlockEntity.
 // The code for this is mostly based on the AbstractFurnaceBlockEntity.
-public class PoweredHauntFurnaceBlockEntity extends BaseContainerBlockEntity
-        implements WorldlyContainer, RecipeHolder, StackedContentsCompatible {
+public class PoweredHauntFurnaceBlockEntity extends BlockEntity
+        implements WorldlyContainer, RecipeHolder, StackedContentsCompatible, MenuProvider {
     public static final int INPUT_SLOT = 0;
     public static final int OUTPUT_SLOT = 1;
     public static final int SLOT_COUNT = 2;
     public static final int[] SLOTS_FOR_UP = new int[] { INPUT_SLOT };
     public static final int[] SLOTS_FOR_DOWN = new int[] { OUTPUT_SLOT };
-    public static final int[] SLOTS_FOR_SIDES = new int[] {};
+    public static final int[] SLOTS_FOR_SIDES = new int[] { INPUT_SLOT };
     public static final int ENERGY_STORAGE_PROPERTY_INDEX = 0;
     public static final int COOK_TIME_PROPERTY_INDEX = 1;
     public static final int COOK_TIME_TOTAL_PROPERTY_INDEX = 2;
@@ -69,10 +73,11 @@ public class PoweredHauntFurnaceBlockEntity extends BaseContainerBlockEntity
     // specific code.
     public final EnergyStorageWrapper energyStorage;
 
-    int cookingProgress;
-    int cookingTotalTime;
-    boolean isLit;
-    int unpoweredCount = 0;
+    private int cookingProgress;
+    private int cookingTotalTime;
+    private boolean isLit;
+    private int unpoweredCount = 0;
+    private LockCode lockKey;
 
     protected final ContainerData dataAccess;
     private final Object2IntOpenHashMap<ResourceLocation> recipesUsed;
@@ -80,6 +85,7 @@ public class PoweredHauntFurnaceBlockEntity extends BaseContainerBlockEntity
 
     public PoweredHauntFurnaceBlockEntity(BlockPos pos, BlockState state) {
         super(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK_ENTITY, pos, state);
+        this.lockKey = LockCode.NO_LOCK;
         this.items = NonNullList.withSize(SLOT_COUNT, ItemStack.EMPTY);
         this.energyStorage = HauntFurnace.ENERGY_STORAGE_FACTORY.createEnergyStorage(ENERGY_CAPACITY, ENERGY_MAX_INSERT,
                 ENERGY_MAX_EXTRACT, this);
@@ -120,12 +126,31 @@ public class PoweredHauntFurnaceBlockEntity extends BaseContainerBlockEntity
     }
 
     @Override
-    public Component getDefaultName() {
+    public Component getDisplayName() {
         return Component.translatable("container.powered_haunt_furnace");
+    }
+
+    public boolean canOpen(Player player) {
+        return canUnlock(player, this.lockKey, this.getDisplayName());
+    }
+
+    public static boolean canUnlock(Player player, LockCode lockCode, Component component) {
+        if (!player.isSpectator() && !lockCode.unlocksWith(player.getMainHandItem())) {
+            player.displayClientMessage(Component.translatable("container.isLocked", new Object[] { component }), true);
+            player.playNotifySound(SoundEvents.CHEST_LOCKED, SoundSource.BLOCKS, 1.0F, 1.0F);
+            return false;
+        } else {
+            return true;
+        }
     }
 
     protected AbstractContainerMenu createMenu(int id, Inventory inventory) {
         return new PoweredHauntFurnaceMenu(id, inventory, this, this.dataAccess);
+    }
+
+    @Nullable
+    public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
+        return this.canOpen(player) ? this.createMenu(i, inventory) : null;
     }
 
     private boolean isLit() {
@@ -134,6 +159,7 @@ public class PoweredHauntFurnaceBlockEntity extends BaseContainerBlockEntity
 
     public void load(CompoundTag compoundTag) {
         super.load(compoundTag);
+        this.lockKey = LockCode.fromTag(compoundTag);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         ContainerHelper.loadAllItems(compoundTag, this.items);
         this.energyStorage.setEnergyStored(compoundTag.getInt("EnergyStorage"));
@@ -146,6 +172,7 @@ public class PoweredHauntFurnaceBlockEntity extends BaseContainerBlockEntity
 
     protected void saveAdditional(CompoundTag compoundTag) {
         super.saveAdditional(compoundTag);
+        this.lockKey.addToTag(compoundTag);
         compoundTag.putInt("EnergyStorage", (short) this.energyStorage.getEnergyStored());
         compoundTag.putShort("CookTime", (short) this.cookingProgress);
         compoundTag.putShort("CookTimeTotal", (short) this.cookingTotalTime);
@@ -279,6 +306,7 @@ public class PoweredHauntFurnaceBlockEntity extends BaseContainerBlockEntity
         return i == INPUT_SLOT;
     }
 
+    @Override
     public int[] getSlotsForFace(Direction direction) {
         if (direction == Direction.DOWN) {
             return SLOTS_FOR_DOWN;
@@ -287,12 +315,13 @@ public class PoweredHauntFurnaceBlockEntity extends BaseContainerBlockEntity
         }
     }
 
+    @Override
     public boolean canPlaceItemThroughFace(int i, ItemStack itemStack, @Nullable Direction direction) {
         return this.canPlaceItem(i, itemStack);
     }
 
+    @Override
     public boolean canTakeItemThroughFace(int i, ItemStack itemStack, Direction direction) {
-        HauntFurnace.LOGGER.info("[Haunt Furnace] canTakeItemThroughFace {}, {}, {}", i, direction, direction == Direction.DOWN && i == OUTPUT_SLOT);
         return direction == Direction.DOWN && i == OUTPUT_SLOT;
     }
 

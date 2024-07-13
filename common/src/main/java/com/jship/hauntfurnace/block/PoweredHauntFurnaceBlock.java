@@ -47,7 +47,7 @@ public class PoweredHauntFurnaceBlock extends AbstractFurnaceBlock {
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
         if (blockEntity instanceof PoweredHauntFurnaceBlockEntity) {
             player.openMenu((MenuProvider) blockEntity);
-            player.awardStat(HauntFurnace.INTERACT_WITH_HAUNT_FURNACE);
+            // player.awardStat(HauntFurnace.INTERACT_WITH_HAUNT_FURNACE);
         }
     }
 

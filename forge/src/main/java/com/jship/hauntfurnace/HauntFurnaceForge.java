@@ -6,15 +6,12 @@ import com.jship.hauntfurnace.block.entity.HauntFurnaceBlockEntity;
 import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
 import com.jship.hauntfurnace.energy.EnergyCapabilityProvider;
 import com.jship.hauntfurnace.energy.EnergyStorageFactoryForge;
+import com.jship.hauntfurnace.items.SidedItemHandlerCapabilityProvider;
 import com.jship.hauntfurnace.menu.HauntFurnaceMenu;
 import com.jship.hauntfurnace.menu.PoweredHauntFurnaceMenu;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.stats.StatFormatter;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
@@ -28,8 +25,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -55,10 +50,6 @@ public class HauntFurnaceForge {
         public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(
                         ForgeRegistries.MENU_TYPES,
                         HauntFurnace.MOD_ID);
-        // public static final DeferredRegister<ResourceLocation> CUSTOM_STATS =
-        // DeferredRegister.create(
-        // ForgeRegistries.CUSTOM_STATS,
-        // HauntFurnace.MOD_ID);
 
         public static final RegistryObject<Block> HAUNT_FURNACE_BLOCK = BLOCKS.register("haunt_furnace",
                         () -> new HauntFurnaceBlock(BlockBehaviour.Properties.copy(Blocks.FURNACE)));
@@ -95,22 +86,15 @@ public class HauntFurnaceForge {
                         .register("powered_haunt_furnace",
                                         () -> new MenuType<PoweredHauntFurnaceMenu>(PoweredHauntFurnaceMenu::new,
                                                         FeatureFlags.VANILLA_SET));;
-        // public static final RegistryObject<ResourceLocation>
-        // HAUNT_FURNACE_INTERACTIONS =
-        // CUSTOM_STATS.register("interact_with_haunt_furnace", () ->
-        // HauntFurnace.INTERACT_WITH_HAUNT_FURNACE);
-        // public static final RegistryObject<StatType<CustomStat>>
-        // HAUNT_FURNACE_INTERACTIONS =
-        // CUSTOM_STATS.register("interactions_with_haunt_furnace", () -> new
-        // StatType<CustomStat>)
 
         public HauntFurnaceForge() {
                 IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
                 modEventBus.addListener(this::addCreative);
                 modEventBus.addListener(this::loadComplete);
-                
-                net.minecraftforge.common.MinecraftForge.EVENT_BUS.addGenericListener(BlockEntity.class, HauntFurnaceForge::attachCapabilities);
+
+                net.minecraftforge.common.MinecraftForge.EVENT_BUS.addGenericListener(BlockEntity.class,
+                                HauntFurnaceForge::attachCapabilities);
 
                 BLOCKS.register(modEventBus);
                 BLOCK_ENTITY_TYPES.register(modEventBus);
@@ -118,7 +102,6 @@ public class HauntFurnaceForge {
                 RECIPE_TYPES.register(modEventBus);
                 RECIPE_SERIALIZERS.register(modEventBus);
                 MENU_TYPES.register(modEventBus);
-                // Stats.CUSTOM.get(HauntFurnace.INTERACT_WITH_HAUNT_FURNACE, StatFormatter.DEFAULT);
         }
 
         private void loadComplete(final FMLLoadCompleteEvent event) {
@@ -144,9 +127,17 @@ public class HauntFurnaceForge {
 
         private static void attachCapabilities(AttachCapabilitiesEvent<BlockEntity> event) {
                 if (event.getObject() instanceof PoweredHauntFurnaceBlockEntity) {
-                        HauntFurnace.LOGGER.error("[Haunt Furnace] attaching energy capability is not yet supported!! ({})",
-                                event);
-                        event.addCapability(new ResourceLocation(HauntFurnace.MOD_ID, "powered_haunt_furnace_energy_capability"), new EnergyCapabilityProvider((PoweredHauntFurnaceBlockEntity)event.getObject()));
+                        event.addCapability(
+                                        new ResourceLocation(HauntFurnace.MOD_ID,
+                                                        "powered_haunt_furnace__capability"),
+                                        new SidedItemHandlerCapabilityProvider((PoweredHauntFurnaceBlockEntity) event.getObject()));
+                        
+                        event.addCapability(
+                                        new ResourceLocation(HauntFurnace.MOD_ID,
+                                                        "powered_haunt_furnace_energy_capability"),
+                                        new EnergyCapabilityProvider(
+                                                        (PoweredHauntFurnaceBlockEntity) event.getObject()));
+                        
                 }
         }
 }
