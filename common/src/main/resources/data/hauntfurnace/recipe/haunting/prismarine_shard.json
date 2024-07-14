@@ -1,0 +1,10 @@
+{
+	"type": "hauntfurnace:haunting",
+	"ingredient": {
+		"item": "minecraft:lapis_lazuli"
+	},
+	"result": {
+		"id": "minecraft:prismarine_shard"
+	},
+	"experience": 0.1
+}

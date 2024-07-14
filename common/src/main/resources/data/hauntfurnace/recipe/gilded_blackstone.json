@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "NNN",
+        "NBN",
+        "NNN"
+    ],
+    "key": {
+        "B": {
+            "item": "minecraft:blackstone"
+        },
+        "N": {
+            "item": "minecraft:gold_nugget"
+        }
+    },
+    "result": {
+        "id": "minecraft:gilded_blackstone"
+    }
+}

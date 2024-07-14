@@ -1,0 +1,35 @@
+{
+    "type": "hauntfurnace:haunting",
+    "ingredient": [
+        {
+            "item": "quark:ancient_log"
+        },
+        {
+            "item": "quark:stripped_ancient_log"
+        },
+        {
+            "item": "quark:ancient_wood"
+        },
+        {
+            "item": "quark:stripped_ancient_wood"
+        }
+    ],
+    "result": {
+        "id": "minecraft:warped_stem"
+    },
+    "experience": 0.1,
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "quark"
+            ]
+        }
+    ],
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "quark"
+        }
+    ]
+}

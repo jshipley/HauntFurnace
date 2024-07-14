@@ -1,0 +1,24 @@
+{
+    "type": "hauntfurnace:haunting",
+    "ingredient": {
+        "tag": "croptopia:advancements_seeds"
+    },
+    "result": {
+        "id": "minecraft:nether_wart"
+    },
+    "experience": 0.1,
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "croptopia"
+            ]
+        }
+    ],
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "croptopia"
+        }
+    ]
+}

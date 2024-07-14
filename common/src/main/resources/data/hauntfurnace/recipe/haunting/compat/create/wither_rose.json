@@ -1,0 +1,27 @@
+{
+    "type": "create:haunting",
+    "ingredients": [
+        {
+            "tag": "hauntfurnace:hauntable_flowers"
+        }
+    ],
+    "results": [
+        {
+            "id": "minecraft:wither_rose"
+        }
+    ],
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "create"
+            ]
+        }
+    ],
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "create"
+        }
+    ]
+}

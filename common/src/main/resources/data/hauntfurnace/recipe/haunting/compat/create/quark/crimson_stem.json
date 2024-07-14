@@ -1,0 +1,43 @@
+{
+    "type": "create:haunting",
+    "ingredients": [
+        [
+            {
+                "item": "quark:azalea_log"
+            },
+            {
+                "item": "quark:stripped_azalea_log"
+            },
+            {
+                "item": "quark:azalea_wood"
+            },
+            {
+                "item": "quark:stripped_azalea_wood"
+            }
+        ]
+    ],
+    "results": [
+        {
+            "id": "minecraft:crimson_stem"
+        }
+    ],
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "create",
+                "quark"
+            ]
+        }
+    ],
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "quark"
+        },
+        {
+            "type": "forge:mod_loaded",
+            "modid": "quark"
+        }
+    ]
+}

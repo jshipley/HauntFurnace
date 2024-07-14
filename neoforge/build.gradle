@@ -1,0 +1,54 @@
+plugins {
+    id 'multiloader-loader'
+    id 'net.neoforged.moddev'
+}
+
+dependencies {
+    runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
+    compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
+    testCompileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
+
+    implementation ("me.shedaniel.cloth:cloth-config-neoforge:$cloth_config_version")
+    implementation ("dev.architectury:architectury-neoforge:$architectury_version")
+
+    implementation ("me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}")
+    
+    runtimeOnly("dev.emi:emi-neoforge:${emi_version}")
+    compileOnly("dev.emi:emi-neoforge:${emi_version}:api")
+    testCompileOnly("dev.emi:emi-neoforge:${emi_version}:api")
+}
+
+neoForge {
+    version = neoforge_version
+    // Automatically enable neoforge AccessTransformers if the file exists
+    def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformers.add(at.absolutePath)
+    }
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+    runs {
+        configureEach {
+            systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
+            ideName = "NeoForge ${it.name.capitalize()} (${project.path})" // Unify the run config names with fabric
+        }
+        client {
+            client()
+        }
+        data {
+            data()
+        }
+        server {
+            server()
+        }
+    }
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }

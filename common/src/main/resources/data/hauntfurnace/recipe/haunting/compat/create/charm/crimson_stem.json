@@ -1,0 +1,41 @@
+{
+    "type": "create:haunting",
+    "ingredients": [
+        {
+            "item": "charm:azalea_log"
+        },
+        {
+            "item": "charm:stripped_azalea_log"
+        },
+        {
+            "item": "charm:azalea_wood"
+        },
+        {
+            "item": "charm:stripped_azalea_wood"
+        }
+    ],
+    "results": [
+        {
+            "id": "minecraft:crimson_stem"
+        }
+    ],
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "create",
+                "charm"
+            ]
+        }
+    ],
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "create"
+        },
+        {
+            "type": "forge:mod_loaded",
+            "modid": "charm"
+        }
+    ]
+}

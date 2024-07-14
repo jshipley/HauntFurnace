@@ -1,0 +1,10 @@
+{
+  "type": "hauntfurnace:haunting",
+  "ingredient": {
+    "item": "minecraft:brick"
+  },
+  "result": {
+    "id": "minecraft:nether_brick"
+  },
+  "experience": 0.1
+}

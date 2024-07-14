@@ -1,0 +1,10 @@
+{
+  "type": "hauntfurnace:haunting",
+  "ingredient": {
+    "tag": "forge:sand"
+  },
+  "result": {
+    "id": "minecraft:soul_sand"
+  },
+  "experience": 0.1
+}
