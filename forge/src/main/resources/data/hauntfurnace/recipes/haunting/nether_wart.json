@@ -1,0 +1,8 @@
+{
+    "type": "hauntfurnace:haunting",
+    "ingredient": {
+        "tag": "forge:seeds"
+    },
+    "result": "minecraft:nether_wart",
+    "experience": 0.1
+}

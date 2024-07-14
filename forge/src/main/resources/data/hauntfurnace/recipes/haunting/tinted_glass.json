@@ -1,0 +1,8 @@
+{
+    "type": "hauntfurnace:haunting",
+    "ingredient": {
+        "tag": "forge:glass_blocks"
+    },
+    "result": "minecraft:tinted_glass",
+    "experience": 0.1
+}

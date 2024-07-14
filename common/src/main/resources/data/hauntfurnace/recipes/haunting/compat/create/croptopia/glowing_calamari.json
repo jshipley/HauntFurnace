@@ -1,0 +1,30 @@
+{
+    "type": "create:haunting",
+    "ingredients": {
+        "item": "croptopia:calamari"
+    },
+    "results": [
+        {
+            "item": "croptopia:glowing_calamari"
+        }
+    ],
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "create",
+                "croptopia"
+            ]
+        }
+    ],
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "create"
+        },
+        {
+            "type": "forge:mod_loaded",
+            "modid": "croptopia"
+        }
+    ]
+}

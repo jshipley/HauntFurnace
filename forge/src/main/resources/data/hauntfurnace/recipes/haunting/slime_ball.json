@@ -1,0 +1,8 @@
+{
+    "type": "hauntfurnace:haunting",
+    "ingredient": {
+        "tag": "forge:foods/breads"
+    },
+    "result": "minecraft:slime_ball",
+    "experience": 0.1
+}

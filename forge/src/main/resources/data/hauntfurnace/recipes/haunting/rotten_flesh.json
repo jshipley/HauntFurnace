@@ -1,0 +1,8 @@
+{
+    "type": "hauntfurnace:haunting",
+    "ingredient": {
+        "tag": "forge:foods/raw_meats"
+    },
+    "result": "minecraft:rotten_flesh",
+    "experience": 0.1
+}

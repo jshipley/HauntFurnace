@@ -23,5 +23,11 @@
                 "charm"
             ]
         }
+    ],
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "charm"
+        }
     ]
 }

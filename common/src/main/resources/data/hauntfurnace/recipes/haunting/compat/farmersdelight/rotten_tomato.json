@@ -12,5 +12,11 @@
         "farmersdelight"
       ]
     }
-  ]
+  ],
+  "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "farmersdelight"
+        }
+    ]
 }

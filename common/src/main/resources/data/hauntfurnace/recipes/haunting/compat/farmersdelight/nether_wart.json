@@ -2,10 +2,10 @@
     "type": "hauntfurnace:haunting",
     "ingredient": [
         {
-            "name": "farmersdelight:cabbage_seeds"
+            "item": "farmersdelight:cabbage_seeds"
         },
         {
-            "name": "farmersdelight:tomato_seeds"
+            "item": "farmersdelight:tomato_seeds"
         }
     ],
     "result": "minecraft:nether_wart",
@@ -16,6 +16,12 @@
             "values": [
                 "farmersdelight"
             ]
+        }
+    ],
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "farmersdelight"
         }
     ]
 }

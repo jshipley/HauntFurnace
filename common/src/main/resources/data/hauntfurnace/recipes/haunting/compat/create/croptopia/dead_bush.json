@@ -1,0 +1,30 @@
+{
+    "type": "create:haunting",
+    "ingredients": {
+        "tag": "croptopia:advancements_saplings"
+    },
+    "results": [
+        {
+            "item": "minecraft:dead_bush"
+        }
+    ],
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "create",
+                "croptopia"
+            ]
+        }
+    ],
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "create"
+        },
+        {
+            "type": "forge:mod_loaded",
+            "modid": "croptopia"
+        }
+    ]
+}

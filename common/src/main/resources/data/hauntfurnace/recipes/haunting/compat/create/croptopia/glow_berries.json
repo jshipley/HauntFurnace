@@ -1,0 +1,47 @@
+{
+    "type": "create:haunting",
+    "ingredients": [
+        {
+            "item": "croptopia:blackberry"
+        },
+        {
+            "item": "croptopia:blueberry"
+        },
+        {
+            "item": "croptopia:cranberry"
+        },
+        {
+            "item": "croptopia:elderberry"
+        },
+        {
+            "item": "croptopia:raspberry"
+        },
+        {
+            "item": "croptopia:strawberry"
+        }
+    ],
+    "results": [
+        {
+            "item": "minecraft:glow_berries"
+        }
+    ],
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "create",
+                "croptopia"
+            ]
+        }
+    ],
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "create"
+        },
+        {
+            "type": "forge:mod_loaded",
+            "modid": "croptopia"
+        }
+    ]
+}

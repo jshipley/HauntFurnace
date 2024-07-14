@@ -1,8 +1,8 @@
 {
     "type": "hauntfurnace:haunting",
     "ingredient": {
-        "item": "minecraft:ender_pearl"
+        "tag": "forge:saplings"
     },
-    "result": "minecraft:ender_eye",
+    "result": "minecraft:dead_bush",
     "experience": 0.1
 }

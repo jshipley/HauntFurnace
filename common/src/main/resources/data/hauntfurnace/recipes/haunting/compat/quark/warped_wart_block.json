@@ -1,0 +1,24 @@
+{
+    "type": "hauntfurnace:haunting",
+    "ingredient": [
+        {
+            "item": "quark:ancient_leaves"
+        }
+    ],
+    "result": "minecraft:warped_wart_block",
+    "experience": 0.1,
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "quark"
+            ]
+        }
+    ],
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "quark"
+        }
+    ]
+}

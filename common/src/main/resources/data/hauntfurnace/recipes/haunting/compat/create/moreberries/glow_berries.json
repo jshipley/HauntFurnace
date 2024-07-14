@@ -1,0 +1,47 @@
+{
+    "type": "create:haunting",
+    "ingredients": [
+        {
+            "item": "moreberries:blue_berries"
+        },
+        {
+            "item": "moreberries:yellow_berries"
+        },
+        {
+            "item": "moreberries:orange_berries"
+        },
+        {
+            "item": "moreberries:purple_berries"
+        },
+        {
+            "item": "moreberries:green_berries"
+        },
+        {
+            "item": "moreberries:black_berries"
+        }
+    ],
+    "results": [
+        {
+            "item": "minecraft:glow_berries"
+        }
+    ],
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "create",
+                "moreberries"
+            ]
+        }
+    ],
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "create"
+        },
+        {
+            "type": "forge:mod_loaded",
+            "modid": "moreberries"
+        }
+    ]
+}
