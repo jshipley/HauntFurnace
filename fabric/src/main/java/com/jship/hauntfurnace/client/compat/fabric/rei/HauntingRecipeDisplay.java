@@ -1,4 +1,4 @@
-package com.jship.hauntfurnace.client.compat.rei;
+package com.jship.hauntfurnace.client.compat.fabric.rei;
 
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 
@@ -9,9 +9,7 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.registry.RecipeManagerContext;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 
 import java.util.Collections;
@@ -26,17 +24,10 @@ public class HauntingRecipeDisplay extends BasicDisplay implements SimpleGridMen
     public HauntingRecipeDisplay(HauntingRecipe recipe) {
         this(EntryIngredients.ofIngredients(
             recipe.getIngredients()),
-            Collections.singletonList(EntryIngredients.of(getRecipeResult(recipe))),
+            Collections.singletonList(EntryIngredients.of(recipe.getResultItem(null))),
             recipe,
             recipe.getExperience(),
             recipe.getCookingTime());
-    }
-
-    private static ItemStack getRecipeResult(Recipe<?> recipe) {
-        Minecraft minecraft = Minecraft.getInstance();
-        ItemStack output = recipe.getResultItem(minecraft.level.registryAccess());
-        minecraft.close();
-        return output;
     }
 
     public HauntingRecipeDisplay(List<EntryIngredient> input, List<EntryIngredient> output, CompoundTag tag) {

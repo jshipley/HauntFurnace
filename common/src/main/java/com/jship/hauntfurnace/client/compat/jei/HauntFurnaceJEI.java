@@ -40,6 +40,7 @@ public class HauntFurnaceJEI implements IModPlugin {
         Minecraft minecraft = Minecraft.getInstance();
         RecipeManager recipeManager = minecraft.level.getRecipeManager();
         List<HauntingRecipe> recipes = recipeManager.getAllRecipesFor(HauntFurnace.HAUNTING_RECIPE);
+        minecraft.close();
 
         HauntFurnace.LOGGER.info("[Haunt Furnace] Registered haunting recipes: {}", recipes.size());
         registration.addRecipes(HAUNTING_RECIPE_TYPE, recipes);

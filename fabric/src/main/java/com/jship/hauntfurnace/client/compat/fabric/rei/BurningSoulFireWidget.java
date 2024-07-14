@@ -1,4 +1,4 @@
-package com.jship.hauntfurnace.client.compat.rei;
+package com.jship.hauntfurnace.client.compat.fabric.rei;
 
 import com.jship.hauntfurnace.HauntFurnace;
 import com.mojang.blaze3d.systems.RenderSystem;

@@ -92,6 +92,7 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
             Component experienceString = Component.translatable("gui.jei.category.smelting.experience", experience);
             Minecraft minecraft = Minecraft.getInstance();
             Font font = minecraft.font;
+            minecraft.close();
             int stringWidth = font.width(experienceString);
             guiGraphics.drawString(font, experienceString, getWidth() - stringWidth, y, 0xFF808080, false);
         }
@@ -104,6 +105,7 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
             Component timeString = Component.translatable("gui.jei.category.smelting.time.seconds", cookTimeSeconds);
             Minecraft minecraft = Minecraft.getInstance();
             Font font = minecraft.font;
+            minecraft.close();
             int stringWidth = font.width(timeString);
             guiGraphics.drawString(font, timeString, getWidth() - stringWidth, y, 0xFF808080, false);
         }
@@ -121,12 +123,9 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, HauntingRecipe recipe, IFocusGroup focuses) {
-
         builder.addSlot(INPUT, 1, 1)
                 .addIngredients(recipe.getIngredients().get(0));
-
-        Minecraft minecraft = Minecraft.getInstance();
         builder.addSlot(OUTPUT, 61, 19)
-                .addItemStack(recipe.getResultItem(minecraft.level.registryAccess()));
+                .addItemStack(recipe.getResultItem(null));
     }
 }

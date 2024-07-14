@@ -1,4 +1,4 @@
-package com.jship.hauntfurnace.client.compat.rei;
+package com.jship.hauntfurnace.client.compat.forge.rei;
 
 import com.google.common.collect.Lists;
 import com.jship.hauntfurnace.HauntFurnace;
