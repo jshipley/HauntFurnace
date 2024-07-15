@@ -31,10 +31,6 @@ public class PoweredHauntFurnaceBlock extends AbstractFurnaceBlock {
         super(properties);
     }
 
-    
-    /** 
-     * @return MapCodec
-     */
     public MapCodec<PoweredHauntFurnaceBlock> codec() {
         return CODEC;
     }

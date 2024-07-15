@@ -396,4 +396,8 @@ public class PoweredHauntFurnaceBlockEntity extends BlockEntity
             stackedContents.accountStack(itemStack);
         }
     }
+
+    @Nullable public EnergyStorageWrapper getEnergyStorage(@Nullable Direction side) {
+        return energyStorage;
+    }
 }

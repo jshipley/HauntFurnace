@@ -35,6 +35,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.energy.EnergyStorage;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -138,22 +139,9 @@ public class HauntFurnaceNeoforge {
         }
 
         private void registerCapabilities(RegisterCapabilitiesEvent event) {
-                // if (event.getObject() instanceof PoweredHauntFurnaceBlockEntity) {
-                // event.registerBlockEntity(
-                //                 Capabilities.ItemHandler.BLOCK,
-                //                 POWERED_HAUNT_FURNACE_BLOCK_ENTITY.get(),
-                //                 new SidedInvWrapper((Container) POWERED_HAUNT_FURNACE_BLOCK_ENTITY.get()));
-                // event.registerBlockEntity(
-                //         Capabilities.EnergyStorage.BLOCK,
-                //         POWERED_HAUNT_FURNACE_BLOCK_ENTITY.get(),
-                //         POWERED_HAUNT_FURNACE_BLOCK_ENTITY.get().energyStorage);
-
-                // event.addCapability(
-                // ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID,
-                // "powered_haunt_furnace_energy_capability"),
-                // new EnergyCapabilityProvider(
-                // (PoweredHauntFurnaceBlockEntity) event.getObject()));
-
-                // }
+                event.registerBlockEntity(
+                                Capabilities.EnergyStorage.BLOCK,
+                                POWERED_HAUNT_FURNACE_BLOCK_ENTITY.get(),
+                                (blockEntity, context) -> (EnergyStorage) ((PoweredHauntFurnaceBlockEntity)blockEntity).energyStorage);
         }
 }

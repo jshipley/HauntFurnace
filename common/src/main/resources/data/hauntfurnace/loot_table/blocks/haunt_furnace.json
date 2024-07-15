@@ -9,7 +9,7 @@
           "name": "hauntfurnace:haunt_furnace"
         }
       ],
-      "conditions": [
+      "neoforge:conditions": [
         {
           "condition": "minecraft:survives_explosion"
         }
