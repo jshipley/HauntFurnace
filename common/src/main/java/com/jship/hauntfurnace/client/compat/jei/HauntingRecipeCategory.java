@@ -92,7 +92,6 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
             Component experienceString = Component.translatable("gui.jei.category.smelting.experience", experience);
             Minecraft minecraft = Minecraft.getInstance();
             Font font = minecraft.font;
-            minecraft.close();
             int stringWidth = font.width(experienceString);
             font.draw(poseStack, experienceString, getWidth() - stringWidth, y, 0xFF808080);
         }
@@ -105,7 +104,6 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
             Component timeString = Component.translatable("gui.jei.category.smelting.time.seconds", cookTimeSeconds);
             Minecraft minecraft = Minecraft.getInstance();
             Font font = minecraft.font;
-            minecraft.close();
             int stringWidth = font.width(timeString);
             font.draw(poseStack, timeString, getWidth() - stringWidth, y, 0xFF808080);
         }
