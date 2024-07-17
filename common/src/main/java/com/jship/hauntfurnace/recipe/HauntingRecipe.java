@@ -11,15 +11,15 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public class HauntingRecipe extends AbstractCookingRecipe {
     public HauntingRecipe(ResourceLocation resourceLocation, String group, CookingBookCategory category, Ingredient input, ItemStack result, float experience, int cookTime) {
-        super(HauntFurnace.HAUNTING_RECIPE, resourceLocation, group, category, input, result, experience, cookTime);
+        super(HauntFurnace.HAUNTING_RECIPE.get(), resourceLocation, group, category, input, result, experience, cookTime);
     }
 
     public ItemStack getToastSymbol() {
-      return new ItemStack(HauntFurnace.HAUNT_FURNACE_BLOCK);
+      return new ItemStack(HauntFurnace.HAUNT_FURNACE_BLOCK.get());
    }
 
    public RecipeSerializer<?> getSerializer() {
-      return HauntFurnace.HAUNTING_RECIPE_SERIALIZER;
+      return HauntFurnace.HAUNTING_RECIPE_SERIALIZER.get();
    }
 
    public boolean isSpecial() {

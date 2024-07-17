@@ -8,7 +8,7 @@ import net.minecraft.client.gui.screens.MenuScreens;
 public class HauntFurnaceClientFabric implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        MenuScreens.register(HauntFurnace.HAUNT_FURNACE_MENU, HauntFurnaceScreen::new);
-        MenuScreens.register(HauntFurnace.POWERED_HAUNT_FURNACE_MENU, PoweredHauntFurnaceScreen::new);
+        MenuScreens.register(HauntFurnace.HAUNT_FURNACE_MENU.get(), HauntFurnaceScreen::new);
+        MenuScreens.register(HauntFurnace.POWERED_HAUNT_FURNACE_MENU.get(), PoweredHauntFurnaceScreen::new);
     }    
 }

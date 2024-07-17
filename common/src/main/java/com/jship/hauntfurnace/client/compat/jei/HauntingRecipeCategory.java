@@ -43,7 +43,7 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
         animatedFlame = guiHelper.createAnimatedDrawable(staticFlame, 300, IDrawableAnimated.StartDirection.TOP, true);
         this.background = guiHelper.createDrawable(TEXTURE, 0, 114, 82, 54);
         this.regularCookTime = AbstractFurnaceBlockEntity.BURN_TIME_STANDARD;
-        this.icon = guiHelper.createDrawableItemStack(new ItemStack(HauntFurnace.HAUNT_FURNACE_BLOCK));
+        this.icon = guiHelper.createDrawableItemStack(new ItemStack(HauntFurnace.HAUNT_FURNACE_BLOCK.get()));
         this.localizedName = Component.translatable("hauntfurnace.action.haunting");
         this.cachedArrows = CacheBuilder.newBuilder()
                 .maximumSize(25)
@@ -92,7 +92,6 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
             Component experienceString = Component.translatable("gui.jei.category.smelting.experience", experience);
             Minecraft minecraft = Minecraft.getInstance();
             Font font = minecraft.font;
-            minecraft.close();
             int stringWidth = font.width(experienceString);
             guiGraphics.drawString(font, experienceString, getWidth() - stringWidth, y, 0xFF808080, false);
         }
@@ -105,7 +104,6 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
             Component timeString = Component.translatable("gui.jei.category.smelting.time.seconds", cookTimeSeconds);
             Minecraft minecraft = Minecraft.getInstance();
             Font font = minecraft.font;
-            minecraft.close();
             int stringWidth = font.width(timeString);
             guiGraphics.drawString(font, timeString, getWidth() - stringWidth, y, 0xFF808080, false);
         }

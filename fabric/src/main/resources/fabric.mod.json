@@ -8,8 +8,8 @@
         "${mod_author}"
     ],
     "contact": {
-        "homepage": "https://fabricmc.net/",
-        "sources": "https://github.com/FabricMC/fabric-example-mod"
+        "homepage": "https://modrinth.com/mod/haunt-furnace",
+        "sources": "https://github.com/jshipley/HauntFurnace"
     },
     "license": "${license}",
     "icon": "assets/modid/${mod_id}.png",
