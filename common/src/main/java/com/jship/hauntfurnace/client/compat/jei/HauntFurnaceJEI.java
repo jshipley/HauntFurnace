@@ -40,8 +40,9 @@ public class HauntFurnaceJEI implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
+
         RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
-        List<RecipeHolder<HauntingRecipe>> recipeHolders = recipeManager.getAllRecipesFor(HauntFurnace.HAUNTING_RECIPE);
+        List<RecipeHolder<HauntingRecipe>> recipeHolders = recipeManager.getAllRecipesFor(HauntFurnace.HAUNTING_RECIPE.get());
         List<HauntingRecipe> recipes = new ArrayList<HauntingRecipe>();
         for(RecipeHolder<HauntingRecipe> recipeHolder : recipeHolders) {
             recipes.add(recipeHolder.value());
@@ -53,7 +54,7 @@ public class HauntFurnaceJEI implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(HauntFurnace.HAUNT_FURNACE_BLOCK), HAUNTING_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK), HAUNTING_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(HauntFurnace.HAUNT_FURNACE_BLOCK.get()), HAUNTING_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK.get()), HAUNTING_RECIPE_TYPE);
     }
 }

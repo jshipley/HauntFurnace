@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 // Extends AbstractFurnaceBlockEntity adding the haunting block entity, recipe, name, and menu
 public class HauntFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
     public HauntFurnaceBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY, blockPos, blockState, HauntFurnace.HAUNTING_RECIPE);
+        super(HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY.get(), blockPos, blockState, HauntFurnace.HAUNTING_RECIPE.get());
     }
 
     @Override

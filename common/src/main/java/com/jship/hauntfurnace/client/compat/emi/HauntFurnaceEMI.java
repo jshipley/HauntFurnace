@@ -16,8 +16,8 @@ import net.minecraft.world.item.crafting.RecipeManager;
 @EmiEntrypoint
 public class HauntFurnaceEMI implements EmiPlugin {
     public static final ResourceLocation SPRITE_SHEET = ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "textures/gui/container/jei_gui.png");
-    public static final EmiStack HAUNT_FURNACE_WORKSTATION = EmiStack.of(HauntFurnace.HAUNT_FURNACE_BLOCK);
-    public static final EmiStack POWERED_HAUNT_FURNACE_WORKSTATION = EmiStack.of(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK);
+    public static final EmiStack HAUNT_FURNACE_WORKSTATION = EmiStack.of(HauntFurnace.HAUNT_FURNACE_BLOCK.get());
+    public static final EmiStack POWERED_HAUNT_FURNACE_WORKSTATION = EmiStack.of(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK.get());
     public static final EmiRecipeCategory HAUNTING_CATEGORY = new EmiRecipeCategory(ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "haunt_furnace"), HAUNT_FURNACE_WORKSTATION, HAUNT_FURNACE_WORKSTATION, EmiRecipeSorting.compareOutputThenInput());
     
     @Override
@@ -27,7 +27,8 @@ public class HauntFurnaceEMI implements EmiPlugin {
         registry.addWorkstation(HAUNTING_CATEGORY, POWERED_HAUNT_FURNACE_WORKSTATION);
         
         RecipeManager recipeManager = registry.getRecipeManager();
-        for(RecipeHolder<HauntingRecipe> recipe : recipeManager.getAllRecipesFor(HauntFurnace.HAUNTING_RECIPE)) {
+
+        for(RecipeHolder<HauntingRecipe> recipe : recipeManager.getAllRecipesFor(HauntFurnace.HAUNTING_RECIPE.get())) {
             registry.addRecipe(new HauntingEMIRecipe(recipe.value()));
         }
     }

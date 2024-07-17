@@ -118,17 +118,17 @@ public class HauntFurnaceNeoforge {
         }
 
         private void loadComplete(final FMLLoadCompleteEvent event) {
-                HauntFurnace.HAUNT_FURNACE_BLOCK = HAUNT_FURNACE_BLOCK.get();
-                HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY = HAUNT_FURNACE_BLOCK_ENTITY.get();
-                HauntFurnace.HAUNT_FURNACE_ITEM = HAUNT_FURNACE_ITEM.get();
-                HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK = POWERED_HAUNT_FURNACE_BLOCK.get();
-                HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK_ENTITY = POWERED_HAUNT_FURNACE_BLOCK_ENTITY.get();
-                HauntFurnace.POWERED_HAUNT_FURNACE_ITEM = POWERED_HAUNT_FURNACE_ITEM.get();
-                HauntFurnace.ENERGY_STORAGE_FACTORY = new EnergyStorageFactoryNeoforge();
-                HauntFurnace.HAUNTING_RECIPE = HAUNTING_RECIPE.get();
-                HauntFurnace.HAUNTING_RECIPE_SERIALIZER = HAUNTING_RECIPE_SERIALIZER.get();
-                HauntFurnace.HAUNT_FURNACE_MENU = HAUNT_FURNACE_MENU.get();
-                HauntFurnace.POWERED_HAUNT_FURNACE_MENU = POWERED_HAUNT_FURNACE_MENU.get();
+                HauntFurnace.HAUNT_FURNACE_BLOCK = HAUNT_FURNACE_BLOCK;
+                HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY = HAUNT_FURNACE_BLOCK_ENTITY;
+                HauntFurnace.HAUNT_FURNACE_ITEM = HAUNT_FURNACE_ITEM;
+                HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK = POWERED_HAUNT_FURNACE_BLOCK;
+                HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK_ENTITY = POWERED_HAUNT_FURNACE_BLOCK_ENTITY;
+                HauntFurnace.POWERED_HAUNT_FURNACE_ITEM = POWERED_HAUNT_FURNACE_ITEM;
+                HauntFurnace.ENERGY_STORAGE_FACTORY = EnergyStorageFactoryNeoforge::new;
+                HauntFurnace.HAUNTING_RECIPE = HAUNTING_RECIPE;
+                HauntFurnace.HAUNTING_RECIPE_SERIALIZER = HAUNTING_RECIPE_SERIALIZER;
+                HauntFurnace.HAUNT_FURNACE_MENU = HAUNT_FURNACE_MENU;
+                HauntFurnace.POWERED_HAUNT_FURNACE_MENU = POWERED_HAUNT_FURNACE_MENU;
         }
 
         private void addCreative(BuildCreativeModeTabContentsEvent event) {

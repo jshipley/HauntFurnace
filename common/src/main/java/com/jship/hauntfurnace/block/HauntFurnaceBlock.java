@@ -43,7 +43,7 @@ public class HauntFurnaceBlock extends AbstractFurnaceBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
             BlockEntityType<T> blockEntityType) {
         return level.isClientSide ? null
-                : AbstractFurnaceBlock.createTickerHelper(blockEntityType, HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY,
+                : AbstractFurnaceBlock.createTickerHelper(blockEntityType, HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY.get(),
                         HauntFurnaceBlockEntity::serverTick);
     }
 

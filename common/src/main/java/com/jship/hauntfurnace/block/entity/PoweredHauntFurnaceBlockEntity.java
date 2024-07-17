@@ -86,10 +86,10 @@ public class PoweredHauntFurnaceBlockEntity extends BlockEntity
     private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends AbstractCookingRecipe> quickCheck;
 
     public PoweredHauntFurnaceBlockEntity(BlockPos pos, BlockState state) {
-        super(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK_ENTITY, pos, state);
+        super(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK_ENTITY.get(), pos, state);
         this.lockKey = LockCode.NO_LOCK;
         this.items = NonNullList.withSize(SLOT_COUNT, ItemStack.EMPTY);
-        this.energyStorage = HauntFurnace.ENERGY_STORAGE_FACTORY.createEnergyStorage(ENERGY_CAPACITY, ENERGY_MAX_INSERT,
+        this.energyStorage = HauntFurnace.ENERGY_STORAGE_FACTORY.get().createEnergyStorage(ENERGY_CAPACITY, ENERGY_MAX_INSERT,
                 ENERGY_MAX_EXTRACT, this);
         this.dataAccess = new ContainerData() {
             public int get(int index) {
@@ -124,7 +124,7 @@ public class PoweredHauntFurnaceBlockEntity extends BlockEntity
             }
         };
         this.recipesUsed = new Object2IntOpenHashMap<ResourceLocation>();
-        this.quickCheck = RecipeManager.createCheck(HauntFurnace.HAUNTING_RECIPE);
+        this.quickCheck = RecipeManager.createCheck(HauntFurnace.HAUNTING_RECIPE.get());
     }
 
     @Override

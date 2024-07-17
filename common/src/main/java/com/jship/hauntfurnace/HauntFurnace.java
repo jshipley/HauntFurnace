@@ -1,5 +1,7 @@
 package com.jship.hauntfurnace;
 
+import java.util.function.Supplier;
+
 import org.slf4j.Logger;
 
 import com.jship.hauntfurnace.block.entity.HauntFurnaceBlockEntity;
@@ -25,21 +27,19 @@ public class HauntFurnace {
     public static final String MOD_ID = "hauntfurnace";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public static Block HAUNT_FURNACE_BLOCK;
-    public static Item HAUNT_FURNACE_ITEM;
-    public static BlockEntityType<HauntFurnaceBlockEntity> HAUNT_FURNACE_BLOCK_ENTITY;
+    public static Supplier<Block> HAUNT_FURNACE_BLOCK;
+    public static Supplier<Item> HAUNT_FURNACE_ITEM;
+    public static Supplier<BlockEntityType<HauntFurnaceBlockEntity>> HAUNT_FURNACE_BLOCK_ENTITY;
 
-    public static Block POWERED_HAUNT_FURNACE_BLOCK;
-    public static Item POWERED_HAUNT_FURNACE_ITEM;
-    public static BlockEntityType<PoweredHauntFurnaceBlockEntity> POWERED_HAUNT_FURNACE_BLOCK_ENTITY;
+    public static Supplier<Block> POWERED_HAUNT_FURNACE_BLOCK;
+    public static Supplier<Item> POWERED_HAUNT_FURNACE_ITEM;
+    public static Supplier<BlockEntityType<PoweredHauntFurnaceBlockEntity>> POWERED_HAUNT_FURNACE_BLOCK_ENTITY;
 
-    public static RecipeType<HauntingRecipe> HAUNTING_RECIPE;
-    public static RecipeSerializer<HauntingRecipe> HAUNTING_RECIPE_SERIALIZER;
+    public static Supplier<RecipeType<HauntingRecipe>> HAUNTING_RECIPE;
+    public static Supplier<RecipeSerializer<HauntingRecipe>> HAUNTING_RECIPE_SERIALIZER;
 
-    public static MenuType<HauntFurnaceMenu> HAUNT_FURNACE_MENU;
-    public static MenuType<PoweredHauntFurnaceMenu> POWERED_HAUNT_FURNACE_MENU;
+    public static Supplier<MenuType<HauntFurnaceMenu>> HAUNT_FURNACE_MENU;
+    public static Supplier<MenuType<PoweredHauntFurnaceMenu>> POWERED_HAUNT_FURNACE_MENU;
 
-    public static EnergyStorageFactory<EnergyStorageWrapper> ENERGY_STORAGE_FACTORY;
-
-    public static ResourceLocation INTERACT_WITH_HAUNT_FURNACE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "interact_with_haunt_furnace");
+    public static Supplier<EnergyStorageFactory<EnergyStorageWrapper>> ENERGY_STORAGE_FACTORY;
 }
