@@ -84,10 +84,10 @@ public class PoweredHauntFurnaceBlockEntity extends BlockEntity
     private final RecipeManager.CachedCheck<Container, ? extends AbstractCookingRecipe> quickCheck;
 
     public PoweredHauntFurnaceBlockEntity(BlockPos pos, BlockState state) {
-        super(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK_ENTITY, pos, state);
+        super(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK_ENTITY.get(), pos, state);
         this.lockKey = LockCode.NO_LOCK;
         this.items = NonNullList.withSize(SLOT_COUNT, ItemStack.EMPTY);
-        this.energyStorage = HauntFurnace.ENERGY_STORAGE_FACTORY.createEnergyStorage(ENERGY_CAPACITY, ENERGY_MAX_INSERT,
+        this.energyStorage = HauntFurnace.ENERGY_STORAGE_FACTORY.get().createEnergyStorage(ENERGY_CAPACITY, ENERGY_MAX_INSERT,
                 ENERGY_MAX_EXTRACT, this);
         this.dataAccess = new ContainerData() {
             public int get(int index) {
@@ -122,7 +122,7 @@ public class PoweredHauntFurnaceBlockEntity extends BlockEntity
             }
         };
         this.recipesUsed = new Object2IntOpenHashMap<ResourceLocation>();
-        this.quickCheck = RecipeManager.createCheck(HauntFurnace.HAUNTING_RECIPE);
+        this.quickCheck = RecipeManager.createCheck(HauntFurnace.HAUNTING_RECIPE.get());
     }
 
     @Override
@@ -200,13 +200,13 @@ public class PoweredHauntFurnaceBlockEntity extends BlockEntity
         Recipe<?> recipe = !inputItems.isEmpty()
                 ? (Recipe<?>) blockEntity.quickCheck.getRecipeFor(blockEntity, level).orElse(null)
                 : null;
-        ItemStack recipeOutput = recipe != null ? recipe.getResultItem(level.registryAccess()) : ItemStack.EMPTY;
+        ItemStack recipeOutput = recipe != null ? recipe.getResultItem() : ItemStack.EMPTY;
 
         // There's a recipe that has output for the furnace input, and the output can
         // fit in the output slot
         boolean canOutput = !recipeOutput.isEmpty()
                 && (outputItems.isEmpty()
-                        || (ItemStack.isSameItem(recipeOutput, outputItems)
+                        || ((recipeOutput.sameItem(outputItems) && ItemStack.tagMatches(recipeOutput, outputItems))
                                 && outputItems.getCount() < blockEntity.getMaxStackSize()
                                 && outputItems.getCount() < outputItems.getMaxStackSize()));
 
@@ -299,7 +299,9 @@ public class PoweredHauntFurnaceBlockEntity extends BlockEntity
     }
 
     public boolean stillValid(Player player) {
-        return Container.stillValidBlockEntity(this, player);
+        return this.level.getBlockEntity(this.worldPosition) != this
+            ? false
+            : player.distanceToSqr((double)this.worldPosition.getX() + 0.5, (double)this.worldPosition.getY() + 0.5, (double)this.worldPosition.getZ() + 0.5) <= 64.0;
     }
 
     public boolean canPlaceItem(int i, ItemStack itemStack) {
@@ -345,15 +347,9 @@ public class PoweredHauntFurnaceBlockEntity extends BlockEntity
     }
 
     public void awardUsedRecipesAndPopExperience(ServerPlayer serverPlayer) {
-        List<Recipe<?>> recipes = this.getRecipesToAwardAndPopExperience(serverPlayer.serverLevel(),
+        List<Recipe<?>> recipes = this.getRecipesToAwardAndPopExperience(serverPlayer.getLevel(),
                 serverPlayer.position());
         serverPlayer.awardRecipes(recipes);
-        for (Recipe<?> recipe : recipes) {
-            if (recipe != null) {
-                serverPlayer.triggerRecipeCrafted(recipe, this.items);
-            }
-        }
-
         this.recipesUsed.clear();
     }
 

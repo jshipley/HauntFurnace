@@ -6,9 +6,6 @@
                 "item": "minecraft:jungle_log"
             },
             {
-                "item": "minecraft:cherry_log"
-            },
-            {
                 "item": "minecraft:acacia_log"
             },
             {
@@ -16,9 +13,6 @@
             },
             {
                 "item": "minecraft:stripped_jungle_log"
-            },
-            {
-                "item": "minecraft:stripped_cherry_log"
             },
             {
                 "item": "minecraft:stripped_acacia_log"
@@ -30,9 +24,6 @@
                 "item": "minecraft:jungle_wood"
             },
             {
-                "item": "minecraft:cherry_wood"
-            },
-            {
                 "item": "minecraft:acacia_wood"
             },
             {
@@ -40,9 +31,6 @@
             },
             {
                 "item": "minecraft:stripped_jungle_wood"
-            },
-            {
-                "item": "minecraft:stripped_cherry_wood"
             },
             {
                 "item": "minecraft:stripped_acacia_wood"

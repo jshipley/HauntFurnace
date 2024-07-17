@@ -6,6 +6,7 @@ import com.jship.hauntfurnace.recipe.HauntingRecipe;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -17,7 +18,6 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.IFocusGroup;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -43,7 +43,7 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
         animatedFlame = guiHelper.createAnimatedDrawable(staticFlame, 300, IDrawableAnimated.StartDirection.TOP, true);
         this.background = guiHelper.createDrawable(TEXTURE, 0, 114, 82, 54);
         this.regularCookTime = AbstractFurnaceBlockEntity.BURN_TIME_STANDARD;
-        this.icon = guiHelper.createDrawableItemStack(new ItemStack(HauntFurnace.HAUNT_FURNACE_BLOCK));
+        this.icon = guiHelper.createDrawableItemStack(new ItemStack(HauntFurnace.HAUNT_FURNACE_BLOCK.get()));
         this.localizedName = Component.translatable("hauntfurnace.action.haunting");
         this.cachedArrows = CacheBuilder.newBuilder()
                 .maximumSize(25)
@@ -75,18 +75,18 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
     }
 
     @Override
-    public void draw(HauntingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX,
+    public void draw(HauntingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX,
             double mouseY) {
-        animatedFlame.draw(guiGraphics, 1, 20);
+        animatedFlame.draw(poseStack, 1, 20);
 
         IDrawableAnimated arrow = getArrow(recipe);
-        arrow.draw(guiGraphics, 24, 18);
+        arrow.draw(poseStack, 24, 18);
 
-        drawExperience(recipe, guiGraphics, 0);
-        drawCookTime(recipe, guiGraphics, 45);
+        drawExperience(recipe, poseStack, 0);
+        drawCookTime(recipe, poseStack, 45);
     }
 
-    private void drawExperience(HauntingRecipe recipe, GuiGraphics guiGraphics, int y) {
+    private void drawExperience(HauntingRecipe recipe, PoseStack poseStack, int y) {
         float experience = recipe.getExperience();
         if (experience > 0) {
             Component experienceString = Component.translatable("gui.jei.category.smelting.experience", experience);
@@ -94,11 +94,11 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
             Font font = minecraft.font;
             minecraft.close();
             int stringWidth = font.width(experienceString);
-            guiGraphics.drawString(font, experienceString, getWidth() - stringWidth, y, 0xFF808080, false);
+            font.draw(poseStack, experienceString, getWidth() - stringWidth, y, 0xFF808080);
         }
     }
 
-    private void drawCookTime(HauntingRecipe recipe, GuiGraphics guiGraphics, int y) {
+    private void drawCookTime(HauntingRecipe recipe, PoseStack poseStack, int y) {
         double cookTime = recipe.getCookingTime();
         if (cookTime > 0) {
             double cookTimeSeconds = cookTime / 20;
@@ -107,7 +107,7 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
             Font font = minecraft.font;
             minecraft.close();
             int stringWidth = font.width(timeString);
-            guiGraphics.drawString(font, timeString, getWidth() - stringWidth, y, 0xFF808080, false);
+            font.draw(poseStack, timeString, getWidth() - stringWidth, y, 0xFF808080);
         }
     }
 
@@ -126,6 +126,6 @@ public class HauntingRecipeCategory implements IRecipeCategory<HauntingRecipe> {
         builder.addSlot(INPUT, 1, 1)
                 .addIngredients(recipe.getIngredients().get(0));
         builder.addSlot(OUTPUT, 61, 19)
-                .addItemStack(recipe.getResultItem(null));
+                .addItemStack(recipe.getResultItem());
     }
 }

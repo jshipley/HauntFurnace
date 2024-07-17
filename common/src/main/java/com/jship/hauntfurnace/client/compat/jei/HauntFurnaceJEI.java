@@ -32,23 +32,24 @@ public class HauntFurnaceJEI implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         IJeiHelpers jeiHelpers = registration.getJeiHelpers();
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
-        registration.addRecipeCategories(new HauntingRecipeCategory(guiHelper));
+        // registration.addRecipeCategories(new HauntingRecipeCategory(guiHelper));
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        Minecraft minecraft = Minecraft.getInstance();
-        RecipeManager recipeManager = minecraft.level.getRecipeManager();
-        List<HauntingRecipe> recipes = recipeManager.getAllRecipesFor(HauntFurnace.HAUNTING_RECIPE);
-        minecraft.close();
+        // HauntFurnace.LOGGER.info("[Haunt Furnace] Attempting to register recipes.");
+        // Minecraft minecraft = Minecraft.getInstance();
+        // RecipeManager recipeManager = minecraft.level.getRecipeManager();
+        // List<HauntingRecipe> recipes = recipeManager.getAllRecipesFor(HauntFurnace.HAUNTING_RECIPE.get());
+        // minecraft.close();
 
-        HauntFurnace.LOGGER.info("[Haunt Furnace] Registered haunting recipes: {}", recipes.size());
-        registration.addRecipes(HAUNTING_RECIPE_TYPE, recipes);
+        // HauntFurnace.LOGGER.info("[Haunt Furnace] Registered haunting recipes: {}", recipes.size());
+        // registration.addRecipes(HAUNTING_RECIPE_TYPE, recipes);
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(HauntFurnace.HAUNT_FURNACE_BLOCK), HAUNTING_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK), HAUNTING_RECIPE_TYPE);
+        // registration.addRecipeCatalyst(new ItemStack(HauntFurnace.HAUNT_FURNACE_BLOCK.get()), HAUNTING_RECIPE_TYPE);
+        // registration.addRecipeCatalyst(new ItemStack(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK.get()), HAUNTING_RECIPE_TYPE);
     }
 }

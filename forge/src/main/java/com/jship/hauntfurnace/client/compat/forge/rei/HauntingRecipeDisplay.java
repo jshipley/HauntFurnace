@@ -24,7 +24,7 @@ public class HauntingRecipeDisplay extends BasicDisplay implements SimpleGridMen
     public HauntingRecipeDisplay(HauntingRecipe recipe) {
         this(EntryIngredients.ofIngredients(
             recipe.getIngredients()),
-            Collections.singletonList(EntryIngredients.of(recipe.getResultItem(null))),
+            Collections.singletonList(EntryIngredients.of(recipe.getResultItem())),
             recipe,
             recipe.getExperience(),
             recipe.getCookingTime());

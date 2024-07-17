@@ -12,10 +12,9 @@ import com.jship.hauntfurnace.menu.PoweredHauntFurnaceMenu;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -26,7 +25,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
@@ -57,7 +55,7 @@ public class HauntFurnaceForge {
                         .register("haunt_furnace", () -> BlockEntityType.Builder
                                         .of(HauntFurnaceBlockEntity::new, HAUNT_FURNACE_BLOCK.get()).build(null));
         public static final RegistryObject<Item> HAUNT_FURNACE_ITEM = ITEMS.register("haunt_furnace",
-                        () -> new BlockItem(HAUNT_FURNACE_BLOCK.get(), new Item.Properties()));
+                        () -> new BlockItem(HAUNT_FURNACE_BLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
 
         public static final RegistryObject<Block> POWERED_HAUNT_FURNACE_BLOCK = BLOCKS.register("powered_haunt_furnace",
                         () -> new PoweredHauntFurnaceBlock(BlockBehaviour.Properties.copy(Blocks.FURNACE)));
@@ -66,7 +64,7 @@ public class HauntFurnaceForge {
                                         .of(PoweredHauntFurnaceBlockEntity::new, POWERED_HAUNT_FURNACE_BLOCK.get())
                                         .build(null));
         public static final RegistryObject<Item> POWERED_HAUNT_FURNACE_ITEM = ITEMS.register("powered_haunt_furnace",
-                        () -> new BlockItem(POWERED_HAUNT_FURNACE_BLOCK.get(), new Item.Properties()));
+                        () -> new BlockItem(POWERED_HAUNT_FURNACE_BLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
 
         public static final RegistryObject<RecipeType<HauntingRecipe>> HAUNTING_RECIPE = RECIPE_TYPES.register(
                         "haunting",
@@ -81,16 +79,14 @@ public class HauntFurnaceForge {
                                         () -> new SimpleCookingSerializer<HauntingRecipe>(HauntingRecipe::new, 200));
         public static final RegistryObject<MenuType<HauntFurnaceMenu>> HAUNT_FURNACE_MENU = MENU_TYPES.register(
                         "haunt_furnace",
-                        () -> new MenuType<HauntFurnaceMenu>(HauntFurnaceMenu::new, FeatureFlags.VANILLA_SET));;
+                        () -> new MenuType<HauntFurnaceMenu>(HauntFurnaceMenu::new));;
         public static final RegistryObject<MenuType<PoweredHauntFurnaceMenu>> POWERED_HAUNT_FURNACE_MENU = MENU_TYPES
                         .register("powered_haunt_furnace",
-                                        () -> new MenuType<PoweredHauntFurnaceMenu>(PoweredHauntFurnaceMenu::new,
-                                                        FeatureFlags.VANILLA_SET));;
+                                        () -> new MenuType<PoweredHauntFurnaceMenu>(PoweredHauntFurnaceMenu::new));;
 
         public HauntFurnaceForge() {
                 IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-                modEventBus.addListener(this::addCreative);
                 modEventBus.addListener(this::loadComplete);
 
                 net.minecraftforge.common.MinecraftForge.EVENT_BUS.addGenericListener(BlockEntity.class,
@@ -105,24 +101,17 @@ public class HauntFurnaceForge {
         }
 
         private void loadComplete(final FMLLoadCompleteEvent event) {
-                HauntFurnace.HAUNT_FURNACE_BLOCK = HAUNT_FURNACE_BLOCK.get();
-                HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY = HAUNT_FURNACE_BLOCK_ENTITY.get();
-                HauntFurnace.HAUNT_FURNACE_ITEM = HAUNT_FURNACE_ITEM.get();
-                HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK = POWERED_HAUNT_FURNACE_BLOCK.get();
-                HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK_ENTITY = POWERED_HAUNT_FURNACE_BLOCK_ENTITY.get();
-                HauntFurnace.POWERED_HAUNT_FURNACE_ITEM = POWERED_HAUNT_FURNACE_ITEM.get();
-                HauntFurnace.ENERGY_STORAGE_FACTORY = new EnergyStorageFactoryForge();
-                HauntFurnace.HAUNTING_RECIPE = HAUNTING_RECIPE.get();
-                HauntFurnace.HAUNTING_RECIPE_SERIALIZER = HAUNTING_RECIPE_SERIALIZER.get();
-                HauntFurnace.HAUNT_FURNACE_MENU = HAUNT_FURNACE_MENU.get();
-                HauntFurnace.POWERED_HAUNT_FURNACE_MENU = POWERED_HAUNT_FURNACE_MENU.get();
-        }
-
-        private void addCreative(BuildCreativeModeTabContentsEvent event) {
-                if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-                        event.accept(HAUNT_FURNACE_ITEM);
-                        event.accept(POWERED_HAUNT_FURNACE_ITEM);
-                }
+                HauntFurnace.HAUNT_FURNACE_BLOCK = HAUNT_FURNACE_BLOCK;
+                HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY = HAUNT_FURNACE_BLOCK_ENTITY;
+                HauntFurnace.HAUNT_FURNACE_ITEM = HAUNT_FURNACE_ITEM;
+                HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK = POWERED_HAUNT_FURNACE_BLOCK;
+                HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK_ENTITY = POWERED_HAUNT_FURNACE_BLOCK_ENTITY;
+                HauntFurnace.POWERED_HAUNT_FURNACE_ITEM = POWERED_HAUNT_FURNACE_ITEM;
+                HauntFurnace.ENERGY_STORAGE_FACTORY = EnergyStorageFactoryForge::new;
+                HauntFurnace.HAUNTING_RECIPE = HAUNTING_RECIPE;
+                HauntFurnace.HAUNTING_RECIPE_SERIALIZER = HAUNTING_RECIPE_SERIALIZER;
+                HauntFurnace.HAUNT_FURNACE_MENU = HAUNT_FURNACE_MENU;
+                HauntFurnace.POWERED_HAUNT_FURNACE_MENU = POWERED_HAUNT_FURNACE_MENU;
         }
 
         private static void attachCapabilities(AttachCapabilitiesEvent<BlockEntity> event) {

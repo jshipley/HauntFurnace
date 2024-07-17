@@ -34,13 +34,13 @@ public class PoweredHauntFurnaceMenu extends RecipeBookMenu<Container> {
     }
 
     public PoweredHauntFurnaceMenu(int syncId, Inventory inventory, Container container, ContainerData dataAccess) {
-        super(HauntFurnace.POWERED_HAUNT_FURNACE_MENU, syncId);
+        super(HauntFurnace.POWERED_HAUNT_FURNACE_MENU.get(), syncId);
         this.recipeBookType = RecipeBookType.FURNACE;
         checkContainerSize(container, CRAFT_SLOTS);
         checkContainerDataCount(dataAccess, PoweredHauntFurnaceBlockEntity.PROPERTY_COUNT);
         this.container = container;
         this.dataAccess = dataAccess;
-        this.level = inventory.player.level();
+        this.level = inventory.player.level;
         this.addSlot(new Slot(container, INPUT_SLOT, 56, 35));
         this.addSlot(new FurnaceResultSlot(inventory.player, container, OUTPUT_SLOT, 116, 35));
 
@@ -123,7 +123,7 @@ public class PoweredHauntFurnaceMenu extends RecipeBookMenu<Container> {
             }
 
             if (itemStack2.isEmpty()) {
-                slot2.setByPlayer(ItemStack.EMPTY);
+                slot2.set(ItemStack.EMPTY);
             } else {
                 slot2.setChanged();
             }
@@ -139,7 +139,7 @@ public class PoweredHauntFurnaceMenu extends RecipeBookMenu<Container> {
     }
 
     protected boolean isHauntable(ItemStack itemStack) {
-        return this.level.getRecipeManager().getRecipeFor(HauntFurnace.HAUNTING_RECIPE, new SimpleContainer(new ItemStack[]{itemStack}), this.level).isPresent();
+        return this.level.getRecipeManager().getRecipeFor(HauntFurnace.HAUNTING_RECIPE.get(), new SimpleContainer(new ItemStack[]{itemStack}), this.level).isPresent();
     }
 
     public int getCookProgress() {
