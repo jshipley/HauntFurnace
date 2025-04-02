@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:haunting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "ingredient": {
+    "tag": "c:gems/lapis"
+  },
+  "result": {
+    "id": "minecraft:prismarine_shard"
+  }
+}

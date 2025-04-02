@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:haunting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.3,
+  "ingredient": {
+    "tag": "c:foods/raw_meat"
+  },
+  "result": {
+    "id": "minecraft:rotten_flesh"
+  }
+}

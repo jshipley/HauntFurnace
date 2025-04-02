@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:haunting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredient": {
+    "tag": "c:ingots/copper"
+  },
+  "result": {
+    "id": "minecraft:gold_ingot"
+  }
+}

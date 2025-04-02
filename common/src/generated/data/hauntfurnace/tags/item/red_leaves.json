@@ -1,0 +1,116 @@
+{
+  "values": [
+    "minecraft:acacia_leaves",
+    "minecraft:cherry_leaves",
+    "minecraft:jungle_leaves",
+    "minecraft:mangrove_leaves",
+    {
+      "id": "biomesoplenty:fir_leaves",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:maple_leaves",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:redwood_leaves",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:mahogany_leaves",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:palm_leaves",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:hellbark_leaves",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:empyrial_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:aspen_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:cika_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:fir_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:holly_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:jacaranda_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:mahogany_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:rainbow_eucalyptus_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:redwood_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:sakura_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:zelkova_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:blue_enchanted_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:alpha_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:ashen_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:baobob_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:eucalyptus_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:kapok_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:magnolia_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:pine_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:redwood_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:socotra_leaves",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:haunting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.4,
+  "ingredient": {
+    "tag": "c:dusts/redstone"
+  },
+  "result": {
+    "id": "minecraft:glowstone_dust"
+  }
+}

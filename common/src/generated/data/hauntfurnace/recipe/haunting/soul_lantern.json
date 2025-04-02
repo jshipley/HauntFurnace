@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:haunting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.4,
+  "ingredient": {
+    "item": "minecraft:lantern"
+  },
+  "result": {
+    "id": "minecraft:soul_lantern"
+  }
+}

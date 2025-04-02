@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:haunting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.5,
+  "ingredient": {
+    "item": "minecraft:arrow"
+  },
+  "result": {
+    "id": "minecraft:spectral_arrow"
+  }
+}

@@ -143,5 +143,13 @@ public class HauntFurnaceNeoforge {
                                 Capabilities.EnergyStorage.BLOCK,
                                 POWERED_HAUNT_FURNACE_BLOCK_ENTITY.get(),
                                 (blockEntity, context) -> (EnergyStorage) ((PoweredHauntFurnaceBlockEntity)blockEntity).energyStorage);
+                event.registerBlockEntity(
+                                Capabilities.ItemHandler.BLOCK,
+                                HAUNT_FURNACE_BLOCK_ENTITY.get(),
+                                (blockEntity, side) -> { return new SidedInvWrapper(blockEntity, side); });
+                event.registerBlockEntity(
+                                Capabilities.ItemHandler.BLOCK,
+                                POWERED_HAUNT_FURNACE_BLOCK_ENTITY.get(),
+                                (blockEntity, side) -> { return new SidedInvWrapper(blockEntity, side); });
         }
 }

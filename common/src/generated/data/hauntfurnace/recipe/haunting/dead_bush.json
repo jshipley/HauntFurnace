@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:haunting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "ingredient": {
+    "tag": "minecraft:saplings"
+  },
+  "result": {
+    "id": "minecraft:dead_bush"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:haunting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "ingredient": {
+    "tag": "c:crops/potato"
+  },
+  "result": {
+    "id": "minecraft:poisonous_potato"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:haunting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "minecraft:mossy_stone_bricks"
+  },
+  "result": {
+    "id": "minecraft:infested_mossy_stone_bricks"
+  }
+}

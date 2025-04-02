@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:haunting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.4,
+  "ingredient": {
+    "tag": "minecraft:sand"
+  },
+  "result": {
+    "id": "minecraft:soul_sand"
+  }
+}

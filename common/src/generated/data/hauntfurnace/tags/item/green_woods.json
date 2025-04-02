@@ -1,0 +1,516 @@
+{
+  "values": [
+    "minecraft:birch_log",
+    "minecraft:stripped_birch_log",
+    "minecraft:birch_wood",
+    "minecraft:stripped_birch_wood",
+    "minecraft:dark_oak_log",
+    "minecraft:stripped_dark_oak_log",
+    "minecraft:dark_oak_wood",
+    "minecraft:stripped_dark_oak_wood",
+    "minecraft:oak_log",
+    "minecraft:stripped_oak_log",
+    "minecraft:oak_wood",
+    "minecraft:stripped_oak_wood",
+    "minecraft:spruce_log",
+    "minecraft:stripped_spruce_log",
+    "minecraft:spruce_wood",
+    "minecraft:stripped_spruce_wood",
+    {
+      "id": "charm:ebony_log",
+      "required": false
+    },
+    {
+      "id": "charm:stripped_ebony_log",
+      "required": false
+    },
+    {
+      "id": "charm:ebony_wood",
+      "required": false
+    },
+    {
+      "id": "charm:stripped_ebony_wood",
+      "required": false
+    },
+    {
+      "id": "quark:ancient_log",
+      "required": false
+    },
+    {
+      "id": "quark:stripped_ancient_log",
+      "required": false
+    },
+    {
+      "id": "quark:ancient_wood",
+      "required": false
+    },
+    {
+      "id": "quark:stripped_ancient_wood",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:pine_log",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:stripped_pine_log",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:pine_wood",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:stripped_pine_wood",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:jacaranda_log",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:stripped_jacaranda_log",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:jacaranda_wood",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:stripped_jacaranda_wood",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:willow_log",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:stripped_willow_log",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:willow_wood",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:stripped_willow_wood",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:dead_log",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:stripped_dead_log",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:dead_wood",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:stripped_dead_wood",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:magic_log",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:stripped_magic_log",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:magic_wood",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:stripped_magic_wood",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:umbran_log",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:stripped_umbran_log",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:umbran_wood",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:stripped_umbran_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:baobob_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_baobob_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:baobob_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_baobob_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:ebony_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_ebony_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:ebony_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_ebony_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:ironwood_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_ironwood_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:ironwood_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_ironwood_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:maple_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_maple_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:maple_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_maple_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:palm_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_palm_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:palm_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_palm_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:pine_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_pine_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:pine_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_pine_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:skyrus_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_skyrus_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:skyrus_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_skyrus_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:spirit_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_spirit_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:spirit_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_spirit_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:white_mangrove_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_white_mangrove_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:white_mangrove_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_white_mangrove_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:willow_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_willow_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:willow_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_willow_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:witchhazel_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_witchhazel_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:witchhazel_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_witchhazel_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:palo_verde_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_palo_verde_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:palo_verde_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_palo_verde_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:green_enchanted_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_green_enchanted_log",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:green_enchanted_wood",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:stripped_green_enchanted_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:blackwood_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_blackwood_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:blackwood_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_blackwood_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:cobalt_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_cobalt_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:cobalt_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_cobalt_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:cypress_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_cypress_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:cypress_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_cypress_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:joshua_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_joshua_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:joshua_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_joshua_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:larch_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_larch_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:larch_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_larch_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:maple_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_maple_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:maple_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_maple_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:mauve_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_mauve_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:mauve_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_mauve_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:palm_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_palm_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:palm_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_palm_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:silver_birch_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_silver_birch_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:silver_birch_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_silver_birch_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:willow_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_willow_log",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:willow_wood",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:stripped_willow_wood",
+      "required": false
+    }
+  ]
+}

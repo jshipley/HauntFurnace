@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:haunting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "ingredient": {
+    "tag": "hauntfurnace:green_leaves"
+  },
+  "result": {
+    "id": "minecraft:warped_wart_block"
+  }
+}

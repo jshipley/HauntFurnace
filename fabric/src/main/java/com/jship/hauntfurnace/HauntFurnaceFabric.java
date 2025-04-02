@@ -12,10 +12,10 @@ import com.jship.hauntfurnace.menu.HauntFurnaceMenu;
 import com.jship.hauntfurnace.menu.PoweredHauntFurnaceMenu;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 
-import java.util.function.Supplier;
-
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemStorage;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -62,6 +62,8 @@ public class HauntFurnaceFabric implements ModInitializer {
                                 BlockEntityType.Builder
                                                 .of(HauntFurnaceBlockEntity::new, HAUNT_FURNACE_BLOCK)
                                                 .build(null));
+                ItemStorage.SIDED.registerForBlockEntity(
+                                (blockEntity, direction) -> InventoryStorage.of(blockEntity, direction), HAUNT_FURNACE_BLOCK_ENTITY);
                 HAUNT_FURNACE_ITEM = Registry.register(
                                 BuiltInRegistries.ITEM,
                                 ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "haunt_furnace"),
@@ -78,6 +80,8 @@ public class HauntFurnaceFabric implements ModInitializer {
                                                 .of(PoweredHauntFurnaceBlockEntity::new,
                                                                 POWERED_HAUNT_FURNACE_BLOCK)
                                                 .build(null));
+                ItemStorage.SIDED.registerForBlockEntity(
+                                (blockEntity, direction) -> InventoryStorage.of(blockEntity, direction), POWERED_HAUNT_FURNACE_BLOCK_ENTITY);
                 POWERED_HAUNT_FURNACE_ITEM = Registry.register(
                                 BuiltInRegistries.ITEM,
                                 ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "powered_haunt_furnace"),

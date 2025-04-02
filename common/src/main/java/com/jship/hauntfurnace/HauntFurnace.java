@@ -13,7 +13,6 @@ import com.jship.hauntfurnace.menu.PoweredHauntFurnaceMenu;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 import com.mojang.logging.LogUtils;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;

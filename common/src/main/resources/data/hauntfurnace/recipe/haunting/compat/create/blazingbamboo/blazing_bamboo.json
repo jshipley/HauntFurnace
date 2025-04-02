@@ -1,0 +1,34 @@
+{
+    "type": "create:haunting",
+    "ingredients": [
+        [
+            {
+                "item": "minecraft:bamboo"
+            }
+        ]
+    ],
+    "results": [
+        {
+            "id": "blazingbamboo:blazing_bamboo_item"
+        }
+    ],
+    "fabric:load_conditions": [
+        {
+            "condition": "fabric:all_mods_loaded",
+            "values": [
+                "create",
+                "blazingbamboocontinued"
+            ]
+        }
+    ],
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "create"
+        },
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "blazingbamboocontinued"
+        }
+    ]
+}

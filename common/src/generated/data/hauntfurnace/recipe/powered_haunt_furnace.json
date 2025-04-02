@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "minecraft:blackstone"
+    },
+    "H": {
+      "item": "hauntfurnace:haunt_furnace"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "GHG",
+    "GRG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hauntfurnace:powered_haunt_furnace"
+  }
+}

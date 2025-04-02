@@ -1,0 +1,132 @@
+{
+  "values": [
+    "minecraft:birch_leaves",
+    "minecraft:dark_oak_leaves",
+    "minecraft:oak_leaves",
+    "minecraft:spruce_leaves",
+    {
+      "id": "charm:ebony_leaves",
+      "required": false
+    },
+    {
+      "id": "quark:ancient_leaves",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:pine_leaves",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:jacaranda_leaves",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:willow_leaves",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:dead_leaves",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:magic_leaves",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:umbran_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:baobob_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:ebony_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:ironwood_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:maple_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:palm_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:pine_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:skyrus_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:spirit_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:white_mangrove_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:willow_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:witchhazel_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:palo_verde_leaves",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:green_enchanted_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:blackwood_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:cobalt_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:cypress_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:joshua_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:larch_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:maple_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:mauve_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:palm_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:silver_birch_leaves",
+      "required": false
+    },
+    {
+      "id": "regionsunexplored:willow_leaves",
+      "required": false
+    }
+  ]
+}
