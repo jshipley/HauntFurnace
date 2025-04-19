@@ -1,5 +1,7 @@
 package com.jship.hauntfurnace.client;
 
+import java.util.List;
+
 import com.jship.hauntfurnace.HauntFurnace;
 import com.jship.hauntfurnace.menu.HauntFurnaceMenu;
 
@@ -14,6 +16,7 @@ public class HauntFurnaceScreen extends AbstractFurnaceScreen<HauntFurnaceMenu> 
     public static final ResourceLocation BURN_PROGRESS_TEXTURE = ResourceLocation.withDefaultNamespace("container/furnace/burn_progress");
 
     public HauntFurnaceScreen(HauntFurnaceMenu menu, Inventory inventory, Component title) {
-        super(menu, new HauntFurnaceRecipeBookComponent(), inventory, title, TEXTURE, LIT_PROGRESS_TEXTURE, BURN_PROGRESS_TEXTURE);
+        // TODO add tabInfos
+        super(menu, inventory, title, title, TEXTURE, LIT_PROGRESS_TEXTURE, BURN_PROGRESS_TEXTURE, List.of());
     }
 }

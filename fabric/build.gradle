@@ -51,6 +51,7 @@ dependencies {
 }
 
 loom {
+    accessWidenerPath = file("src/main/resources/hauntfurnace_fabric.accesswidener")
     runs {
         datagen {
             inherit server

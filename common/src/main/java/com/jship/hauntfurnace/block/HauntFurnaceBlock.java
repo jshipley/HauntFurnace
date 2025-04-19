@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -40,11 +41,15 @@ public class HauntFurnaceBlock extends AbstractFurnaceBlock {
 
     @Override
     @Nullable
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
-            BlockEntityType<T> blockEntityType) {
-        return level.isClientSide ? null
-                : AbstractFurnaceBlock.createTickerHelper(blockEntityType, HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY.get(),
-                        HauntFurnaceBlockEntity::serverTick);
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
+        // return createFurnaceTicker(level, blockEntityType, HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY.get())
+
+        if (level instanceof ServerLevel serverLevel) {
+            return createTickerHelper(blockEntityType, HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY.get(), (levelx, blockPos, blockStatex, hauntFurnaceBlockEntity) -> {
+                HauntFurnaceBlockEntity.serverTick(serverLevel, blockPos, blockState, hauntFurnaceBlockEntity);
+            });
+        }
+        return null;
     }
 
     @Override

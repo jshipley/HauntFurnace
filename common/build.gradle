@@ -20,12 +20,17 @@ dependencies {
     // testCompileOnly("dev.emi:emi-xplat-mojmap:${emi_version}:api")
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/hauntfurnace.accesswidener")
+}
+
 sourceSets {
     main {
         java {
             srcDir "src"
             exclude "**/jei/**"
             exclude "**/emi/**"
+            exclude "**/Powered*.java"
         }
         resources.srcDir "src/generated"
         resources.exclude ".cache"

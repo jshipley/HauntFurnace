@@ -1,4 +1,4 @@
-package com.jship.hauntfurnace.client.compat.fabric.rei;
+package com.jship.hauntfurnace.compat.fabric.rei;
 
 import com.google.common.collect.Lists;
 import com.jship.hauntfurnace.HauntFurnace;
@@ -36,7 +36,7 @@ public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDis
     @Override
     public List<Widget> setupDisplay(HauntingRecipeDisplay display, Rectangle bounds) {
         Point startPoint = new Point(bounds.getCenterX() - 41, bounds.y + 10);
-        double cookingTime = display.getCookingTime();
+        double cookingTime = display.cookTime().orElse(0);
         DecimalFormat df = new DecimalFormat("###.##");
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));
@@ -44,7 +44,7 @@ public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDis
         widgets.add(new BurningSoulFireWidget(new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)))
                 .animationDurationMS(10000));
         widgets.add(Widgets.createLabel(new Point(bounds.x + bounds.width - 5, bounds.y + 5),
-                Component.translatable("category.rei.cooking.time&xp", df.format(display.getXp()), df.format(cookingTime / 20d))).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
+                Component.translatable("category.rei.cooking.time&xp", df.format(display.xp().orElse(0)), df.format(cookingTime / 20d))).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
         widgets.add(Widgets.createArrow(new Point(startPoint.x + 24, startPoint.y + 8))
                 .animationDurationTicks(cookingTime));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 61, startPoint.y + 9))

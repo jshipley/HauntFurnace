@@ -24,14 +24,11 @@
         "fabric-datagen": [
             "com.jship.hauntfurnace.datagen.HauntFurnaceDataGenFabric"
         ],
-        "jei_mod_plugin": [
-            "com.jship.hauntfurnace.client.compat.jei.HauntFurnaceJEI"
-        ],
         "rei_client": [
-            "com.jship.hauntfurnace.client.compat.fabric.rei.HauntFurnaceREI"
+            "com.jship.hauntfurnace.compat.fabric.rei.client.HauntFurnaceREIClient"
         ],
-        "emi": [
-            "com.jship.hauntfurnace.client.compat.emi.HauntFurnaceEMI"
+        "rei_common": [
+            "com.jship.hauntfurnace.compat.fabric.rei.HauntFurnaceREI"
         ]
     },
     "depends": {

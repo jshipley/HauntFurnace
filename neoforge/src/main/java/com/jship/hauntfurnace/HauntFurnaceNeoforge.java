@@ -1,12 +1,12 @@
 package com.jship.hauntfurnace;
 
 import com.jship.hauntfurnace.block.HauntFurnaceBlock;
-import com.jship.hauntfurnace.block.PoweredHauntFurnaceBlock;
+// import com.jship.hauntfurnace.block.PoweredHauntFurnaceBlock;
 import com.jship.hauntfurnace.block.entity.HauntFurnaceBlockEntity;
-import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
+// import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
 import com.jship.hauntfurnace.energy.EnergyStorageFactoryNeoforge;
 import com.jship.hauntfurnace.menu.HauntFurnaceMenu;
-import com.jship.hauntfurnace.menu.PoweredHauntFurnaceMenu;
+// import com.jship.hauntfurnace.menu.PoweredHauntFurnaceMenu;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 
 import java.util.function.Supplier;
@@ -70,20 +70,20 @@ public class HauntFurnaceNeoforge {
         public static final Supplier<Item> HAUNT_FURNACE_ITEM = ITEMS.register("haunt_furnace",
                         () -> new BlockItem(HAUNT_FURNACE_BLOCK.get(), new Item.Properties()));
 
-        public static final Supplier<Block> POWERED_HAUNT_FURNACE_BLOCK = BLOCKS.register("powered_haunt_furnace",
-                        () -> new PoweredHauntFurnaceBlock(BlockBehaviour.Properties.of()
-                                        .mapColor(MapColor.STONE)
-                                        .instrument(NoteBlockInstrument.BASEDRUM)
-                                        .requiresCorrectToolForDrops()
-                                        .strength(3.5F)
-                                        .lightLevel(blockState -> blockState.getValue(BlockStateProperties.LIT) ? 13
-                                                        : 0)));
-        public static final Supplier<BlockEntityType<PoweredHauntFurnaceBlockEntity>> POWERED_HAUNT_FURNACE_BLOCK_ENTITY = BLOCK_ENTITY_TYPES
-                        .register("powered_haunt_furnace", () -> BlockEntityType.Builder
-                                        .of(PoweredHauntFurnaceBlockEntity::new, POWERED_HAUNT_FURNACE_BLOCK.get())
-                                        .build(null));
-        public static final Supplier<Item> POWERED_HAUNT_FURNACE_ITEM = ITEMS.register("powered_haunt_furnace",
-                        () -> new BlockItem(POWERED_HAUNT_FURNACE_BLOCK.get(), new Item.Properties()));
+        // public static final Supplier<Block> POWERED_HAUNT_FURNACE_BLOCK = BLOCKS.register("powered_haunt_furnace",
+        //                 () -> new PoweredHauntFurnaceBlock(BlockBehaviour.Properties.of()
+        //                                 .mapColor(MapColor.STONE)
+        //                                 .instrument(NoteBlockInstrument.BASEDRUM)
+        //                                 .requiresCorrectToolForDrops()
+        //                                 .strength(3.5F)
+        //                                 .lightLevel(blockState -> blockState.getValue(BlockStateProperties.LIT) ? 13
+        //                                                 : 0)));
+        // public static final Supplier<BlockEntityType<PoweredHauntFurnaceBlockEntity>> POWERED_HAUNT_FURNACE_BLOCK_ENTITY = BLOCK_ENTITY_TYPES
+        //                 .register("powered_haunt_furnace", () -> BlockEntityType.Builder
+        //                                 .of(PoweredHauntFurnaceBlockEntity::new, POWERED_HAUNT_FURNACE_BLOCK.get())
+        //                                 .build(null));
+        // public static final Supplier<Item> POWERED_HAUNT_FURNACE_ITEM = ITEMS.register("powered_haunt_furnace",
+        //                 () -> new BlockItem(POWERED_HAUNT_FURNACE_BLOCK.get(), new Item.Properties()));
 
         public static final Supplier<RecipeType<HauntingRecipe>> HAUNTING_RECIPE = RECIPE_TYPES.register(
                         "haunting",
@@ -99,10 +99,10 @@ public class HauntFurnaceNeoforge {
         public static final Supplier<MenuType<HauntFurnaceMenu>> HAUNT_FURNACE_MENU = MENU_TYPES.register(
                         "haunt_furnace",
                         () -> new MenuType<HauntFurnaceMenu>(HauntFurnaceMenu::new, FeatureFlags.VANILLA_SET));;
-        public static final Supplier<MenuType<PoweredHauntFurnaceMenu>> POWERED_HAUNT_FURNACE_MENU = MENU_TYPES
-                        .register("powered_haunt_furnace",
-                                        () -> new MenuType<PoweredHauntFurnaceMenu>(PoweredHauntFurnaceMenu::new,
-                                                        FeatureFlags.VANILLA_SET));;
+        // public static final Supplier<MenuType<PoweredHauntFurnaceMenu>> POWERED_HAUNT_FURNACE_MENU = MENU_TYPES
+        //                 .register("powered_haunt_furnace",
+        //                                 () -> new MenuType<PoweredHauntFurnaceMenu>(PoweredHauntFurnaceMenu::new,
+        //                                                 FeatureFlags.VANILLA_SET));;
 
         public HauntFurnaceNeoforge(IEventBus modEventBus) {
                 modEventBus.addListener(this::addCreative);
@@ -121,14 +121,14 @@ public class HauntFurnaceNeoforge {
                 HauntFurnace.HAUNT_FURNACE_BLOCK = HAUNT_FURNACE_BLOCK;
                 HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY = HAUNT_FURNACE_BLOCK_ENTITY;
                 HauntFurnace.HAUNT_FURNACE_ITEM = HAUNT_FURNACE_ITEM;
-                HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK = POWERED_HAUNT_FURNACE_BLOCK;
-                HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK_ENTITY = POWERED_HAUNT_FURNACE_BLOCK_ENTITY;
-                HauntFurnace.POWERED_HAUNT_FURNACE_ITEM = POWERED_HAUNT_FURNACE_ITEM;
+                // HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK = POWERED_HAUNT_FURNACE_BLOCK;
+                // HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK_ENTITY = POWERED_HAUNT_FURNACE_BLOCK_ENTITY;
+                // HauntFurnace.POWERED_HAUNT_FURNACE_ITEM = POWERED_HAUNT_FURNACE_ITEM;
                 HauntFurnace.ENERGY_STORAGE_FACTORY = EnergyStorageFactoryNeoforge::new;
                 HauntFurnace.HAUNTING_RECIPE = HAUNTING_RECIPE;
                 HauntFurnace.HAUNTING_RECIPE_SERIALIZER = HAUNTING_RECIPE_SERIALIZER;
                 HauntFurnace.HAUNT_FURNACE_MENU = HAUNT_FURNACE_MENU;
-                HauntFurnace.POWERED_HAUNT_FURNACE_MENU = POWERED_HAUNT_FURNACE_MENU;
+                // HauntFurnace.POWERED_HAUNT_FURNACE_MENU = POWERED_HAUNT_FURNACE_MENU;
         }
 
         private void addCreative(BuildCreativeModeTabContentsEvent event) {

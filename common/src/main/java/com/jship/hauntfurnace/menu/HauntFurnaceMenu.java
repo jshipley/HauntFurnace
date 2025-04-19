@@ -10,10 +10,10 @@ import net.minecraft.world.inventory.RecipeBookType;
 
 public class HauntFurnaceMenu extends AbstractFurnaceMenu {
     public HauntFurnaceMenu(int i, Inventory inventory) {
-        super(HauntFurnace.HAUNT_FURNACE_MENU.get(), HauntFurnace.HAUNTING_RECIPE.get(), RecipeBookType.FURNACE, i, inventory);
+        super(HauntFurnace.HAUNT_FURNACE_MENU.get(), HauntFurnace.HAUNTING_RECIPE.get(), null, RecipeBookType.FURNACE, i, inventory);
     }
 
     public HauntFurnaceMenu(int i, Inventory inventory, Container container, ContainerData containerData) {
-        super(HauntFurnace.HAUNT_FURNACE_MENU.get(), HauntFurnace.HAUNTING_RECIPE.get(), RecipeBookType.FURNACE, i, inventory, container, containerData);
+        super(HauntFurnace.HAUNT_FURNACE_MENU.get(), HauntFurnace.HAUNTING_RECIPE.get(), null, RecipeBookType.FURNACE, i, inventory, container, containerData);
     }
 }
