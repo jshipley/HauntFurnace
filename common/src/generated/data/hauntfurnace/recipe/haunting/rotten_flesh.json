@@ -3,9 +3,7 @@
   "category": "food",
   "cookingtime": 200,
   "experience": 0.3,
-  "ingredient": {
-    "tag": "c:foods/raw_meat"
-  },
+  "ingredient": "#c:foods/raw_meat",
   "result": {
     "id": "minecraft:rotten_flesh"
   }

@@ -1,6 +1,8 @@
 {
   "block.hauntfurnace.haunt_furnace": "Haunt Furnace",
+  "item.hauntfurnace.haunt_furnace": "Haunt Furnace",
   "block.hauntfurnace.powered_haunt_furnace": "Powered Haunt Furnace",
+  "item.hauntfurnace.powered_haunt_furnace": "Powered Haunt Furnace",
   "stat.hauntfurnace.interact_with_haunt_furnace": "Interactions with Haunt Furnace",
   "container.haunt_furnace": "Haunt Furnace",
   "container.powered_haunt_furnace": "Powered Haunt Furnace",

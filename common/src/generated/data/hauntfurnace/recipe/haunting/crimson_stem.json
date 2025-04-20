@@ -3,9 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.2,
-  "ingredient": {
-    "tag": "hauntfurnace:red_woods"
-  },
+  "ingredient": "#hauntfurnace:red_woods",
   "result": {
     "id": "minecraft:crimson_stem"
   }

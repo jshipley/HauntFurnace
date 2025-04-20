@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B": {
-      "item": "minecraft:blackstone"
-    },
-    "S": {
-      "tag": "minecraft:soul_fire_base_blocks"
-    }
+    "B": "minecraft:blackstone",
+    "S": "#minecraft:soul_fire_base_blocks"
   },
   "pattern": [
     "BBB",

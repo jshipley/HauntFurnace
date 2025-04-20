@@ -3,9 +3,7 @@
   "category": "food",
   "cookingtime": 200,
   "experience": 0.2,
-  "ingredient": {
-    "tag": "c:crops/potato"
-  },
+  "ingredient": "#c:crops/potato",
   "result": {
     "id": "minecraft:poisonous_potato"
   }

@@ -25,7 +25,7 @@ public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDis
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(HauntFurnace.HAUNT_FURNACE_BLOCK.get());
+        return EntryStacks.of(HauntFurnace.Blocks.HAUNT_FURNACE.get());
     }
 
     @Override

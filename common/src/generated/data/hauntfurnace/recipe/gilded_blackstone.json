@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "B": {
-      "item": "minecraft:blackstone"
-    },
-    "N": {
-      "tag": "c:nuggets/gold"
-    }
+    "B": "minecraft:blackstone",
+    "N": "#c:nuggets/gold"
   },
   "pattern": [
     "NNN",

@@ -17,7 +17,7 @@ public class HauntFurnaceREI implements REICommonPlugin {
     @Override
     public void registerDisplays(ServerDisplayRegistry registry) {
         registry.beginRecipeFiller(HauntingRecipe.class)
-            .filterType(HauntFurnace.HAUNTING_RECIPE.get())
+            .filterType(HauntFurnace.Recipes.HAUNTING.get())
             .fill(HauntingRecipeDisplay::new);
     }
 

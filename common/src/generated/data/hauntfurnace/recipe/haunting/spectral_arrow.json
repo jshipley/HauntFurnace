@@ -3,9 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.5,
-  "ingredient": {
-    "item": "minecraft:arrow"
-  },
+  "ingredient": "minecraft:arrow",
   "result": {
     "id": "minecraft:spectral_arrow"
   }

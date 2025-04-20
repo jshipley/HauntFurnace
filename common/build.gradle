@@ -13,6 +13,9 @@ dependencies {
     compileOnly group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
     annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
 
+    modCompileOnly ("me.shedaniel.cloth:cloth-config:$cloth_config_version")
+    modCompileOnly ("dev.architectury:architectury:$architectury_version")
+
     // compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     // testCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
 

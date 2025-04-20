@@ -3,9 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.2,
-  "ingredient": {
-    "item": "minecraft:brown_mushroom"
-  },
+  "ingredient": "minecraft:brown_mushroom",
   "result": {
     "id": "minecraft:warped_fungus"
   }

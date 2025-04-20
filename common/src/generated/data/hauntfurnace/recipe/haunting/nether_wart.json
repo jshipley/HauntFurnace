@@ -3,9 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.2,
-  "ingredient": {
-    "tag": "c:seeds"
-  },
+  "ingredient": "#c:seeds",
   "result": {
     "id": "minecraft:nether_wart"
   }

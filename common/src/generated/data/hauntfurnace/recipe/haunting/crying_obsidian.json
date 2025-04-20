@@ -3,9 +3,7 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.4,
-  "ingredient": {
-    "tag": "c:obsidians/normal"
-  },
+  "ingredient": "#c:obsidians/normal",
   "result": {
     "id": "minecraft:crying_obsidian"
   }

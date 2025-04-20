@@ -31,6 +31,10 @@
             "com.jship.hauntfurnace.compat.fabric.rei.HauntFurnaceREI"
         ]
     },
+    "accessWidener": "hauntfurnace_fabric.accesswidener",
+    "mixins": [
+      "hauntfurnace.mixins.json"
+    ],
     "depends": {
       "fabricloader": ">=0.16.10",
       "minecraft": "~1.21.1",

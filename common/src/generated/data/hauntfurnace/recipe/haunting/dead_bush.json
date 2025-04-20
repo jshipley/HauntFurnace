@@ -3,9 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.2,
-  "ingredient": {
-    "tag": "minecraft:saplings"
-  },
+  "ingredient": "#minecraft:saplings",
   "result": {
     "id": "minecraft:dead_bush"
   }

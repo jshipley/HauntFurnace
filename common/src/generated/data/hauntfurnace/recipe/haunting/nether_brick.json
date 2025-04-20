@@ -3,9 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "minecraft:brick"
-  },
+  "ingredient": "minecraft:brick",
   "result": {
     "id": "minecraft:nether_brick"
   }

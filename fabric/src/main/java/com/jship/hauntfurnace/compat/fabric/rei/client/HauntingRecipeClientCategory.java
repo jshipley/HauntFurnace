@@ -5,7 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.Lists;
+import com.jship.hauntfurnace.compat.fabric.rei.BurningSoulFireWidget;
 
+import me.shedaniel.math.Dimension;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.DisplayRenderer;
@@ -41,7 +43,7 @@ public class HauntingRecipeClientCategory implements DisplayCategory<HauntingRec
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 9)));
-        widgets.add(Widgets.createBurningFire(new Point(startPoint.x + 1, startPoint.y + 20))
+        widgets.add(new BurningSoulFireWidget(new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)))
                 .animationDurationMS(10000));
         if (display.cookTime().isPresent() && display.xp().isPresent()) {
             widgets.add(Widgets.createLabel(new Point(bounds.x + bounds.width - 5, bounds.y + 5),

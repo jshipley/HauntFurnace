@@ -3,9 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.2,
-  "ingredient": {
-    "item": "minecraft:red_mushroom"
-  },
+  "ingredient": "minecraft:red_mushroom",
   "result": {
     "id": "minecraft:crimson_fungus"
   }

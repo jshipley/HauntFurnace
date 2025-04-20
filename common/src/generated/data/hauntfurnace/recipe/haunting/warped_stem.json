@@ -3,9 +3,7 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.2,
-  "ingredient": {
-    "tag": "hauntfurnace:green_woods"
-  },
+  "ingredient": "#hauntfurnace:green_woods",
   "result": {
     "id": "minecraft:warped_stem"
   }

@@ -60,7 +60,7 @@ public final class BurningSoulFireWidget extends BurningFire {
         if (getAnimationDuration() > 0) {
             int height = 14 - Mth.ceil((System.currentTimeMillis() / (animationDuration / 14) % 14d));
             graphics.blit(RenderType::guiTextured, texture, getX(), getY(), 1, 74, 14, 14 - height, 256, 256, 0xFFFFFF | (int) (alpha * 255) << 24);
-            graphics.blit(RenderType::guiTextured, texture, getX(), getY() + 14 - height, 82, 77 + (14 - height), 14, height, 256, 256, 0xFFFFFF | (int) (alpha * 255) << 24);
+            graphics.blit(RenderType::guiTextured, texture, getX(), getY() + 14 - height, 96, 77 + (14 - height), 14, height, 256, 256, 0xFFFFFF | (int) (alpha * 255) << 24);
         } else {
             graphics.blit(RenderType::guiTextured, texture, getX(), getY(), 1, 74, 14, 14, 256, 256, 0xFFFFFF | (int) (alpha * 255) << 24);
         }

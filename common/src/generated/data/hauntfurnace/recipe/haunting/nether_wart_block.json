@@ -3,9 +3,7 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.4,
-  "ingredient": {
-    "tag": "hauntfurnace:red_leaves"
-  },
+  "ingredient": "#hauntfurnace:red_leaves",
   "result": {
     "id": "minecraft:nether_wart_block"
   }

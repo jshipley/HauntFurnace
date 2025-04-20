@@ -3,9 +3,7 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.6,
-  "ingredient": {
-    "tag": "c:glass_blocks/cheap"
-  },
+  "ingredient": "#c:glass_blocks/cheap",
   "result": {
     "id": "minecraft:tinted_glass"
   }

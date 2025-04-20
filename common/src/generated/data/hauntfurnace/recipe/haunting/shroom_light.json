@@ -4,15 +4,9 @@
   "cookingtime": 200,
   "experience": 0.2,
   "ingredient": [
-    {
-      "item": "minecraft:mushroom_stem"
-    },
-    {
-      "item": "minecraft:red_mushroom_block"
-    },
-    {
-      "item": "minecraft:brown_mushroom_block"
-    }
+    "minecraft:mushroom_stem",
+    "minecraft:red_mushroom_block",
+    "minecraft:brown_mushroom_block"
   ],
   "result": {
     "id": "minecraft:shroomlight"

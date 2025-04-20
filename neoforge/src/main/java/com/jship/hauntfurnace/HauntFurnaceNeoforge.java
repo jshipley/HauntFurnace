@@ -42,57 +42,16 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 @Mod(HauntFurnace.MOD_ID)
 public class HauntFurnaceNeoforge {
-        public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK,
-                        HauntFurnace.MOD_ID);
-        public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister
-                        .create(BuiltInRegistries.BLOCK_ENTITY_TYPE, HauntFurnace.MOD_ID);
-        public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM,
-                        HauntFurnace.MOD_ID);
-        public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister
-                        .create(BuiltInRegistries.RECIPE_TYPE, HauntFurnace.MOD_ID);
+        
         public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister
                         .create(BuiltInRegistries.RECIPE_SERIALIZER, HauntFurnace.MOD_ID);
         public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(
                         BuiltInRegistries.MENU,
                         HauntFurnace.MOD_ID);
 
-        public static final Supplier<Block> HAUNT_FURNACE_BLOCK = BLOCKS.register("haunt_furnace",
-                        () -> new HauntFurnaceBlock(BlockBehaviour.Properties.of()
-                                        .mapColor(MapColor.STONE)
-                                        .instrument(NoteBlockInstrument.BASEDRUM)
-                                        .requiresCorrectToolForDrops()
-                                        .strength(3.5F)
-                                        .lightLevel(blockState -> blockState.getValue(BlockStateProperties.LIT) ? 13
-                                                        : 0)));
-        public static final Supplier<BlockEntityType<HauntFurnaceBlockEntity>> HAUNT_FURNACE_BLOCK_ENTITY = BLOCK_ENTITY_TYPES
-                        .register("haunt_furnace", () -> BlockEntityType.Builder
-                                        .of(HauntFurnaceBlockEntity::new, HAUNT_FURNACE_BLOCK.get()).build(null));
-        public static final Supplier<Item> HAUNT_FURNACE_ITEM = ITEMS.register("haunt_furnace",
-                        () -> new BlockItem(HAUNT_FURNACE_BLOCK.get(), new Item.Properties()));
+        
 
-        // public static final Supplier<Block> POWERED_HAUNT_FURNACE_BLOCK = BLOCKS.register("powered_haunt_furnace",
-        //                 () -> new PoweredHauntFurnaceBlock(BlockBehaviour.Properties.of()
-        //                                 .mapColor(MapColor.STONE)
-        //                                 .instrument(NoteBlockInstrument.BASEDRUM)
-        //                                 .requiresCorrectToolForDrops()
-        //                                 .strength(3.5F)
-        //                                 .lightLevel(blockState -> blockState.getValue(BlockStateProperties.LIT) ? 13
-        //                                                 : 0)));
-        // public static final Supplier<BlockEntityType<PoweredHauntFurnaceBlockEntity>> POWERED_HAUNT_FURNACE_BLOCK_ENTITY = BLOCK_ENTITY_TYPES
-        //                 .register("powered_haunt_furnace", () -> BlockEntityType.Builder
-        //                                 .of(PoweredHauntFurnaceBlockEntity::new, POWERED_HAUNT_FURNACE_BLOCK.get())
-        //                                 .build(null));
-        // public static final Supplier<Item> POWERED_HAUNT_FURNACE_ITEM = ITEMS.register("powered_haunt_furnace",
-        //                 () -> new BlockItem(POWERED_HAUNT_FURNACE_BLOCK.get(), new Item.Properties()));
-
-        public static final Supplier<RecipeType<HauntingRecipe>> HAUNTING_RECIPE = RECIPE_TYPES.register(
-                        "haunting",
-                        () -> new RecipeType<HauntingRecipe>() {
-                                @Override
-                                public String toString() {
-                                        return "hauntfurnace:haunting";
-                                }
-                        });
+        
         public static final Supplier<RecipeSerializer<HauntingRecipe>> HAUNTING_RECIPE_SERIALIZER = RECIPE_SERIALIZERS
                         .register("haunting",
                                         () -> new SimpleCookingSerializer<HauntingRecipe>(HauntingRecipe::new, 200));
