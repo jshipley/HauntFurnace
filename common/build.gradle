@@ -33,7 +33,6 @@ sourceSets {
             srcDir "src"
             exclude "**/jei/**"
             exclude "**/emi/**"
-            exclude "**/Powered*.java"
         }
         resources.srcDir "src/generated"
         resources.exclude ".cache"

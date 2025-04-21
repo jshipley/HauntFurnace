@@ -11,6 +11,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 
 public class HauntingRecipe extends AbstractCookingRecipe {
+    private final CookingBookCategory category;
 
     public HauntingRecipe(
         String group,
@@ -21,6 +22,7 @@ public class HauntingRecipe extends AbstractCookingRecipe {
         int cookTime
     ) {
         super(group, category, ingredient, result, experience, cookTime);
+        this.category = category;
     }
 
     public Item furnaceIcon() {
@@ -38,6 +40,13 @@ public class HauntingRecipe extends AbstractCookingRecipe {
 
     @Override
     public RecipeBookCategory recipeBookCategory() {
-        return HauntFurnace.Recipes.HAUNTING_RECIPE_BOOK_CATEGORY.get();
+        switch (category) {
+            case CookingBookCategory.BLOCKS:
+                return HauntFurnace.Recipes.HAUNTING_BLOCKS_CATEGORY.get();
+            case CookingBookCategory.FOOD:
+                return HauntFurnace.Recipes.HAUNTING_FOOD_CATEGORY.get();
+            default:
+                return HauntFurnace.Recipes.HAUNTING_MISC_CATEGORY.get();
+        }
     }
 }

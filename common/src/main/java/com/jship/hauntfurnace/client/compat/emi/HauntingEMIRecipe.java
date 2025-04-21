@@ -18,7 +18,7 @@ public class HauntingEMIRecipe extends BasicEmiRecipe {
     private final HauntingRecipe recipe;
 
     HauntingEMIRecipe(HauntingRecipe recipe) {
-        super(HauntFurnaceEMI.HAUNTING_CATEGORY, ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "/haunting"), 70, 18);
+        super(HauntFurnaceEMI.HAUNTING_CATEGORY, HauntFurnace.id("/haunting"), 70, 18);
         this.recipe = recipe;
         this.inputs.add(EmiIngredient.of(recipe.getIngredients().get(0)));
         this.outputs.add(EmiStack.of(recipe.getResultItem(null)));

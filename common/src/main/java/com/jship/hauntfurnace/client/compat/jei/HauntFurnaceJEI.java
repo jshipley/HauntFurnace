@@ -23,7 +23,7 @@ import net.minecraft.world.item.crafting.RecipeManager;
 
 @JeiPlugin
 public class HauntFurnaceJEI implements IModPlugin {
-    public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "jei_plugin");
+    public static final ResourceLocation ID = HauntFurnace.id("jei_plugin");
     public static final RecipeType<HauntingRecipe> HAUNTING_RECIPE_TYPE = RecipeType.create(HauntFurnace.MOD_ID, "haunting", HauntingRecipe.class);
 
     @Override

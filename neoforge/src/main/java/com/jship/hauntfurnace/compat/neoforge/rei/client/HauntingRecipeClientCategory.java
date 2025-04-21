@@ -1,7 +1,11 @@
-package com.jship.hauntfurnace.client.compat.neoforge.rei;
+package com.jship.hauntfurnace.compat.neoforge.rei.client;
+
+import java.text.DecimalFormat;
+import java.util.Collections;
+import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.compat.neoforge.rei.BurningSoulFireWidget;
 
 import me.shedaniel.math.Dimension;
 import me.shedaniel.math.Point;
@@ -13,40 +17,37 @@ import me.shedaniel.rei.api.client.gui.widgets.Widget;
 import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.util.EntryStacks;
-
+import me.shedaniel.rei.api.common.entry.EntryStack;
 import net.minecraft.network.chat.Component;
 
-import java.text.DecimalFormat;
-import java.util.Collections;
-import java.util.List;
-
-public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDisplay> {
-
-    @Override
-    public Renderer getIcon() {
-        return EntryStacks.of(HauntFurnace.HAUNT_FURNACE_BLOCK.get());
+public class HauntingRecipeClientCategory implements DisplayCategory<HauntingRecipeClientDisplay> {
+    private CategoryIdentifier<HauntingRecipeClientDisplay> identifier;
+    private EntryStack<?> logo;
+    private String categoryName;
+    private double defaultCookingTime;
+    
+    public HauntingRecipeClientCategory(CategoryIdentifier<HauntingRecipeClientDisplay> identifier, EntryStack<?> logo, String categoryName, double defaultCookingTime) {
+        this.identifier = identifier;
+        this.logo = logo;
+        this.categoryName = categoryName;
+        this.defaultCookingTime = defaultCookingTime;
     }
-
+    
     @Override
-    public Component getTitle() {
-        return Component.translatable("hauntfurnace.action.haunting");
-    }
-
-    @Override
-    public List<Widget> setupDisplay(HauntingRecipeDisplay display, Rectangle bounds) {
+    public List<Widget> setupDisplay(HauntingRecipeClientDisplay display, Rectangle bounds) {
         Point startPoint = new Point(bounds.getCenterX() - 41, bounds.y + 10);
-        double cookingTime = display.getCookingTime();
         DecimalFormat df = new DecimalFormat("###.##");
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 9)));
         widgets.add(new BurningSoulFireWidget(new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)))
                 .animationDurationMS(10000));
-        widgets.add(Widgets.createLabel(new Point(bounds.x + bounds.width - 5, bounds.y + 5),
-                Component.translatable("category.rei.cooking.time&xp", df.format(display.getXp()), df.format(cookingTime / 20d))).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
+        if (display.cookTime().isPresent() && display.xp().isPresent()) {
+            widgets.add(Widgets.createLabel(new Point(bounds.x + bounds.width - 5, bounds.y + 5),
+                    Component.translatable("category.rei.cooking.time&xp", df.format(display.xp().getAsDouble()), df.format(display.cookTime().getAsDouble() / 20d))).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
+        }
         widgets.add(Widgets.createArrow(new Point(startPoint.x + 24, startPoint.y + 8))
-                .animationDurationTicks(cookingTime));
+                .animationDurationTicks(display.cookTime().orElse(defaultCookingTime)));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 61, startPoint.y + 9))
                 .entries(display.getOutputEntries().get(0))
                 .disableBackground()
@@ -56,18 +57,30 @@ public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDis
                 .markInput());
         return widgets;
     }
-
+    
     @Override
-    public DisplayRenderer getDisplayRenderer(HauntingRecipeDisplay display) {
+    public DisplayRenderer getDisplayRenderer(HauntingRecipeClientDisplay display) {
         return SimpleDisplayRenderer.from(Collections.singletonList(display.getInputEntries().get(0)), display.getOutputEntries());
     }
-
+    
     @Override
     public int getDisplayHeight() {
         return 49;
     }
+    
     @Override
-    public CategoryIdentifier<? extends HauntingRecipeDisplay> getCategoryIdentifier() {
-        return HauntFurnaceREI.HAUNTING;
+    public CategoryIdentifier<HauntingRecipeClientDisplay> getCategoryIdentifier() {
+        return identifier;
     }
+    
+    @Override
+    public Renderer getIcon() {
+        return logo;
+    }
+    
+    @Override
+    public Component getTitle() {
+        return Component.translatable(categoryName);
+    }
+    
 }

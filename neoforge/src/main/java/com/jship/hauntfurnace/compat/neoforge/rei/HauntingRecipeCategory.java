@@ -1,4 +1,4 @@
-package com.jship.hauntfurnace.compat.fabric.rei;
+package com.jship.hauntfurnace.compat.neoforge.rei;
 
 import com.google.common.collect.Lists;
 import com.jship.hauntfurnace.HauntFurnace;

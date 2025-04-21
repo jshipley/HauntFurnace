@@ -2,36 +2,30 @@ package com.jship.hauntfurnace;
 
 import com.google.common.base.Suppliers;
 import com.jship.hauntfurnace.block.HauntFurnaceBlock;
+import com.jship.hauntfurnace.block.PoweredHauntFurnaceBlock;
 import com.jship.hauntfurnace.block.entity.HauntFurnaceBlockEntity;
+import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
 import com.jship.hauntfurnace.energy.EnergyStorageFactory;
-// import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
 import com.jship.hauntfurnace.energy.EnergyStorageWrapper;
 import com.jship.hauntfurnace.menu.HauntFurnaceMenu;
-// import com.jship.hauntfurnace.menu.PoweredHauntFurnaceMenu;
+import com.jship.hauntfurnace.menu.PoweredHauntFurnaceMenu;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 import com.mojang.logging.LogUtils;
-import dev.architectury.injectables.annotations.PlatformOnly;
-import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrarManager;
 import dev.architectury.registry.registries.RegistrySupplier;
 import java.util.Set;
 import java.util.function.Supplier;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.ExtendedRecipeBookCategory;
 import net.minecraft.world.item.crafting.RecipeBookCategory;
-import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipePropertySet;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -77,18 +71,20 @@ public class HauntFurnace {
             true
         );
 
-        // public static final Supplier<Block> POWERED_HAUNT_FURNACE_BLOCK = BLOCKS.register("powered_haunt_furnace",
-        //                 () -> new PoweredHauntFurnaceBlock(BlockBehaviour.Properties.of()
-        //                                 .mapColor(MapColor.STONE)
-        //                                 .instrument(NoteBlockInstrument.BASEDRUM)
-        //                                 .requiresCorrectToolForDrops()
-        //                                 .strength(3.5F)
-        //                                 .lightLevel(blockState -> blockState.getValue(BlockStateProperties.LIT) ? 13
-        //                                                 : 0)));
-        // public static final Supplier<BlockEntityType<PoweredHauntFurnaceBlockEntity>> POWERED_HAUNT_FURNACE_BLOCK_ENTITY = BLOCK_ENTITY_TYPES
-        //                 .register("powered_haunt_furnace", () -> BlockEntityType.Builder
-        //                                 .of(PoweredHauntFurnaceBlockEntity::new, POWERED_HAUNT_FURNACE_BLOCK.get())
-        //                                 .build(null));
+        public static final RegistrySupplier<Block> POWERED_HAUNT_FURNACE = registerBlock(
+            id("powered_haunt_furnace"),
+            () ->
+                new PoweredHauntFurnaceBlock(
+                    BlockBehaviour.Properties.of()
+                        .mapColor(MapColor.STONE)
+                        .instrument(NoteBlockInstrument.BASEDRUM)
+                        .requiresCorrectToolForDrops()
+                        .strength(3.5F)
+                        .lightLevel(blockState -> blockState.getValue(BlockStateProperties.LIT) ? 13 : 0)
+                        .setId(blockKey(id("powered_haunt_furnace")))
+                ),
+            true
+        );
 
         public static void init() {}
     }
@@ -97,10 +93,14 @@ public class HauntFurnace {
 
         public static final RegistrySupplier<BlockEntityType<HauntFurnaceBlockEntity>> HAUNT_FURNACE = BLOCK_ENTITY_TYPES.register(
             id("haunt_furnace"),
-            () -> new BlockEntityType(HauntFurnaceBlockEntity::new, Set.of(Blocks.HAUNT_FURNACE.get()))
+            () -> new BlockEntityType<HauntFurnaceBlockEntity>(HauntFurnaceBlockEntity::new, Set.of(Blocks.HAUNT_FURNACE.get()))
         );
 
-        // public static Supplier<BlockEntityType<PoweredHauntFurnaceBlockEntity>> POWERED_HAUNT_FURNACE_BLOCK_ENTITY;
+        public static final RegistrySupplier<BlockEntityType<PoweredHauntFurnaceBlockEntity>> POWERED_HAUNT_FURNACE =
+            BLOCK_ENTITY_TYPES.register(id("powered_haunt_furnace"), () ->
+                new BlockEntityType<PoweredHauntFurnaceBlockEntity>(PoweredHauntFurnaceBlockEntity::new, Set.of(Blocks.POWERED_HAUNT_FURNACE.get()))
+            );
+
         public static void init() {}
     }
 
@@ -117,8 +117,18 @@ public class HauntFurnace {
         public static final RegistrySupplier<AbstractCookingRecipe.Serializer<HauntingRecipe>> HAUNTING_SERIALIZER =
             RECIPE_SERIALIZERS.register(id("haunting"), () -> new AbstractCookingRecipe.Serializer<HauntingRecipe>(HauntingRecipe::new, 200)
             );
-        public static final RegistrySupplier<RecipeBookCategory> HAUNTING_RECIPE_BOOK_CATEGORY = RECIPE_BOOK_CATEGORIES.register(
-            id("haunting"),
+
+        public static ExtendedRecipeBookCategory HAUNTING_SEARCH_CATEGORY = new ExtendedRecipeBookCategory() {};
+        public static final RegistrySupplier<RecipeBookCategory> HAUNTING_BLOCKS_CATEGORY = RECIPE_BOOK_CATEGORIES.register(
+            id("haunting_blocks"),
+            RecipeBookCategory::new
+        );
+        public static final RegistrySupplier<RecipeBookCategory> HAUNTING_FOOD_CATEGORY = RECIPE_BOOK_CATEGORIES.register(
+            id("haunting_food"),
+            RecipeBookCategory::new
+        );
+        public static final RegistrySupplier<RecipeBookCategory> HAUNTING_MISC_CATEGORY = RECIPE_BOOK_CATEGORIES.register(
+            id("haunting_misc"),
             RecipeBookCategory::new
         );
 
@@ -136,10 +146,11 @@ public class HauntFurnace {
             new MenuType<HauntFurnaceMenu>(HauntFurnaceMenu::new, FeatureFlags.VANILLA_SET)
         );
 
-        // public static final RegistrySupplier<MenuType<HauntFurnaceMenu>> POWERED_HAUNT_FURNACE_MENU = MENUS.register(
-        //     id("powered_haunt_furnace"),
-        //     () -> new MenuType<PoweredHauntFurnaceMenu>(PoweredHauntFurnaceMenu::new, FeatureFlags.VANILLA_SET)
-        // );
+        public static final RegistrySupplier<MenuType<PoweredHauntFurnaceMenu>> POWERED_HAUNT_FURNACE = MENUS.register(
+            id("powered_haunt_furnace"),
+            () -> new MenuType<PoweredHauntFurnaceMenu>(PoweredHauntFurnaceMenu::new, FeatureFlags.VANILLA_SET)
+        );
+
         public static void init() {}
     }
 

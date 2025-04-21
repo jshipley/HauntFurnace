@@ -122,7 +122,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
             }
             
             public void offerHaunting(RecipeOutput output, String name, CookingBookCategory category, Ingredient input, ItemStack result, float experience, int cookTime) {
-                ResourceLocation id = ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "haunting/" + name);
+                ResourceLocation id = HauntFurnace.id("haunting/" + name);
                 ResourceKey<Recipe<?>> recipeKey = ResourceKey.create(Registries.RECIPE, id);
                 HauntingRecipe hauntingRecipe = new HauntingRecipe("", category, input, result, experience, cookTime);
                 Advancement.Builder criteria = output.advancement()

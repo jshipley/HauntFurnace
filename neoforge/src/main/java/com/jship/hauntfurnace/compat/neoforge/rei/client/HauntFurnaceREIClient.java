@@ -1,8 +1,8 @@
-package com.jship.hauntfurnace.compat.fabric.rei.client;
+package com.jship.hauntfurnace.compat.neoforge.rei.client;
 
 import com.jship.hauntfurnace.HauntFurnace;
 import com.jship.hauntfurnace.client.HauntFurnaceScreen;
-import com.jship.hauntfurnace.compat.fabric.rei.HauntingRecipeCategory;
+import com.jship.hauntfurnace.compat.neoforge.rei.HauntingRecipeCategory;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
@@ -11,9 +11,11 @@ import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
+import me.shedaniel.rei.forge.REIPluginClient;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.display.FurnaceRecipeDisplay;
 
+@REIPluginClient
 public class HauntFurnaceREIClient implements REIClientPlugin {
 
     private static final ResourceLocation ID = HauntFurnace.id("rei_client_plugin");
