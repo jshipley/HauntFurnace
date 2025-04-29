@@ -1,0 +1,10 @@
+{
+  "type": "hauntfurnace:corrupting",
+  "category": "misc",
+  "cookingtime": 600,
+  "experience": 1.0,
+  "ingredient": "#c:chests/ender",
+  "result": {
+    "id": "minecraft:shulker_box"
+  }
+}

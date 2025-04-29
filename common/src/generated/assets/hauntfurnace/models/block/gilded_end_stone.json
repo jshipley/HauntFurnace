@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "hauntfurnace:block/gilded_end_stone"
+  }
+}

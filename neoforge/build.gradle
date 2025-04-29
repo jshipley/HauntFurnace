@@ -49,6 +49,15 @@ dependencies {
     // runtimeOnly("dev.emi:emi-neoforge:${emi_version}")
     // compileOnly("dev.emi:emi-neoforge:${emi_version}:api")
     // testCompileOnly("dev.emi:emi-neoforge:${emi_version}:api")
+
+    // for testing
+    runtimeOnly "curse.maven:energized-power-782147:6447946"
+}
+
+loom {
+    neoForge {
+        accessWidenerPath = project(":common").file("src/main/resources/hauntfurnace.accesswidener")
+    }
 }
 
 processResources {
@@ -66,4 +75,38 @@ shadowJar {
 
 remapJar {
     inputFile.set shadowJar.archiveFile
+    atAccessWideners.add("hauntfurnace.accesswidener")
+}
+
+publishMods {
+    file = remapJar.archiveFile
+    changelog = file("../CHANGELOG.md").getText()
+    type = BETA
+    modLoaders.add("neoforge")
+
+    modrinth {
+        projectId = "G05u0Ety"
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+
+        minecraftVersions.add("1.21.5")
+
+        requires("architectury-api")
+        optional("rei")
+
+        announcementTitle = "Neoforge version on Modrinth"
+    }
+
+    curseforge {
+        projectId = "875936"
+        projectSlug = "haunt-furnace"
+        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+        
+        minecraftVersions.add("1.21.5")
+        javaVersions.add(JavaVersion.VERSION_21)
+
+        requires("architectury-api")
+        optional("roughly-enough-items")
+
+        announcementTitle = "Neoforge version on Curseforge"
+    }
 }

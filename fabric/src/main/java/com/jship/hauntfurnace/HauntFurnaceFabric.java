@@ -1,8 +1,9 @@
 package com.jship.hauntfurnace;
 
+import com.jship.hauntfurnace.block.entity.PoweredEnderFurnaceBlockEntity;
 import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
-import com.jship.hauntfurnace.energy.EnergyStorageFabric;
-import com.jship.hauntfurnace.energy.EnergyStorageFactoryFabric;
+import com.jship.hauntfurnace.energy.fabric.EnergyStorageFabric;
+import com.jship.hauntfurnace.energy.fabric.EnergyStorageFactoryFabric;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -16,14 +17,15 @@ public class HauntFurnaceFabric implements ModInitializer {
         HauntFurnace.init();
 
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(content -> {
-            content.addAfter(Items.BLAST_FURNACE, HauntFurnace.Blocks.HAUNT_FURNACE.get(), HauntFurnace.Blocks.POWERED_HAUNT_FURNACE.get());
+            content.addAfter(Items.BLAST_FURNACE, HauntFurnace.Blocks.HAUNT_FURNACE.get(), HauntFurnace.Blocks.POWERED_HAUNT_FURNACE.get(), HauntFurnace.Blocks.ENDER_FURNACE.get(), HauntFurnace.Blocks.POWERED_ENDER_FURNACE.get());
+        });
+
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.BUILDING_BLOCKS).register(content -> {
+            content.addAfter(Items.END_STONE, HauntFurnace.Blocks.GILDED_END_STONE.get());
         });
 
         HauntFurnace.ENERGY_STORAGE_FACTORY = () -> new EnergyStorageFactoryFabric();
-        EnergyStorage.SIDED.registerForBlockEntity(
-            (blockEntity, direction) ->
-                ((EnergyStorageFabric) ((PoweredHauntFurnaceBlockEntity) blockEntity).energyStorage).fabricEnergyStorage,
-            HauntFurnace.BlockEntities.POWERED_HAUNT_FURNACE.get()
-        );
+        EnergyStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> ((EnergyStorageFabric) ((PoweredHauntFurnaceBlockEntity) blockEntity).energyStorage).fabricEnergyStorage, HauntFurnace.BlockEntities.POWERED_HAUNT_FURNACE.get());
+        EnergyStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> ((EnergyStorageFabric) ((PoweredEnderFurnaceBlockEntity) blockEntity).energyStorage).fabricEnergyStorage, HauntFurnace.BlockEntities.POWERED_ENDER_FURNACE.get());
     }
 }

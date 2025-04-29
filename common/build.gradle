@@ -6,19 +6,21 @@ dependencies {
     // We depend on Fabric Loader here to use the Fabric @Environment annotations,
     // which get remapped to the correct annotations on each platform.
     // Do NOT use other classes from Fabric Loader.
-    modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+    modImplementation "net.fabricmc:fabric-loader:$fabric_loader_version"
 
-    compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
+    compileOnly "org.spongepowered:mixin:0.8.5"
     // fabric and neoforge both bundle mixinextras, so it is safe to use it in common
-    compileOnly group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
-    annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
+    compileOnly "io.github.llamalad7:mixinextras-common:0.3.5"
+    annotationProcessor "io.github.llamalad7:mixinextras-common:0.3.5"
 
-    modCompileOnly ("me.shedaniel.cloth:cloth-config:$cloth_config_version")
-    modCompileOnly ("dev.architectury:architectury:$architectury_version")
+    modCompileOnly "me.shedaniel.cloth:cloth-config:$cloth_config_version"
+    modCompileOnly "dev.architectury:architectury:$architectury_version"
 
+    // not available for 1.21.5 yet
     // compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     // testCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
 
+    // not available for 1.21.5 yet
     // compileOnly("dev.emi:emi-xplat-mojmap:${emi_version}:api")
     // testCompileOnly("dev.emi:emi-xplat-mojmap:${emi_version}:api")
 }

@@ -1,5 +1,9 @@
 {
   "values": [
-    "hauntfurnace:haunt_furnace"
+    "hauntfurnace:haunt_furnace",
+    "hauntfurnace:powered_haunt_furnace",
+    "hauntfurnace:ender_furnace",
+    "hauntfurnace:powered_ender_furnace",
+    "hauntfurnace:gilded_end_stone"
   ]
 }

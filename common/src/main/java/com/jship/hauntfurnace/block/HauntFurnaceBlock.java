@@ -42,8 +42,6 @@ public class HauntFurnaceBlock extends AbstractFurnaceBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-        // return createFurnaceTicker(level, blockEntityType, HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY.get())
-
         if (level instanceof ServerLevel serverLevel) {
             return createTickerHelper(blockEntityType, HauntFurnace.BlockEntities.HAUNT_FURNACE.get(), (levelx, blockPos, blockStatex, hauntFurnaceBlockEntity) -> {
                 HauntFurnaceBlockEntity.serverTick(serverLevel, blockPos, blockState, hauntFurnaceBlockEntity);

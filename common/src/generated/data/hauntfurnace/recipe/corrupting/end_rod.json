@@ -1,0 +1,13 @@
+{
+  "type": "hauntfurnace:corrupting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.8,
+  "ingredient": [
+    "minecraft:breeze_rod",
+    "minecraft:blaze_rod"
+  ],
+  "result": {
+    "id": "minecraft:end_rod"
+  }
+}

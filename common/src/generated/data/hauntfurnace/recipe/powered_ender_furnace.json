@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": "hauntfurnace:ender_furnace",
+    "G": "hauntfurnace:gilded_end_stone",
+    "R": "#c:dusts/redstone"
+  },
+  "pattern": [
+    "GGG",
+    "GEG",
+    "GRG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hauntfurnace:powered_ender_furnace"
+  }
+}

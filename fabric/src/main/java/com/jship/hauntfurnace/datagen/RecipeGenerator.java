@@ -1,8 +1,8 @@
 package com.jship.hauntfurnace.datagen;
 
 import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.recipe.CorruptingRecipe;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
-
 import java.util.concurrent.CompletableFuture;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -40,11 +40,8 @@ public class RecipeGenerator extends FabricRecipeProvider {
         return new RecipeProvider(registryLookup, output) {
             @Override
             public void buildRecipes() {
-                ShapedRecipeBuilder.shaped(
-                    registryLookup.lookupOrThrow(Registries.ITEM),
-                    RecipeCategory.MISC,
-                    HauntFurnace.Blocks.HAUNT_FURNACE.get().asItem()
-                )
+                // Furnaces
+                ShapedRecipeBuilder.shaped(registryLookup.lookupOrThrow(Registries.ITEM), RecipeCategory.MISC, HauntFurnace.Blocks.HAUNT_FURNACE.get().asItem())
                     .pattern("BBB")
                     .pattern("BSB")
                     .pattern("BBB")
@@ -53,18 +50,35 @@ public class RecipeGenerator extends FabricRecipeProvider {
                     .unlockedBy("has_soul_fire", has(ItemTags.SOUL_FIRE_BASE_BLOCKS))
                     .unlockedBy(getHasName(Items.BLACKSTONE), has(Items.BLACKSTONE))
                     .save(this.output);
-                // ShapedRecipeBuilder.shaped(RecipeCategory.MISC, HauntFurnace.POWERED_HAUNT_FURNACE_ITEM.get())
-                //         .pattern("GGG").pattern("GHG").pattern("GRG")
-                //         .define('G', Ingredient.of(Items.BLACKSTONE))
-                //         .define('H', Ingredient.of(HauntFurnace.HAUNT_FURNACE_ITEM.get()))
-                //         .define('R', ConventionalItemTags.REDSTONE_DUSTS)
-                //         .unlockedBy(getHasName(HauntFurnace.HAUNT_FURNACE_ITEM.get()), has(HauntFurnace.HAUNT_FURNACE_ITEM.get()))
-                //         .save(this.output);
-                ShapedRecipeBuilder.shaped(
-                    registryLookup.lookupOrThrow(Registries.ITEM),
-                    RecipeCategory.BUILDING_BLOCKS,
-                    Items.GILDED_BLACKSTONE
-                )
+                ShapedRecipeBuilder.shaped(registryLookup.lookupOrThrow(Registries.ITEM), RecipeCategory.MISC, HauntFurnace.Blocks.POWERED_HAUNT_FURNACE.get().asItem())
+                    .pattern("GGG")
+                    .pattern("GHG")
+                    .pattern("GRG")
+                    .define('G', Ingredient.of(Items.BLACKSTONE))
+                    .define('H', Ingredient.of(HauntFurnace.Blocks.HAUNT_FURNACE.get().asItem()))
+                    .define('R', ConventionalItemTags.REDSTONE_DUSTS)
+                    .unlockedBy(getHasName(HauntFurnace.Blocks.HAUNT_FURNACE.get().asItem()), has(HauntFurnace.Blocks.HAUNT_FURNACE.get().asItem()))
+                    .save(this.output);
+                ShapedRecipeBuilder.shaped(registryLookup.lookupOrThrow(Registries.ITEM), RecipeCategory.MISC, HauntFurnace.Blocks.ENDER_FURNACE.get().asItem())
+                    .pattern("EEE")
+                    .pattern("EDE")
+                    .pattern("EEE")
+                    .define('E', of(ConventionalItemTags.END_STONES))
+                    .define('D', of(Items.DRAGON_HEAD))
+                    .unlockedBy(getHasName(Items.DRAGON_HEAD), has(Items.DRAGON_HEAD))
+                    .save(this.output);
+                ShapedRecipeBuilder.shaped(registryLookup.lookupOrThrow(Registries.ITEM), RecipeCategory.MISC, HauntFurnace.Blocks.POWERED_ENDER_FURNACE.get().asItem())
+                    .pattern("GGG")
+                    .pattern("GEG")
+                    .pattern("GRG")
+                    .define('G', of(HauntFurnace.Blocks.GILDED_END_STONE.get()))
+                    .define('E', of(HauntFurnace.Blocks.ENDER_FURNACE.get()))
+                    .define('R', of(ConventionalItemTags.REDSTONE_DUSTS))
+                    .unlockedBy(getHasName(HauntFurnace.Blocks.ENDER_FURNACE.get()), has(HauntFurnace.Blocks.ENDER_FURNACE.get()))
+                    .save(this.output);
+
+                // Gilding
+                ShapedRecipeBuilder.shaped(registryLookup.lookupOrThrow(Registries.ITEM), RecipeCategory.BUILDING_BLOCKS, Items.GILDED_BLACKSTONE)
                     .pattern("NNN")
                     .pattern("NBN")
                     .pattern("NNN")
@@ -72,6 +86,16 @@ public class RecipeGenerator extends FabricRecipeProvider {
                     .define('B', of(Items.BLACKSTONE))
                     .unlockedBy(getHasName(Items.BLACKSTONE), has(Items.BLACKSTONE))
                     .save(this.output);
+                ShapedRecipeBuilder.shaped(registryLookup.lookupOrThrow(Registries.ITEM), RecipeCategory.BUILDING_BLOCKS, HauntFurnace.Blocks.GILDED_END_STONE.get())
+                    .pattern("NNN")
+                    .pattern("NEN")
+                    .pattern("NNN")
+                    .define('N', of(ConventionalItemTags.GOLD_NUGGETS))
+                    .define('E', of(Items.END_STONE))
+                    .unlockedBy(getHasName(Items.END_STONE), has(Items.END_STONE))
+                    .save(this.output);
+
+                // Haunting recipes
                 offerHaunting(this.output, "blackstone", CookingBookCategory.BLOCKS, of(ConventionalItemTags.COBBLESTONES), new ItemStack(Items.BLACKSTONE), 0.1f, 200);
                 offerHaunting(this.output, "crimson_fungus", CookingBookCategory.MISC, of(Items.RED_MUSHROOM), new ItemStack(Items.CRIMSON_FUNGUS), 0.2f, 200);
                 offerHaunting(this.output, "crimson_stem", CookingBookCategory.MISC, of(ItemTagGenerator.RED_WOODS), new ItemStack(Items.CRIMSON_STEM), 0.2f, 200);
@@ -111,6 +135,27 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 offerHaunting(this.output, "warped_wart_block", CookingBookCategory.BLOCKS, of(ItemTagGenerator.GREEN_LEAVES), new ItemStack(Items.WARPED_WART_BLOCK), 0.2f, 200);
                 offerHaunting(this.output, "wither_rose", CookingBookCategory.MISC, of(ItemTags.SMALL_FLOWERS), new ItemStack(Items.WITHER_ROSE), 0.1f, 200);
                 offerHaunting(this.output, "wither_skeleton_skull", CookingBookCategory.BLOCKS, of(Items.SKELETON_SKULL), new ItemStack(Items.WITHER_SKELETON_SKULL), 0.8f, 200);
+                offerHaunting(this.output, "blaze_rod", CookingBookCategory.MISC, of(Items.BREEZE_ROD, Items.END_ROD), new ItemStack(Items.BLAZE_ROD), 0.8f, 200);
+                offerHaunting(this.output, "blaze_charge", CookingBookCategory.MISC, of(Items.WIND_CHARGE), new ItemStack(Items.FIRE_CHARGE), 0.2f, 200);
+                offerHaunting(this.output, "lava_bucket", CookingBookCategory.MISC, of(Items.WATER_BUCKET), new ItemStack(Items.LAVA_BUCKET), 0.2f, 200);
+                
+                // Corrupting recipes
+                offerCorrupting(this.output, "chorus_fruit", CookingBookCategory.FOOD, of(ConventionalItemTags.FRUIT_FOODS), new ItemStack(Items.CHORUS_FRUIT), 0.4f, 200);
+                offerCorrupting(this.output, "chorus_plant", CookingBookCategory.MISC, of(ItemTags.LOGS), new ItemStack(Items.CHORUS_PLANT), 0.2f, 200);
+                offerCorrupting(this.output, "chorus_flower", CookingBookCategory.MISC, of(ItemTags.LEAVES), new ItemStack(Items.CHORUS_FLOWER), 0.2f, 200);
+                offerCorrupting(this.output, "end_rod", CookingBookCategory.MISC, of(Items.BREEZE_ROD, Items.BLAZE_ROD), new ItemStack(Items.END_ROD), 0.8f, 200);
+                offerCorrupting(this.output, "end_stone", CookingBookCategory.MISC, of(ConventionalItemTags.COBBLESTONES), new ItemStack(Items.END_STONE), 0.4f, 200);
+                offerCorrupting(this.output, "end_stone_bricks", CookingBookCategory.BLOCKS, of(ItemTags.STONE_BRICKS), new ItemStack(Items.END_STONE_BRICKS), 0.4f, 200);
+                offerCorrupting(this.output, "end_stone_brick_slab", CookingBookCategory.BLOCKS, of(Items.STONE_BRICK_SLAB), new ItemStack(Items.END_STONE_BRICK_SLAB), 0.4f, 200);
+                offerCorrupting(this.output, "end_stone_brick_stairs", CookingBookCategory.BLOCKS, of(Items.STONE_BRICK_STAIRS), new ItemStack(Items.END_STONE_BRICK_STAIRS), 0.4f, 200);
+                offerCorrupting(this.output, "end_stone_brick_wall", CookingBookCategory.BLOCKS, of(Items.STONE_BRICK_WALL), new ItemStack(Items.END_STONE_BRICK_WALL), 0.4f, 200);
+                offerCorrupting(this.output, "dragon_breath", CookingBookCategory.MISC, of(Items.GLASS_BOTTLE), new ItemStack(Items.DRAGON_BREATH), 0.6f, 200);
+                offerCorrupting(this.output, "ender_pearl", CookingBookCategory.MISC, of(ConventionalItemTags.PRISMARINE_GEMS), new ItemStack(Items.ENDER_PEARL), 0.6f, 200);
+                offerCorrupting(this.output, "magenta_glass", CookingBookCategory.BLOCKS, of(ConventionalItemTags.GLASS_BLOCKS_CHEAP), new ItemStack(Items.MAGENTA_STAINED_GLASS), 0.2f, 200);
+                offerCorrupting(this.output, "magenta_glass_pane", CookingBookCategory.BLOCKS, of(ConventionalItemTags.GLASS_PANES), new ItemStack(Items.MAGENTA_STAINED_GLASS_PANE), 0.2f, 100);
+                offerCorrupting(this.output, "magenta_candle", CookingBookCategory.MISC, of(ItemTags.CANDLES), new ItemStack(Items.MAGENTA_CANDLE), 0.2f, 200);
+                offerCorrupting(this.output, "dragon_head", CookingBookCategory.MISC, of(ConventionalItemTags.JACK_O_LANTERNS_PUMPKINS), new ItemStack(Items.DRAGON_HEAD), 1.0f, 1000);
+                offerCorrupting(this.output, "shulker_box", CookingBookCategory.MISC, of(ConventionalItemTags.ENDER_CHESTS), new ItemStack(Items.SHULKER_BOX), 1.0f, 600);
             }
 
             public Ingredient of(TagKey<Item> tag) {
@@ -120,17 +165,31 @@ public class RecipeGenerator extends FabricRecipeProvider {
             public Ingredient of(ItemLike... items) {
                 return Ingredient.of(items);
             }
-            
+
             public void offerHaunting(RecipeOutput output, String name, CookingBookCategory category, Ingredient input, ItemStack result, float experience, int cookTime) {
                 ResourceLocation id = HauntFurnace.id("haunting/" + name);
                 ResourceKey<Recipe<?>> recipeKey = ResourceKey.create(Registries.RECIPE, id);
                 HauntingRecipe hauntingRecipe = new HauntingRecipe("", category, input, result, experience, cookTime);
-                Advancement.Builder criteria = output.advancement()
+                Advancement.Builder criteria = output
+                    .advancement()
                     .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(recipeKey))
                     .rewards(AdvancementRewards.Builder.recipe(recipeKey))
                     .requirements(AdvancementRequirements.Strategy.OR)
                     .addCriterion(getHasName(HauntFurnace.Blocks.HAUNT_FURNACE.get().asItem()), has(HauntFurnace.Blocks.HAUNT_FURNACE.get().asItem()));
                 output.accept(recipeKey, hauntingRecipe, criteria.build(id));
+            }
+
+            public void offerCorrupting(RecipeOutput output, String name, CookingBookCategory category, Ingredient input, ItemStack result, float experience, int cookTime) {
+                ResourceLocation id = HauntFurnace.id("corrupting/" + name);
+                ResourceKey<Recipe<?>> recipeKey = ResourceKey.create(Registries.RECIPE, id);
+                CorruptingRecipe corruptingRecipe = new CorruptingRecipe("", category, input, result, experience, cookTime);
+                Advancement.Builder criteria = output
+                    .advancement()
+                    .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(recipeKey))
+                    .rewards(AdvancementRewards.Builder.recipe(recipeKey))
+                    .requirements(AdvancementRequirements.Strategy.OR)
+                    .addCriterion(getHasName(HauntFurnace.Blocks.ENDER_FURNACE.get().asItem()), has(HauntFurnace.Blocks.ENDER_FURNACE.get().asItem()));
+                output.accept(recipeKey, corruptingRecipe, criteria.build(id));
             }
         };
     }

@@ -1,48 +1,36 @@
 {
-    "schemaVersion": 1,
-    "id": "hauntfurnace",
-    "version": "${version}",
-    "name": "Haunt Furnace",
-    "description": "A furnace that haunts your items and transforms them into something new. Inspired by the Create mod.",
-    "authors": [
-      "jshipley"
+  "schemaVersion": 1,
+  "id": "hauntfurnace",
+  "version": "${version}",
+  "name": "Haunt Furnace",
+  "description": "A furnace that haunts your items and transforms them into something new. Inspired by the Create mod.",
+  "authors": ["jshipley"],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/haunt-furnace",
+    "sources": "https://github.com/jshipley/HauntFurnace"
+  },
+  "license": "MIT",
+  "icon": "assets/hauntfurnace/hauntfurnace.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.jship.hauntfurnace.HauntFurnaceFabric"],
+    "client": ["com.jship.hauntfurnace.client.fabric.HauntFurnaceClientFabric"],
+    "fabric-datagen": [
+      "com.jship.hauntfurnace.datagen.HauntFurnaceDataGenFabric"
     ],
-    "contact": {
-      "homepage": "https://modrinth.com/mod/haunt-furnace",
-      "sources": "https://github.com/jshipley/HauntFurnace"
-    },
-    "license": "MIT",
-    "icon": "assets/hauntfurnace/hauntfurnace.png",
-    "environment": "*",
-    "entrypoints": {
-        "main": [
-            "com.jship.hauntfurnace.HauntFurnaceFabric"
-        ],
-        "client": [
-            "com.jship.hauntfurnace.client.HauntFurnaceClientFabric"
-        ],
-        "fabric-datagen": [
-            "com.jship.hauntfurnace.datagen.HauntFurnaceDataGenFabric"
-        ],
-        "rei_client": [
-            "com.jship.hauntfurnace.compat.fabric.rei.client.HauntFurnaceREIClient"
-        ],
-        "rei_common": [
-            "com.jship.hauntfurnace.compat.fabric.rei.HauntFurnaceREI"
-        ]
-    },
-    "accessWidener": "hauntfurnace_fabric.accesswidener",
-    "mixins": [
-      "hauntfurnace.mixins.json"
+    "rei_client": [
+      "com.jship.hauntfurnace.compat.fabric.rei.client.HauntFurnaceREIClient"
     ],
-    "depends": {
-      "fabricloader": ">=0.16.10",
-      "minecraft": "~1.21.1",
-      "java": ">=21",
-      "fabric-api": "*"
-    },
-    "suggests": {
-      "another-mod": "*"
-    }
+    "rei_common": ["com.jship.hauntfurnace.compat.fabric.rei.HauntFurnaceREI"]
+  },
+  "mixins": ["hauntfurnace.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.16.10",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
   }
-  
+}

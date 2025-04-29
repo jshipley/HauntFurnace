@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "E": "minecraft:end_stone",
+    "N": "#c:nuggets/gold"
+  },
+  "pattern": [
+    "NNN",
+    "NEN",
+    "NNN"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hauntfurnace:gilded_end_stone"
+  }
+}

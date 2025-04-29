@@ -13,8 +13,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.ExtendedRecipeBookCategory;
-import net.minecraft.world.item.crafting.RecipeBookCategory;
 
 public class HauntFurnaceScreen extends AbstractFurnaceScreen<HauntFurnaceMenu> {
 
@@ -44,25 +42,5 @@ public class HauntFurnaceScreen extends AbstractFurnaceScreen<HauntFurnaceMenu> 
 
     public HauntFurnaceScreen(HauntFurnaceMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title, FILTER_NAME, TEXTURE, LIT_PROGRESS_TEXTURE, BURN_PROGRESS_TEXTURE, TABS);
-    }
-
-    public enum MyCompoundCategory implements ExtendedRecipeBookCategory {
-        HAUNTING(
-            new RecipeBookCategory[] {
-                HauntFurnace.Recipes.HAUNTING_BLOCKS_CATEGORY.get(),
-                HauntFurnace.Recipes.HAUNTING_FOOD_CATEGORY.get(),
-                HauntFurnace.Recipes.HAUNTING_MISC_CATEGORY.get(),
-            }
-        );
-
-        private final List<RecipeBookCategory> includedCategories;
-
-        private MyCompoundCategory(final RecipeBookCategory... includedCategories) {
-            this.includedCategories = List.of(includedCategories);
-        }
-
-        public List<RecipeBookCategory> includedCategories() {
-            return this.includedCategories;
-        }
     }
 }

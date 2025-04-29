@@ -1,6 +1,9 @@
 package com.jship.hauntfurnace;
 
+import com.jship.hauntfurnace.block.entity.PoweredEnderFurnaceBlockEntity;
 import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
+import com.jship.hauntfurnace.energy.neoforge.EnergyStorageFactoryNeoforge;
+
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -16,6 +19,8 @@ public class HauntFurnaceNeoforge {
 
     public HauntFurnaceNeoforge(IEventBus modEventBus) {
         HauntFurnace.init();
+        HauntFurnace.ENERGY_STORAGE_FACTORY = () -> new EnergyStorageFactoryNeoforge();
+        
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::registerCapabilities);
         modEventBus.addListener(this::registerSearchCategories);
@@ -25,6 +30,11 @@ public class HauntFurnaceNeoforge {
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             event.accept(HauntFurnace.Blocks.HAUNT_FURNACE.get());
             event.accept(HauntFurnace.Blocks.POWERED_HAUNT_FURNACE.get());
+            event.accept(HauntFurnace.Blocks.ENDER_FURNACE.get());
+            event.accept(HauntFurnace.Blocks.POWERED_ENDER_FURNACE.get());
+        }
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(HauntFurnace.Blocks.GILDED_END_STONE.get());
         }
     }
 
@@ -44,6 +54,21 @@ public class HauntFurnaceNeoforge {
                 return new SidedInvWrapper(blockEntity, side);
             }
         );
+        event.registerBlockEntity(
+            Capabilities.EnergyStorage.BLOCK,
+            HauntFurnace.BlockEntities.POWERED_ENDER_FURNACE.get(),
+            (blockEntity, context) -> (EnergyStorage) ((PoweredEnderFurnaceBlockEntity) blockEntity).energyStorage
+        );
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, HauntFurnace.BlockEntities.ENDER_FURNACE.get(), (blockEntity, side) -> {
+            return new SidedInvWrapper(blockEntity, side);
+        });
+        event.registerBlockEntity(
+            Capabilities.ItemHandler.BLOCK,
+            HauntFurnace.BlockEntities.POWERED_ENDER_FURNACE.get(),
+            (blockEntity, side) -> {
+                return new SidedInvWrapper(blockEntity, side);
+            }
+        );
     }
 
     private void registerSearchCategories(RegisterRecipeBookSearchCategoriesEvent event) {
@@ -51,7 +76,11 @@ public class HauntFurnaceNeoforge {
             HauntFurnace.Recipes.HAUNTING_SEARCH_CATEGORY,
             HauntFurnace.Recipes.HAUNTING_BLOCKS_CATEGORY.get(),
             HauntFurnace.Recipes.HAUNTING_FOOD_CATEGORY.get(),
-            HauntFurnace.Recipes.HAUNTING_MISC_CATEGORY.get()
+            HauntFurnace.Recipes.HAUNTING_MISC_CATEGORY.get());
+        event.register(HauntFurnace.Recipes.CORRUPTING_SEARCH_CATEGORY,
+            HauntFurnace.Recipes.CORRUPTING_BLOCKS_CATEGORY.get(),
+            HauntFurnace.Recipes.CORRUPTING_FOOD_CATEGORY.get(),
+            HauntFurnace.Recipes.CORRUPTING_MISC_CATEGORY.get()
         );
     }
 }

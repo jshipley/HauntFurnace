@@ -1,0 +1,10 @@
+{
+  "type": "hauntfurnace:corrupting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.4,
+  "ingredient": "#c:foods/fruit",
+  "result": {
+    "id": "minecraft:chorus_fruit"
+  }
+}

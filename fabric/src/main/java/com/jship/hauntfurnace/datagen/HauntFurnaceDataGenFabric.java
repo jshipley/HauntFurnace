@@ -11,6 +11,7 @@ public class HauntFurnaceDataGenFabric implements DataGeneratorEntrypoint {
 
         pack.addProvider(BlockTagGenerator::new);
         pack.addProvider(ItemTagGenerator::new);
+        pack.addProvider(ModelGenerator::new);
         pack.addProvider(LootTableGenerator::new);
         pack.addProvider(RecipeGenerator::new);
     }

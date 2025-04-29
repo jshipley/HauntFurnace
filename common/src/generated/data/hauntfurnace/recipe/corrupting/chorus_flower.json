@@ -1,0 +1,10 @@
+{
+  "type": "hauntfurnace:corrupting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "ingredient": "#minecraft:leaves",
+  "result": {
+    "id": "minecraft:chorus_flower"
+  }
+}

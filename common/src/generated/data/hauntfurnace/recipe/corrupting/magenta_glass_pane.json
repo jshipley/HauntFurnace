@@ -1,0 +1,10 @@
+{
+  "type": "hauntfurnace:corrupting",
+  "category": "blocks",
+  "cookingtime": 100,
+  "experience": 0.2,
+  "ingredient": "#c:glass_panes",
+  "result": {
+    "id": "minecraft:magenta_stained_glass_pane"
+  }
+}

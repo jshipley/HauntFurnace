@@ -1,14 +1,21 @@
 package com.jship.hauntfurnace;
 
 import com.google.common.base.Suppliers;
+import com.jship.hauntfurnace.block.EnderFurnaceBlock;
 import com.jship.hauntfurnace.block.HauntFurnaceBlock;
+import com.jship.hauntfurnace.block.PoweredEnderFurnaceBlock;
 import com.jship.hauntfurnace.block.PoweredHauntFurnaceBlock;
+import com.jship.hauntfurnace.block.entity.EnderFurnaceBlockEntity;
 import com.jship.hauntfurnace.block.entity.HauntFurnaceBlockEntity;
+import com.jship.hauntfurnace.block.entity.PoweredEnderFurnaceBlockEntity;
 import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
 import com.jship.hauntfurnace.energy.EnergyStorageFactory;
 import com.jship.hauntfurnace.energy.EnergyStorageWrapper;
+import com.jship.hauntfurnace.menu.EnderFurnaceMenu;
 import com.jship.hauntfurnace.menu.HauntFurnaceMenu;
+import com.jship.hauntfurnace.menu.PoweredEnderFurnaceMenu;
 import com.jship.hauntfurnace.menu.PoweredHauntFurnaceMenu;
+import com.jship.hauntfurnace.recipe.CorruptingRecipe;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 import com.mojang.logging.LogUtils;
 import dev.architectury.registry.registries.Registrar;
@@ -86,20 +93,58 @@ public class HauntFurnace {
             true
         );
 
+        public static final RegistrySupplier<Block> ENDER_FURNACE = registerBlock(
+            id("ender_furnace"),
+            () ->
+                new EnderFurnaceBlock(
+                    BlockBehaviour.Properties.ofFullCopy(net.minecraft.world.level.block.Blocks.END_STONE)
+                        .requiresCorrectToolForDrops()
+                        .strength(3.5F)
+                        .lightLevel(blockState -> blockState.getValue(BlockStateProperties.LIT) ? 13 : 0)
+                        .setId(blockKey(id("ender_furnace")))
+                ),
+            true
+        );
+
+        public static final RegistrySupplier<Block> POWERED_ENDER_FURNACE = registerBlock(
+            id("powered_ender_furnace"),
+            () ->
+                new PoweredEnderFurnaceBlock(
+                    BlockBehaviour.Properties.ofFullCopy(net.minecraft.world.level.block.Blocks.END_STONE)
+                        .requiresCorrectToolForDrops()
+                        .strength(3.5F)
+                        .lightLevel(blockState -> blockState.getValue(BlockStateProperties.LIT) ? 13 : 0)
+                        .setId(blockKey(id("powered_ender_furnace")))
+                ),
+            true
+        );
+
+        public static final RegistrySupplier<Block> GILDED_END_STONE = registerBlock(
+            id("gilded_end_stone"),
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(net.minecraft.world.level.block.Blocks.END_STONE).setId(blockKey(id("gilded_end_stone")))),
+            true
+        );
+
         public static void init() {}
     }
 
     public class BlockEntities {
 
-        public static final RegistrySupplier<BlockEntityType<HauntFurnaceBlockEntity>> HAUNT_FURNACE = BLOCK_ENTITY_TYPES.register(
-            id("haunt_furnace"),
-            () -> new BlockEntityType<HauntFurnaceBlockEntity>(HauntFurnaceBlockEntity::new, Set.of(Blocks.HAUNT_FURNACE.get()))
+        public static final RegistrySupplier<BlockEntityType<HauntFurnaceBlockEntity>> HAUNT_FURNACE = BLOCK_ENTITY_TYPES.register(id("haunt_furnace"), () ->
+            new BlockEntityType<HauntFurnaceBlockEntity>(HauntFurnaceBlockEntity::new, Set.of(Blocks.HAUNT_FURNACE.get()))
         );
 
-        public static final RegistrySupplier<BlockEntityType<PoweredHauntFurnaceBlockEntity>> POWERED_HAUNT_FURNACE =
-            BLOCK_ENTITY_TYPES.register(id("powered_haunt_furnace"), () ->
-                new BlockEntityType<PoweredHauntFurnaceBlockEntity>(PoweredHauntFurnaceBlockEntity::new, Set.of(Blocks.POWERED_HAUNT_FURNACE.get()))
-            );
+        public static final RegistrySupplier<BlockEntityType<PoweredHauntFurnaceBlockEntity>> POWERED_HAUNT_FURNACE = BLOCK_ENTITY_TYPES.register(id("powered_haunt_furnace"), () ->
+            new BlockEntityType<PoweredHauntFurnaceBlockEntity>(PoweredHauntFurnaceBlockEntity::new, Set.of(Blocks.POWERED_HAUNT_FURNACE.get()))
+        );
+
+        public static final RegistrySupplier<BlockEntityType<EnderFurnaceBlockEntity>> ENDER_FURNACE = BLOCK_ENTITY_TYPES.register(id("ender_furnace"), () ->
+            new BlockEntityType<EnderFurnaceBlockEntity>(EnderFurnaceBlockEntity::new, Set.of(Blocks.ENDER_FURNACE.get()))
+        );
+
+        public static final RegistrySupplier<BlockEntityType<PoweredEnderFurnaceBlockEntity>> POWERED_ENDER_FURNACE = BLOCK_ENTITY_TYPES.register(id("powered_ender_furnace"), () ->
+            new BlockEntityType<PoweredEnderFurnaceBlockEntity>(PoweredEnderFurnaceBlockEntity::new, Set.of(Blocks.POWERED_ENDER_FURNACE.get()))
+        );
 
         public static void init() {}
     }
@@ -114,42 +159,44 @@ public class HauntFurnace {
                 }
             }
         );
-        public static final RegistrySupplier<AbstractCookingRecipe.Serializer<HauntingRecipe>> HAUNTING_SERIALIZER =
-            RECIPE_SERIALIZERS.register(id("haunting"), () -> new AbstractCookingRecipe.Serializer<HauntingRecipe>(HauntingRecipe::new, 200)
-            );
+        public static final RegistrySupplier<AbstractCookingRecipe.Serializer<HauntingRecipe>> HAUNTING_SERIALIZER = RECIPE_SERIALIZERS.register(id("haunting"), () -> new AbstractCookingRecipe.Serializer<HauntingRecipe>(HauntingRecipe::new, 200));
 
         public static ExtendedRecipeBookCategory HAUNTING_SEARCH_CATEGORY = new ExtendedRecipeBookCategory() {};
-        public static final RegistrySupplier<RecipeBookCategory> HAUNTING_BLOCKS_CATEGORY = RECIPE_BOOK_CATEGORIES.register(
-            id("haunting_blocks"),
-            RecipeBookCategory::new
-        );
-        public static final RegistrySupplier<RecipeBookCategory> HAUNTING_FOOD_CATEGORY = RECIPE_BOOK_CATEGORIES.register(
-            id("haunting_food"),
-            RecipeBookCategory::new
-        );
-        public static final RegistrySupplier<RecipeBookCategory> HAUNTING_MISC_CATEGORY = RECIPE_BOOK_CATEGORIES.register(
-            id("haunting_misc"),
-            RecipeBookCategory::new
-        );
+        public static final RegistrySupplier<RecipeBookCategory> HAUNTING_BLOCKS_CATEGORY = RECIPE_BOOK_CATEGORIES.register(id("haunting_blocks"), RecipeBookCategory::new);
+        public static final RegistrySupplier<RecipeBookCategory> HAUNTING_FOOD_CATEGORY = RECIPE_BOOK_CATEGORIES.register(id("haunting_food"), RecipeBookCategory::new);
+        public static final RegistrySupplier<RecipeBookCategory> HAUNTING_MISC_CATEGORY = RECIPE_BOOK_CATEGORIES.register(id("haunting_misc"), RecipeBookCategory::new);
 
-        public static ResourceKey<RecipePropertySet> HAUNT_FURNACE_INPUT = ResourceKey.create(
-            RecipePropertySet.TYPE_KEY,
-            HauntFurnace.id("haunting_input")
+        public static ResourceKey<RecipePropertySet> HAUNT_FURNACE_INPUT = ResourceKey.create(RecipePropertySet.TYPE_KEY, HauntFurnace.id("haunting_input"));
+
+        public static final RegistrySupplier<RecipeType<CorruptingRecipe>> CORRUPTING = RECIPE_TYPES.register(id("corrupting"), () ->
+            new RecipeType<CorruptingRecipe>() {
+                @Override
+                public String toString() {
+                    return "hauntfurnace:corrupting";
+                }
+            }
         );
+        public static final RegistrySupplier<AbstractCookingRecipe.Serializer<CorruptingRecipe>> CORRUPTING_SERIALIZER = RECIPE_SERIALIZERS.register(id("corrupting"), () -> new AbstractCookingRecipe.Serializer<CorruptingRecipe>(CorruptingRecipe::new, 200));
+
+        public static ExtendedRecipeBookCategory CORRUPTING_SEARCH_CATEGORY = new ExtendedRecipeBookCategory() {};
+        public static final RegistrySupplier<RecipeBookCategory> CORRUPTING_BLOCKS_CATEGORY = RECIPE_BOOK_CATEGORIES.register(id("corrupting_blocks"), RecipeBookCategory::new);
+        public static final RegistrySupplier<RecipeBookCategory> CORRUPTING_FOOD_CATEGORY = RECIPE_BOOK_CATEGORIES.register(id("corrupting_food"), RecipeBookCategory::new);
+        public static final RegistrySupplier<RecipeBookCategory> CORRUPTING_MISC_CATEGORY = RECIPE_BOOK_CATEGORIES.register(id("corrupting_misc"), RecipeBookCategory::new);
+
+        public static ResourceKey<RecipePropertySet> ENDER_FURNACE_INPUT = ResourceKey.create(RecipePropertySet.TYPE_KEY, HauntFurnace.id("corrupting_input"));
 
         public static void init() {}
     }
 
     public class Menus {
 
-        public static final RegistrySupplier<MenuType<HauntFurnaceMenu>> HAUNT_FURNACE = MENUS.register(id("haunt_furnace"), () ->
-            new MenuType<HauntFurnaceMenu>(HauntFurnaceMenu::new, FeatureFlags.VANILLA_SET)
-        );
+        public static final RegistrySupplier<MenuType<HauntFurnaceMenu>> HAUNT_FURNACE = MENUS.register(id("haunt_furnace"), () -> new MenuType<HauntFurnaceMenu>(HauntFurnaceMenu::new, FeatureFlags.VANILLA_SET));
 
-        public static final RegistrySupplier<MenuType<PoweredHauntFurnaceMenu>> POWERED_HAUNT_FURNACE = MENUS.register(
-            id("powered_haunt_furnace"),
-            () -> new MenuType<PoweredHauntFurnaceMenu>(PoweredHauntFurnaceMenu::new, FeatureFlags.VANILLA_SET)
-        );
+        public static final RegistrySupplier<MenuType<PoweredHauntFurnaceMenu>> POWERED_HAUNT_FURNACE = MENUS.register(id("powered_haunt_furnace"), () -> new MenuType<PoweredHauntFurnaceMenu>(PoweredHauntFurnaceMenu::new, FeatureFlags.VANILLA_SET));
+
+        public static final RegistrySupplier<MenuType<EnderFurnaceMenu>> ENDER_FURNACE = MENUS.register(id("ender_furnace"), () -> new MenuType<EnderFurnaceMenu>(EnderFurnaceMenu::new, FeatureFlags.VANILLA_SET));
+
+        public static final RegistrySupplier<MenuType<PoweredEnderFurnaceMenu>> POWERED_ENDER_FURNACE = MENUS.register(id("powered_ender_furnace"), () -> new MenuType<PoweredEnderFurnaceMenu>(PoweredEnderFurnaceMenu::new, FeatureFlags.VANILLA_SET));
 
         public static void init() {}
     }

@@ -39,8 +39,8 @@ public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDis
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 9)));
         widgets.add(
-            new BurningSoulFireWidget(
-                new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14))
+            new BurningAltFireWidget(
+                new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)), 1
             ).animationDurationMS(10000)
         );
         widgets.add(

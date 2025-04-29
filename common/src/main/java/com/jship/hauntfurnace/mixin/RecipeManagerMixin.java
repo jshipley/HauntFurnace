@@ -34,6 +34,7 @@ public class RecipeManagerMixin {
     private static void onRecipeManagerInit(CallbackInfo ci) {
         RECIPE_PROPERTY_SETS = new HashMap<>(RECIPE_PROPERTY_SETS);
         RECIPE_PROPERTY_SETS.put(HauntFurnace.Recipes.HAUNT_FURNACE_INPUT, forSingleInput(HauntFurnace.Recipes.HAUNTING.get()));
+        RECIPE_PROPERTY_SETS.put(HauntFurnace.Recipes.ENDER_FURNACE_INPUT, forSingleInput(HauntFurnace.Recipes.CORRUPTING.get()));
         RECIPE_PROPERTY_SETS = Collections.unmodifiableMap(RECIPE_PROPERTY_SETS);
     }
 }

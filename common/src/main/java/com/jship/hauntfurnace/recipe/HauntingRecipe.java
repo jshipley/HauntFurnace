@@ -11,16 +11,10 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 
 public class HauntingRecipe extends AbstractCookingRecipe {
+
     private final CookingBookCategory category;
 
-    public HauntingRecipe(
-        String group,
-        CookingBookCategory category,
-        Ingredient ingredient,
-        ItemStack result,
-        float experience,
-        int cookTime
-    ) {
+    public HauntingRecipe(String group, CookingBookCategory category, Ingredient ingredient, ItemStack result, float experience, int cookTime) {
         super(group, category, ingredient, result, experience, cookTime);
         this.category = category;
     }

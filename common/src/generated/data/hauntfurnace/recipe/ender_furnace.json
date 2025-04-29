@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": "minecraft:dragon_head",
+    "E": "#c:end_stones"
+  },
+  "pattern": [
+    "EEE",
+    "EDE",
+    "EEE"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hauntfurnace:ender_furnace"
+  }
+}

@@ -30,12 +30,15 @@ import net.minecraft.world.level.Level;
 public class PoweredHauntFurnaceMenu extends RecipeBookMenu {
 
     public static final int INGREDIENT_SLOT = 0;
-    public static final int RESULT_SLOT = 1;
-    public static final int SLOT_COUNT = 2;
-    public static final int INV_SLOT_START = 2;
-    public static final int INV_SLOT_END = 29;
-    public static final int USE_ROW_SLOT_START = 29;
-    public static final int USE_ROW_SLOT_END = 38;
+    // Not using this slot, but keeping the furnace slot numbering
+    public static final int IGNORED_SLOT = 1;
+    public static final int RESULT_SLOT = 2;
+    public static final int SLOT_COUNT = 3;
+    public static final int DATA_COUNT = 5;
+    public static final int INV_SLOT_START = 3;
+    public static final int INV_SLOT_END = 30;
+    public static final int USE_ROW_SLOT_START = 30;
+    public static final int USE_ROW_SLOT_END = 39;
     private final Container container;
     private final ContainerData data;
     protected final Level level;
@@ -47,21 +50,25 @@ public class PoweredHauntFurnaceMenu extends RecipeBookMenu {
             containerId,
             playerInventory,
             new SimpleContainer(SLOT_COUNT),
-            new SimpleContainerData(PoweredHauntFurnaceBlockEntity.PROPERTY_COUNT)
+            new SimpleContainerData(PoweredHauntFurnaceBlockEntity.NUM_DATA_VALUES)
         );
     }
 
-    public PoweredHauntFurnaceMenu(int syncId, Inventory inventory, Container container, ContainerData data) {
-        super(HauntFurnace.Menus.POWERED_HAUNT_FURNACE.get(), syncId);
+    public PoweredHauntFurnaceMenu(int containerId, Inventory inventory, Container container, ContainerData data) {
+        super(HauntFurnace.Menus.POWERED_HAUNT_FURNACE.get(), containerId);
         this.recipeBookType = RecipeBookType.FURNACE;
         checkContainerSize(container, SLOT_COUNT);
-        checkContainerDataCount(data, PoweredHauntFurnaceBlockEntity.PROPERTY_COUNT);
+        checkContainerDataCount(data, PoweredHauntFurnaceBlockEntity.NUM_DATA_VALUES);
         this.container = container;
         this.data = data;
         this.level = inventory.player.level();
         this.acceptedInputs = this.level.recipeAccess().propertySet(HauntFurnace.Recipes.HAUNT_FURNACE_INPUT);
         this.addSlot(new Slot(container, INGREDIENT_SLOT, 56, 35));
-        this.addSlot(new FurnaceResultSlot(inventory.player, container, RESULT_SLOT, 116, 35));
+        this.addSlot(new Slot(container, IGNORED_SLOT, 0, 0) {
+            @Override
+            public boolean mayPlace(ItemStack stack) { return false; }
+        });
+        this.addSlot(new FurnaceResultSlot(inventory.player, container, 2, 116, 35));
         this.addStandardInventorySlots(inventory, 8, 84);
         this.addDataSlots(data);
     }
@@ -78,7 +85,7 @@ public class PoweredHauntFurnaceMenu extends RecipeBookMenu {
     }
 
     public boolean recipeMatches(RecipeHolder<HauntingRecipe> recipe) {
-        return recipe.value().matches(new SingleRecipeInput(this.container.getItem(0)), this.level);
+        return recipe.value().matches(new SingleRecipeInput(this.container.getItem(INGREDIENT_SLOT)), this.level);
     }
 
     public Slot getResultSlot() {
@@ -101,30 +108,30 @@ public class PoweredHauntFurnaceMenu extends RecipeBookMenu {
         return this.container.stillValid(player);
     }
 
-    public ItemStack quickMoveStack(Player player, int slot) {
+    public ItemStack quickMoveStack(Player player, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
-        Slot slot2 = (Slot) this.slots.get(slot);
+        Slot slot2 = (Slot) this.slots.get(index);
         if (slot2 != null && slot2.hasItem()) {
             ItemStack itemStack2 = slot2.getItem();
             itemStack = itemStack2.copy();
-            if (slot == RESULT_SLOT) {
+            if (index == RESULT_SLOT) {
                 if (!this.moveItemStackTo(itemStack2, INV_SLOT_START, USE_ROW_SLOT_END, true)) {
                     return ItemStack.EMPTY;
                 }
 
                 slot2.onQuickCraft(itemStack2, itemStack);
-            } else if (slot != INGREDIENT_SLOT) {
+            } else if (index != INGREDIENT_SLOT) {
                 if (this.canHaunt(itemStack2)) {
-                    if (!this.moveItemStackTo(itemStack2, 0, 1, false)) {
+                    if (!this.moveItemStackTo(itemStack2, 0, RESULT_SLOT, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (slot >= INV_SLOT_START && slot < INV_SLOT_END) {
+                } else if (index >= INV_SLOT_START && index < INV_SLOT_END) {
                     if (!this.moveItemStackTo(itemStack2, USE_ROW_SLOT_START, USE_ROW_SLOT_END, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (
-                    slot >= USE_ROW_SLOT_START &&
-                    slot < USE_ROW_SLOT_END &&
+                    index >= USE_ROW_SLOT_START &&
+                    index < USE_ROW_SLOT_END &&
                     !this.moveItemStackTo(itemStack2, INV_SLOT_START, INV_SLOT_END, false)
                 ) {
                     return ItemStack.EMPTY;
@@ -154,27 +161,28 @@ public class PoweredHauntFurnaceMenu extends RecipeBookMenu {
     }
 
     public int getHauntProgress() {
-        int i = this.data.get(PoweredHauntFurnaceBlockEntity.HAUNT_TIME_PROPERTY_INDEX);
-        int j = this.data.get(PoweredHauntFurnaceBlockEntity.HAUNT_TIME_TOTAL_PROPERTY_INDEX);
-        return j != 0 && i != 0 ? (i * 24) / j : 0;
+        int cookingTimer = this.data.get(PoweredHauntFurnaceBlockEntity.DATA_COOKING_PROGRESS);
+        int cookingTotalTime = this.data.get(PoweredHauntFurnaceBlockEntity.DATA_COOKING_TOTAL_TIME);
+        return cookingTotalTime != 0 && cookingTimer != 0 ? (cookingTimer * 24) / cookingTotalTime : 0;
     }
 
     public boolean isLit() {
-        return this.data.get(PoweredHauntFurnaceBlockEntity.HAUNT_TIME_PROPERTY_INDEX) > 0;
+        return this.data.get(PoweredHauntFurnaceBlockEntity.DATA_LIT_TIME) > 0;
     }
 
     public int energyLevel() {
         // the power meter is 32 pixels tall
         return (
-            (32 * this.data.get(PoweredHauntFurnaceBlockEntity.ENERGY_STORAGE_PROPERTY_INDEX)) /
+            (32 * this.data.get(PoweredHauntFurnaceBlockEntity.DATA_ENERGY_STORAGE)) /
             PoweredHauntFurnaceBlockEntity.ENERGY_CAPACITY
         );
     }
 
     public int energy() {
-        return this.data.get(PoweredHauntFurnaceBlockEntity.ENERGY_STORAGE_PROPERTY_INDEX);
+        return this.data.get(PoweredHauntFurnaceBlockEntity.DATA_ENERGY_STORAGE);
     }
 
+    @Override
     public RecipeBookType getRecipeBookType() {
         return this.recipeBookType;
     }
@@ -187,8 +195,8 @@ public class PoweredHauntFurnaceMenu extends RecipeBookMenu {
         ServerLevel level,
         Inventory playerInventory
     ) {
-        List<Slot> list = List.of(this.getSlot(0), this.getSlot(1));        
-        return ServerPlaceRecipe.placeRecipe(new PHCraftingMenuAccess(), this.getGridWidth(), this.getGridHeight(), List.of(this.getSlot(0)), list, playerInventory, (RecipeHolder<HauntingRecipe>)recipe, useMaxItems, isCreative);
+        List<Slot> list = List.of(this.getSlot(INGREDIENT_SLOT), this.getSlot(IGNORED_SLOT), this.getSlot(RESULT_SLOT));
+        return ServerPlaceRecipe.placeRecipe(new PHCraftingMenuAccess(), this.getGridWidth(), this.getGridHeight(), List.of(this.getSlot(INGREDIENT_SLOT)), list, playerInventory, (RecipeHolder<HauntingRecipe>)recipe, useMaxItems, isCreative);
     }
 
     private class PHCraftingMenuAccess implements CraftingMenuAccess<HauntingRecipe> {
