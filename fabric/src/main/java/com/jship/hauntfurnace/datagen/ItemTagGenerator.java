@@ -14,10 +14,10 @@ import net.minecraft.world.item.Items;
 import java.util.concurrent.CompletableFuture;
 
 public class ItemTagGenerator extends FabricTagProvider<Item> {
-    public static final TagKey<Item> RED_WOODS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "red_woods"));
-    public static final TagKey<Item> RED_LEAVES = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "red_leaves"));
-    public static final TagKey<Item> GREEN_WOODS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "green_woods"));
-    public static final TagKey<Item> GREEN_LEAVES = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "green_leaves"));
+    public static final TagKey<Item> RED_WOODS = TagKey.create(Registries.ITEM, HauntFurnace.id("red_woods"));
+    public static final TagKey<Item> RED_LEAVES = TagKey.create(Registries.ITEM, HauntFurnace.id("red_leaves"));
+    public static final TagKey<Item> GREEN_WOODS = TagKey.create(Registries.ITEM, HauntFurnace.id("green_woods"));
+    public static final TagKey<Item> GREEN_LEAVES = TagKey.create(Registries.ITEM, HauntFurnace.id("green_leaves"));
     
     public ItemTagGenerator(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, Registries.ITEM, registriesFuture);

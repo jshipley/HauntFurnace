@@ -79,3 +79,40 @@ shadowJar {
 remapJar {
     inputFile.set shadowJar.archiveFile
 }
+
+publishMods {
+    file = remapJar.archiveFile
+    changelog = file("../CHANGELOG.md").getText()
+    type = STABLE
+    modLoaders.add("fabric")
+
+    modrinth {
+        projectId = "G05u0Ety"
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+
+        minecraftVersions.add("${minecraft_version}")
+
+        requires("architectury-api")
+        optional("emi")
+        optional("rei")
+        optional("jei")
+
+        announcementTitle = "Fabric version on Modrinth"
+    }
+
+    curseforge {
+        projectId = "875936"
+        projectSlug = "haunt-furnace"
+        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+
+        minecraftVersions.add("${minecraft_version}")
+        javaVersions.add(JavaVersion.VERSION_21)
+
+        requires("architectury-api")
+        optional("emi")
+        optional("roughly-enough-items")
+        optional("jei")
+
+        announcementTitle = "Fabric version on Curseforge"
+    }
+}

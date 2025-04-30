@@ -1,6 +1,7 @@
 package com.jship.hauntfurnace.client.compat.emi;
 
 import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.recipe.CorruptingRecipe;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 
 import dev.emi.emi.api.EmiEntrypoint;
@@ -19,17 +20,27 @@ public class HauntFurnaceEMI implements EmiPlugin {
     public static final EmiStack HAUNT_FURNACE_WORKSTATION = EmiStack.of(HauntFurnace.HAUNT_FURNACE_BLOCK.get());
     public static final EmiStack POWERED_HAUNT_FURNACE_WORKSTATION = EmiStack.of(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK.get());
     public static final EmiRecipeCategory HAUNTING_CATEGORY = new EmiRecipeCategory(ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "haunt_furnace"), HAUNT_FURNACE_WORKSTATION, HAUNT_FURNACE_WORKSTATION, EmiRecipeSorting.compareOutputThenInput());
+    public static final EmiStack ENDER_FURNACE_WORKSTATION = EmiStack.of(HauntFurnace.ENDER_FURNACE_BLOCK.get());
+    public static final EmiStack POWERED_ENDER_FURNACE_WORKSTATION = EmiStack.of(HauntFurnace.POWERED_ENDER_FURNACE_BLOCK.get());
+    public static final EmiRecipeCategory CORRUPTING_CATEGORY = new EmiRecipeCategory(ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "ender_furnace"), ENDER_FURNACE_WORKSTATION, ENDER_FURNACE_WORKSTATION, EmiRecipeSorting.compareOutputThenInput());
     
     @Override
     public void register(EmiRegistry registry) {
         registry.addCategory(HAUNTING_CATEGORY);
         registry.addWorkstation(HAUNTING_CATEGORY, HAUNT_FURNACE_WORKSTATION);
         registry.addWorkstation(HAUNTING_CATEGORY, POWERED_HAUNT_FURNACE_WORKSTATION);
+        registry.addCategory(CORRUPTING_CATEGORY);
+        registry.addWorkstation(CORRUPTING_CATEGORY, ENDER_FURNACE_WORKSTATION);
+        registry.addWorkstation(CORRUPTING_CATEGORY, POWERED_ENDER_FURNACE_WORKSTATION);
         
         RecipeManager recipeManager = registry.getRecipeManager();
 
         for(RecipeHolder<HauntingRecipe> recipe : recipeManager.getAllRecipesFor(HauntFurnace.HAUNTING_RECIPE.get())) {
             registry.addRecipe(new HauntingEMIRecipe(recipe.value()));
+        }
+
+        for(RecipeHolder<CorruptingRecipe> recipe : recipeManager.getAllRecipesFor(HauntFurnace.CORRUPTING_RECIPE.get())) {
+            registry.addRecipe(new CorruptingEMIRecipe(recipe.value()));
         }
     }
 }

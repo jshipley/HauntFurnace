@@ -57,9 +57,9 @@ public class PoweredHauntFurnaceBlockEntity extends BlockEntity
     public static final int INPUT_SLOT = 0;
     public static final int OUTPUT_SLOT = 1;
     public static final int SLOT_COUNT = 2;
-    public static final int[] SLOTS_FOR_UP = new int[] { INPUT_SLOT };
-    public static final int[] SLOTS_FOR_DOWN = new int[] { OUTPUT_SLOT };
-    public static final int[] SLOTS_FOR_SIDES = new int[] { INPUT_SLOT };
+    public static final int[] SLOTS_FOR_UP = new int[] { INPUT_SLOT, OUTPUT_SLOT };
+    public static final int[] SLOTS_FOR_DOWN = new int[] { INPUT_SLOT, OUTPUT_SLOT };
+    public static final int[] SLOTS_FOR_SIDES = new int[] { INPUT_SLOT, OUTPUT_SLOT };
     public static final int ENERGY_STORAGE_PROPERTY_INDEX = 0;
     public static final int COOK_TIME_PROPERTY_INDEX = 1;
     public static final int COOK_TIME_TOTAL_PROPERTY_INDEX = 2;
@@ -332,7 +332,7 @@ public class PoweredHauntFurnaceBlockEntity extends BlockEntity
 
     @Override
     public boolean canTakeItemThroughFace(int i, ItemStack itemStack, Direction direction) {
-        return direction == Direction.DOWN && i == OUTPUT_SLOT;
+        return i == OUTPUT_SLOT;
     }
 
     public void clearContent() {

@@ -1,0 +1,17 @@
+{
+  "type": "hauntfurnace:haunting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.8,
+  "ingredient": [
+    {
+      "item": "minecraft:breeze_rod"
+    },
+    {
+      "item": "minecraft:end_rod"
+    }
+  ],
+  "result": {
+    "id": "minecraft:blaze_rod"
+  }
+}

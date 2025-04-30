@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "hauntfurnace:block/powered_ender_furnace_bottom",
+    "front": "hauntfurnace:block/powered_ender_furnace_front",
+    "side": "hauntfurnace:block/powered_ender_furnace_side",
+    "top": "hauntfurnace:block/powered_ender_furnace_top"
+  }
+}

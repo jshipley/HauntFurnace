@@ -20,6 +20,9 @@ public class BlockTagGenerator extends FabricTagProvider<Block> {
     protected void addTags(HolderLookup.Provider lookup) {
         getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
             .add(HauntFurnace.HAUNT_FURNACE_BLOCK.get())
-            .add(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK.get());
+            .add(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK.get())
+            .add(HauntFurnace.ENDER_FURNACE_BLOCK.get())
+            .add(HauntFurnace.POWERED_ENDER_FURNACE_BLOCK.get())
+            .add(HauntFurnace.GILDED_END_STONE_BLOCK.get());
     }    
 }

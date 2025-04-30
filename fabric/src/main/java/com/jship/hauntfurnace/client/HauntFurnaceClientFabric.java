@@ -10,5 +10,7 @@ public class HauntFurnaceClientFabric implements ClientModInitializer {
     public void onInitializeClient() {
         MenuScreens.register(HauntFurnace.HAUNT_FURNACE_MENU.get(), HauntFurnaceScreen::new);
         MenuScreens.register(HauntFurnace.POWERED_HAUNT_FURNACE_MENU.get(), PoweredHauntFurnaceScreen::new);
+        MenuScreens.register(HauntFurnace.ENDER_FURNACE_MENU.get(), EnderFurnaceScreen::new);
+        MenuScreens.register(HauntFurnace.POWERED_ENDER_FURNACE_MENU.get(), PoweredEnderFurnaceScreen::new);
     }    
 }

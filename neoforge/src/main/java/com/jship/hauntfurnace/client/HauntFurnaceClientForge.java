@@ -17,5 +17,7 @@ public class HauntFurnaceClientForge {
     public static void registerMenuScreens(RegisterMenuScreensEvent event) {
         event.register(HauntFurnaceNeoforge.HAUNT_FURNACE_MENU.get(), HauntFurnaceScreen::new);
         event.register(HauntFurnaceNeoforge.POWERED_HAUNT_FURNACE_MENU.get(), PoweredHauntFurnaceScreen::new);
+        event.register(HauntFurnaceNeoforge.ENDER_FURNACE_MENU.get(), EnderFurnaceScreen::new);
+        event.register(HauntFurnaceNeoforge.POWERED_ENDER_FURNACE_MENU.get(), PoweredEnderFurnaceScreen::new);
     }
 }

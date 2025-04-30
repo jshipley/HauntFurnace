@@ -1,4 +1,4 @@
-package com.jship.hauntfurnace.client.compat.neoforge.rei;
+package com.jship.hauntfurnace.client.compat.fabric.rei;
 
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 

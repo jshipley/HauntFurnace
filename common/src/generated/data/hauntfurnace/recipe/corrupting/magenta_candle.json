@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:corrupting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "ingredient": {
+    "tag": "minecraft:candles"
+  },
+  "result": {
+    "id": "minecraft:magenta_candle"
+  }
+}

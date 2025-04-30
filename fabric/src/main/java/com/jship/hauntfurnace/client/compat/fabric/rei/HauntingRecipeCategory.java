@@ -41,7 +41,7 @@ public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDis
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 9)));
-        widgets.add(new BurningSoulFireWidget(new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)))
+        widgets.add(new BurningAltFireWidget(new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)), 1)
                 .animationDurationMS(10000));
         widgets.add(Widgets.createLabel(new Point(bounds.x + bounds.width - 5, bounds.y + 5),
                 Component.translatable("category.rei.cooking.time&xp", df.format(display.getXp()), df.format(cookingTime / 20d))).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));

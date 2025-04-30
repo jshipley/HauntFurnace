@@ -17,6 +17,9 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
     public void generate() {
         dropSelf(HauntFurnace.HAUNT_FURNACE_BLOCK.get());
         dropSelf(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK.get());
+        dropSelf(HauntFurnace.ENDER_FURNACE_BLOCK.get());
+        dropSelf(HauntFurnace.POWERED_ENDER_FURNACE_BLOCK.get());
+        dropSelf(HauntFurnace.GILDED_END_STONE_BLOCK.get());
     }
     
 }

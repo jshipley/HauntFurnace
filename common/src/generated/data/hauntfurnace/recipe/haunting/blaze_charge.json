@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:haunting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "ingredient": {
+    "item": "minecraft:wind_charge"
+  },
+  "result": {
+    "id": "minecraft:fire_charge"
+  }
+}

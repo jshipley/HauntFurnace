@@ -1,12 +1,19 @@
 package com.jship.hauntfurnace;
 
+import com.jship.hauntfurnace.block.EnderFurnaceBlock;
 import com.jship.hauntfurnace.block.HauntFurnaceBlock;
+import com.jship.hauntfurnace.block.PoweredEnderFurnaceBlock;
 import com.jship.hauntfurnace.block.PoweredHauntFurnaceBlock;
+import com.jship.hauntfurnace.block.entity.EnderFurnaceBlockEntity;
 import com.jship.hauntfurnace.block.entity.HauntFurnaceBlockEntity;
+import com.jship.hauntfurnace.block.entity.PoweredEnderFurnaceBlockEntity;
 import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
 import com.jship.hauntfurnace.energy.EnergyStorageFactoryNeoforge;
+import com.jship.hauntfurnace.menu.EnderFurnaceMenu;
 import com.jship.hauntfurnace.menu.HauntFurnaceMenu;
+import com.jship.hauntfurnace.menu.PoweredEnderFurnaceMenu;
 import com.jship.hauntfurnace.menu.PoweredHauntFurnaceMenu;
+import com.jship.hauntfurnace.recipe.CorruptingRecipe;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 
 import java.util.function.Supplier;
@@ -84,6 +91,40 @@ public class HauntFurnaceNeoforge {
                                         .build(null));
         public static final Supplier<Item> POWERED_HAUNT_FURNACE_ITEM = ITEMS.register("powered_haunt_furnace",
                         () -> new BlockItem(POWERED_HAUNT_FURNACE_BLOCK.get(), new Item.Properties()));
+        
+        public static final Supplier<Block> ENDER_FURNACE_BLOCK = BLOCKS.register("ender_furnace",
+                        () -> new EnderFurnaceBlock(BlockBehaviour.Properties.of()
+                                        .mapColor(MapColor.STONE)
+                                        .instrument(NoteBlockInstrument.BASEDRUM)
+                                        .requiresCorrectToolForDrops()
+                                        .strength(3.5F)
+                                        .lightLevel(blockState -> blockState.getValue(BlockStateProperties.LIT) ? 13
+                                                        : 0)));
+        public static final Supplier<BlockEntityType<EnderFurnaceBlockEntity>> ENDER_FURNACE_BLOCK_ENTITY = BLOCK_ENTITY_TYPES
+                        .register("ender_furnace", () -> BlockEntityType.Builder
+                                        .of(EnderFurnaceBlockEntity::new, ENDER_FURNACE_BLOCK.get()).build(null));
+        public static final Supplier<Item> ENDER_FURNACE_ITEM = ITEMS.register("ender_furnace",
+                        () -> new BlockItem(ENDER_FURNACE_BLOCK.get(), new Item.Properties()));
+
+        public static final Supplier<Block> POWERED_ENDER_FURNACE_BLOCK = BLOCKS.register("powered_ender_furnace",
+                        () -> new PoweredEnderFurnaceBlock(BlockBehaviour.Properties.of()
+                                        .mapColor(MapColor.STONE)
+                                        .instrument(NoteBlockInstrument.BASEDRUM)
+                                        .requiresCorrectToolForDrops()
+                                        .strength(3.5F)
+                                        .lightLevel(blockState -> blockState.getValue(BlockStateProperties.LIT) ? 13
+                                                        : 0)));
+        public static final Supplier<BlockEntityType<PoweredEnderFurnaceBlockEntity>> POWERED_ENDER_FURNACE_BLOCK_ENTITY = BLOCK_ENTITY_TYPES
+                        .register("powered_ender_furnace", () -> BlockEntityType.Builder
+                                        .of(PoweredEnderFurnaceBlockEntity::new, POWERED_ENDER_FURNACE_BLOCK.get())
+                                        .build(null));
+        public static final Supplier<Item> POWERED_ENDER_FURNACE_ITEM = ITEMS.register("powered_ender_furnace",
+                        () -> new BlockItem(POWERED_ENDER_FURNACE_BLOCK.get(), new Item.Properties()));
+        
+        public static final Supplier<Block> GILDED_END_STONE_BLOCK = BLOCKS.register("gilded_end_stone",
+                        () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.END_STONE)));
+        public static final Supplier<Item> GILDED_END_STONE_ITEM = ITEMS.register("gilded_end_stone",
+                        () -> new BlockItem(GILDED_END_STONE_BLOCK.get(), new Item.Properties()));
 
         public static final Supplier<RecipeType<HauntingRecipe>> HAUNTING_RECIPE = RECIPE_TYPES.register(
                         "haunting",
@@ -96,12 +137,33 @@ public class HauntFurnaceNeoforge {
         public static final Supplier<RecipeSerializer<HauntingRecipe>> HAUNTING_RECIPE_SERIALIZER = RECIPE_SERIALIZERS
                         .register("haunting",
                                         () -> new SimpleCookingSerializer<HauntingRecipe>(HauntingRecipe::new, 200));
+        
+        public static final Supplier<RecipeType<CorruptingRecipe>> CORRUPTING_RECIPE = RECIPE_TYPES.register(
+                        "corrupting",
+                        () -> new RecipeType<CorruptingRecipe>() {
+                                @Override
+                                public String toString() {
+                                        return "hauntfurnace:corrupting";
+                                }
+                        });
+        public static final Supplier<RecipeSerializer<CorruptingRecipe>> CORRUPTING_RECIPE_SERIALIZER = RECIPE_SERIALIZERS
+                        .register("corrupting",
+                                        () -> new SimpleCookingSerializer<CorruptingRecipe>(CorruptingRecipe::new, 200));
+
         public static final Supplier<MenuType<HauntFurnaceMenu>> HAUNT_FURNACE_MENU = MENU_TYPES.register(
                         "haunt_furnace",
                         () -> new MenuType<HauntFurnaceMenu>(HauntFurnaceMenu::new, FeatureFlags.VANILLA_SET));;
         public static final Supplier<MenuType<PoweredHauntFurnaceMenu>> POWERED_HAUNT_FURNACE_MENU = MENU_TYPES
                         .register("powered_haunt_furnace",
                                         () -> new MenuType<PoweredHauntFurnaceMenu>(PoweredHauntFurnaceMenu::new,
+                                                        FeatureFlags.VANILLA_SET));
+                                
+        public static final Supplier<MenuType<EnderFurnaceMenu>> ENDER_FURNACE_MENU = MENU_TYPES.register(
+                        "ender_furnace",
+                        () -> new MenuType<EnderFurnaceMenu>(EnderFurnaceMenu::new, FeatureFlags.VANILLA_SET));;
+        public static final Supplier<MenuType<PoweredEnderFurnaceMenu>> POWERED_ENDER_FURNACE_MENU = MENU_TYPES
+                        .register("powered_ender_furnace",
+                                        () -> new MenuType<PoweredEnderFurnaceMenu>(PoweredEnderFurnaceMenu::new,
                                                         FeatureFlags.VANILLA_SET));;
 
         public HauntFurnaceNeoforge(IEventBus modEventBus) {
@@ -124,9 +186,17 @@ public class HauntFurnaceNeoforge {
                 HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK = POWERED_HAUNT_FURNACE_BLOCK;
                 HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK_ENTITY = POWERED_HAUNT_FURNACE_BLOCK_ENTITY;
                 HauntFurnace.POWERED_HAUNT_FURNACE_ITEM = POWERED_HAUNT_FURNACE_ITEM;
+                HauntFurnace.ENDER_FURNACE_BLOCK = ENDER_FURNACE_BLOCK;
+                HauntFurnace.ENDER_FURNACE_BLOCK_ENTITY = ENDER_FURNACE_BLOCK_ENTITY;
+                HauntFurnace.ENDER_FURNACE_ITEM = ENDER_FURNACE_ITEM;
+                HauntFurnace.POWERED_ENDER_FURNACE_BLOCK = POWERED_ENDER_FURNACE_BLOCK;
+                HauntFurnace.POWERED_ENDER_FURNACE_BLOCK_ENTITY = POWERED_ENDER_FURNACE_BLOCK_ENTITY;
+                HauntFurnace.POWERED_ENDER_FURNACE_ITEM = POWERED_ENDER_FURNACE_ITEM;
                 HauntFurnace.ENERGY_STORAGE_FACTORY = EnergyStorageFactoryNeoforge::new;
                 HauntFurnace.HAUNTING_RECIPE = HAUNTING_RECIPE;
                 HauntFurnace.HAUNTING_RECIPE_SERIALIZER = HAUNTING_RECIPE_SERIALIZER;
+                HauntFurnace.CORRUPTING_RECIPE = CORRUPTING_RECIPE;
+                HauntFurnace.CORRUPTING_RECIPE_SERIALIZER = CORRUPTING_RECIPE_SERIALIZER;
                 HauntFurnace.HAUNT_FURNACE_MENU = HAUNT_FURNACE_MENU;
                 HauntFurnace.POWERED_HAUNT_FURNACE_MENU = POWERED_HAUNT_FURNACE_MENU;
         }
@@ -135,6 +205,11 @@ public class HauntFurnaceNeoforge {
                 if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
                         event.accept(HAUNT_FURNACE_ITEM.get());
                         event.accept(POWERED_HAUNT_FURNACE_ITEM.get());
+                        event.accept(ENDER_FURNACE_ITEM.get());
+                        event.accept(POWERED_ENDER_FURNACE_ITEM.get());
+                }
+                if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+                        event.accept(GILDED_END_STONE_ITEM.get());
                 }
         }
 
@@ -150,6 +225,19 @@ public class HauntFurnaceNeoforge {
                 event.registerBlockEntity(
                                 Capabilities.ItemHandler.BLOCK,
                                 POWERED_HAUNT_FURNACE_BLOCK_ENTITY.get(),
+                                (blockEntity, side) -> { return new SidedInvWrapper(blockEntity, side); });
+                
+                event.registerBlockEntity(
+                                Capabilities.EnergyStorage.BLOCK,
+                                POWERED_ENDER_FURNACE_BLOCK_ENTITY.get(),
+                                (blockEntity, context) -> (EnergyStorage) ((PoweredEnderFurnaceBlockEntity)blockEntity).energyStorage);
+                event.registerBlockEntity(
+                                Capabilities.ItemHandler.BLOCK,
+                                ENDER_FURNACE_BLOCK_ENTITY.get(),
+                                (blockEntity, side) -> { return new SidedInvWrapper(blockEntity, side); });
+                event.registerBlockEntity(
+                                Capabilities.ItemHandler.BLOCK,
+                                POWERED_ENDER_FURNACE_BLOCK_ENTITY.get(),
                                 (blockEntity, side) -> { return new SidedInvWrapper(blockEntity, side); });
         }
 }

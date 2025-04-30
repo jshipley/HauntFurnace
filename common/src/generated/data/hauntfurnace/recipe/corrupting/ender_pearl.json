@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:corrupting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.6,
+  "ingredient": {
+    "tag": "c:gems/prismarine"
+  },
+  "result": {
+    "id": "minecraft:ender_pearl"
+  }
+}

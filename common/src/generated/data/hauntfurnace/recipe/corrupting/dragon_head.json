@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:corrupting",
+  "category": "misc",
+  "cookingtime": 1000,
+  "experience": 1.0,
+  "ingredient": {
+    "tag": "c:pumpkins/jack_o_lanterns"
+  },
+  "result": {
+    "id": "minecraft:dragon_head"
+  }
+}

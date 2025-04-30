@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:corrupting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.4,
+  "ingredient": {
+    "tag": "minecraft:stone_bricks"
+  },
+  "result": {
+    "id": "minecraft:end_stone_bricks"
+  }
+}

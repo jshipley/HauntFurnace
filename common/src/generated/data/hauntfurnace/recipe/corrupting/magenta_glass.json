@@ -1,0 +1,12 @@
+{
+  "type": "hauntfurnace:corrupting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "ingredient": {
+    "tag": "c:glass_blocks/cheap"
+  },
+  "result": {
+    "id": "minecraft:magenta_stained_glass"
+  }
+}
