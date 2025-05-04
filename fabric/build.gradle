@@ -52,6 +52,8 @@ dependencies {
     // For testing
     modRuntimeOnly "curse.maven:jade-324717:6389824"
     modRuntimeOnly "curse.maven:energized-power-782147:6447322"
+
+    include(modImplementation ("com.jship.spiritapi:spiritapi-fabric:1.0.0"))
 }
 
 loom {

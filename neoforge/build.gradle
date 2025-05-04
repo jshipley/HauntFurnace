@@ -50,6 +50,8 @@ dependencies {
     // compileOnly("dev.emi:emi-neoforge:${emi_version}:api")
     // testCompileOnly("dev.emi:emi-neoforge:${emi_version}:api")
 
+    include(implementation ("com.jship.spiritapi:spiritapi-neoforge:1.0.0"))
+
     // for testing
     runtimeOnly "curse.maven:energized-power-782147:6447946"
 }

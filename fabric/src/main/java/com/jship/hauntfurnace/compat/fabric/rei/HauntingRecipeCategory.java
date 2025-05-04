@@ -39,9 +39,7 @@ public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDis
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 9)));
         widgets.add(
-            new BurningAltFireWidget(
-                new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)), 1
-            ).animationDurationMS(10000)
+            new BurningAltFireWidget(new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)), 1).animationDurationMS(10000)
         );
         widgets.add(
             Widgets.createLabel(
@@ -54,14 +52,9 @@ public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDis
         );
         widgets.add(Widgets.createArrow(new Point(startPoint.x + 24, startPoint.y + 8)).animationDurationTicks(cookingTime));
         widgets.add(
-            Widgets.createSlot(new Point(startPoint.x + 61, startPoint.y + 9))
-                .entries(display.getOutputEntries().get(0))
-                .disableBackground()
-                .markOutput()
+            Widgets.createSlot(new Point(startPoint.x + 61, startPoint.y + 9)).entries(display.getOutputEntries().get(0)).disableBackground().markOutput()
         );
-        widgets.add(
-            Widgets.createSlot(new Point(startPoint.x + 1, startPoint.y + 1)).entries(display.getInputEntries().get(0)).markInput()
-        );
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 1, startPoint.y + 1)).entries(display.getInputEntries().get(0)).markInput());
         return widgets;
     }
 

@@ -2,7 +2,7 @@ package com.jship.hauntfurnace;
 
 import com.jship.hauntfurnace.block.entity.PoweredEnderFurnaceBlockEntity;
 import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
-import com.jship.hauntfurnace.energy.neoforge.EnergyStorageFactoryNeoforge;
+import com.jship.spiritapi.api.energy.neoforge.SpiritEnergyStorageImpl;
 
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
@@ -10,7 +10,6 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.RegisterRecipeBookSearchCategoriesEvent;
-import net.neoforged.neoforge.energy.EnergyStorage;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 
@@ -19,7 +18,6 @@ public class HauntFurnaceNeoforge {
 
     public HauntFurnaceNeoforge(IEventBus modEventBus) {
         HauntFurnace.init();
-        HauntFurnace.ENERGY_STORAGE_FACTORY = () -> new EnergyStorageFactoryNeoforge();
         
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::registerCapabilities);
@@ -42,7 +40,7 @@ public class HauntFurnaceNeoforge {
         event.registerBlockEntity(
             Capabilities.EnergyStorage.BLOCK,
             HauntFurnace.BlockEntities.POWERED_HAUNT_FURNACE.get(),
-            (blockEntity, context) -> (EnergyStorage) ((PoweredHauntFurnaceBlockEntity) blockEntity).energyStorage
+            (blockEntity, context) -> ((SpiritEnergyStorageImpl) ((PoweredHauntFurnaceBlockEntity) blockEntity).energyStorage).neoEnergyStorage
         );
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, HauntFurnace.BlockEntities.HAUNT_FURNACE.get(), (blockEntity, side) -> {
             return new SidedInvWrapper(blockEntity, side);
@@ -57,7 +55,7 @@ public class HauntFurnaceNeoforge {
         event.registerBlockEntity(
             Capabilities.EnergyStorage.BLOCK,
             HauntFurnace.BlockEntities.POWERED_ENDER_FURNACE.get(),
-            (blockEntity, context) -> (EnergyStorage) ((PoweredEnderFurnaceBlockEntity) blockEntity).energyStorage
+            (blockEntity, context) -> ((SpiritEnergyStorageImpl) ((PoweredEnderFurnaceBlockEntity) blockEntity).energyStorage).neoEnergyStorage
         );
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, HauntFurnace.BlockEntities.ENDER_FURNACE.get(), (blockEntity, side) -> {
             return new SidedInvWrapper(blockEntity, side);

@@ -23,6 +23,8 @@ dependencies {
     // not available for 1.21.5 yet
     // compileOnly("dev.emi:emi-xplat-mojmap:${emi_version}:api")
     // testCompileOnly("dev.emi:emi-xplat-mojmap:${emi_version}:api")
+
+    modImplementation ("com.jship.spiritapi:spiritapi-common:1.0.0")
 }
 
 loom {

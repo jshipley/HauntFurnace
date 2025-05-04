@@ -48,7 +48,7 @@ public class PoweredHauntFurnaceScreen extends AbstractRecipeBookScreen<PoweredH
         int energyLevel = ((PoweredHauntFurnaceMenu) this.menu).energyLevel();
         guiGraphics.blitSprite(RenderType::guiTextured, POWERED_PROGRESS_TEXTURE, 12, 32, 0, 32 - energyLevel, i + 10, j + 27 + 32 - energyLevel,  12, energyLevel);
 
-        int cookProgress = ((PoweredHauntFurnaceMenu) this.menu).getHauntProgress();
+        int cookProgress = ((PoweredHauntFurnaceMenu) this.menu).getCookingProgress();
         guiGraphics.blitSprite(RenderType::guiTextured, BURN_PROGRESS_TEXTURE, 24, 16, 0, 0, i + 79, j + 35, cookProgress + 1, 16);
     }
 }

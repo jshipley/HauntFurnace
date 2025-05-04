@@ -19,14 +19,8 @@ import net.minecraft.world.item.crafting.display.FurnaceRecipeDisplay;
 public class HauntFurnaceREIClient implements REIClientPlugin {
 
     private static final ResourceLocation ID = HauntFurnace.id("rei_client_plugin");
-    public static final CategoryIdentifier<HauntingRecipeClientDisplay> HAUNTING = CategoryIdentifier.of(
-        HauntFurnace.MOD_ID,
-        "rei_haunting_category"
-    );
-    public static final CategoryIdentifier<CorruptingRecipeClientDisplay> CORRUPTING = CategoryIdentifier.of(
-        HauntFurnace.MOD_ID,
-        "rei_corrupting_category"
-    );
+    public static final CategoryIdentifier<HauntingRecipeClientDisplay> HAUNTING = CategoryIdentifier.of(HauntFurnace.MOD_ID, "rei_haunting_category");
+    public static final CategoryIdentifier<CorruptingRecipeClientDisplay> CORRUPTING = CategoryIdentifier.of(HauntFurnace.MOD_ID, "rei_corrupting_category");
 
     @Override
     public void registerCategories(CategoryRegistry registry) {
@@ -43,20 +37,12 @@ public class HauntFurnaceREIClient implements REIClientPlugin {
         registry
             .beginRecipeFiller(FurnaceRecipeDisplay.class)
             .filterType(FurnaceRecipeDisplay.TYPE)
-            .filter((display, r) ->
-                EntryIngredients.ofSlotDisplay(display.craftingStation()).contains(
-                    EntryStacks.of(HauntFurnace.Blocks.HAUNT_FURNACE.get())
-                )
-            )
+            .filter((display, r) -> EntryIngredients.ofSlotDisplay(display.craftingStation()).contains(EntryStacks.of(HauntFurnace.Blocks.HAUNT_FURNACE.get())))
             .fill(HauntingRecipeClientDisplay::new);
         registry
             .beginRecipeFiller(FurnaceRecipeDisplay.class)
             .filterType(FurnaceRecipeDisplay.TYPE)
-            .filter((display, r) ->
-                EntryIngredients.ofSlotDisplay(display.craftingStation()).contains(
-                    EntryStacks.of(HauntFurnace.Blocks.ENDER_FURNACE.get())
-                )
-            )
+            .filter((display, r) -> EntryIngredients.ofSlotDisplay(display.craftingStation()).contains(EntryStacks.of(HauntFurnace.Blocks.ENDER_FURNACE.get())))
             .fill(CorruptingRecipeClientDisplay::new);
     }
 
