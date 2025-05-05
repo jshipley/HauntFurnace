@@ -20,13 +20,13 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryStack;
 import net.minecraft.network.chat.Component;
 
-public class HauntingRecipeClientCategory implements DisplayCategory<HauntingRecipeClientDisplay> {
-    private CategoryIdentifier<HauntingRecipeClientDisplay> identifier;
+public class CorruptingRecipeClientCategory implements DisplayCategory<CorruptingRecipeClientDisplay> {
+    private CategoryIdentifier<CorruptingRecipeClientDisplay> identifier;
     private EntryStack<?> logo;
     private String categoryName;
     private double defaultCookingTime;
     
-    public HauntingRecipeClientCategory(CategoryIdentifier<HauntingRecipeClientDisplay> identifier, EntryStack<?> logo, String categoryName, double defaultCookingTime) {
+    public CorruptingRecipeClientCategory(CategoryIdentifier<CorruptingRecipeClientDisplay> identifier, EntryStack<?> logo, String categoryName, double defaultCookingTime) {
         this.identifier = identifier;
         this.logo = logo;
         this.categoryName = categoryName;
@@ -34,13 +34,13 @@ public class HauntingRecipeClientCategory implements DisplayCategory<HauntingRec
     }
     
     @Override
-    public List<Widget> setupDisplay(HauntingRecipeClientDisplay display, Rectangle bounds) {
+    public List<Widget> setupDisplay(CorruptingRecipeClientDisplay display, Rectangle bounds) {
         Point startPoint = new Point(bounds.getCenterX() - 41, bounds.y + 10);
         DecimalFormat df = new DecimalFormat("###.##");
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 9)));
-        widgets.add(new BurningAltFireWidget(new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)), 1)
+        widgets.add(new BurningAltFireWidget(new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)), 2)
                 .animationDurationMS(10000));
         if (display.cookTime().isPresent() && display.xp().isPresent()) {
             widgets.add(Widgets.createLabel(new Point(bounds.x + bounds.width - 5, bounds.y + 5),
@@ -59,7 +59,7 @@ public class HauntingRecipeClientCategory implements DisplayCategory<HauntingRec
     }
     
     @Override
-    public DisplayRenderer getDisplayRenderer(HauntingRecipeClientDisplay display) {
+    public DisplayRenderer getDisplayRenderer(CorruptingRecipeClientDisplay display) {
         return SimpleDisplayRenderer.from(Collections.singletonList(display.getInputEntries().get(0)), display.getOutputEntries());
     }
     
@@ -69,7 +69,7 @@ public class HauntingRecipeClientCategory implements DisplayCategory<HauntingRec
     }
     
     @Override
-    public CategoryIdentifier<HauntingRecipeClientDisplay> getCategoryIdentifier() {
+    public CategoryIdentifier<CorruptingRecipeClientDisplay> getCategoryIdentifier() {
         return identifier;
     }
     

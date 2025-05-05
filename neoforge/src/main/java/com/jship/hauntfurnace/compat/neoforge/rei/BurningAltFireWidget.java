@@ -16,17 +16,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public final class BurningSoulFireWidget extends BurningFire {
+public final class BurningAltFireWidget extends BurningFire {
     public static final ResourceLocation TEXTURE = HauntFurnace.id("textures/gui/container/rei_display.png");
     public static final ResourceLocation TEXTURE_DARK = HauntFurnace.id("textures/gui/container/rei_display_dark.png");
+    private final int fireShift;
     private Rectangle bounds;
     private double animationDuration = -1;
     private final NumberAnimator<Float> darkBackgroundAlpha = ValueAnimator.ofFloat()
             .withConvention(() -> REIRuntime.getInstance().isDarkThemeEnabled() ? 1.0F : 0.0F, ValueAnimator.typicalTransitionTime())
             .asFloat();
     
-    public BurningSoulFireWidget(Rectangle bounds) {
+    public BurningAltFireWidget(Rectangle bounds, int fireShift) {
         this.bounds = new Rectangle(Objects.requireNonNull(bounds));
+        this.fireShift = fireShift;
     }
     
     @Override
@@ -60,7 +62,7 @@ public final class BurningSoulFireWidget extends BurningFire {
         if (getAnimationDuration() > 0) {
             int height = 14 - Mth.ceil((System.currentTimeMillis() / (animationDuration / 14) % 14d));
             graphics.blit(RenderType::guiTextured, texture, getX(), getY(), 1, 74, 14, 14 - height, 256, 256, 0xFFFFFF | (int) (alpha * 255) << 24);
-            graphics.blit(RenderType::guiTextured, texture, getX(), getY() + 14 - height, 96, 77 + (14 - height), 14, height, 256, 256, 0xFFFFFF | (int) (alpha * 255) << 24);
+            graphics.blit(RenderType::guiTextured, texture, getX(), getY() + 14 - height, 82 + (14 * fireShift), 77 + (14 - height), 14, height, 256, 256, 0xFFFFFF | (int) (alpha * 255) << 24);
         } else {
             graphics.blit(RenderType::guiTextured, texture, getX(), getY(), 1, 74, 14, 14, 256, 256, 0xFFFFFF | (int) (alpha * 255) << 24);
         }
