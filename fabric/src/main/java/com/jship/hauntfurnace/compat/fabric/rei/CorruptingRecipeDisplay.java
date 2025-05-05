@@ -79,7 +79,7 @@ public class CorruptingRecipeDisplay extends BasicDisplay implements SimpleGridM
 
     @Override
     public CategoryIdentifier<?> getCategoryIdentifier() {
-        return HauntFurnaceREI.HAUNTING;
+        return HauntFurnaceREI.CORRUPTING;
     }
 
     @Override
