@@ -1,6 +1,8 @@
 package com.jship.hauntfurnace.block.entity;
 
 import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
+import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -51,7 +53,7 @@ public class PoweredHauntFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
     public final EnergyStorageWrapper energyStorage;
 
     public PoweredHauntFurnaceBlockEntity(BlockPos pos, BlockState state) {
-        super(HauntFurnace.BlockEntities.POWERED_HAUNT_FURNACE.get(), pos, state, HauntFurnace.Recipes.HAUNTING.get());
+        super(ModBlockEntities.POWERED_HAUNT_FURNACE.get(), pos, state, ModRecipes.HAUNTING.get());
         this.items = NonNullList.withSize(NUM_SLOTS, ItemStack.EMPTY);
         this.energyStorage = HauntFurnace.ENERGY_STORAGE_FACTORY.get().createEnergyStorage(ENERGY_CAPACITY, ENERGY_MAX_INSERT, ENERGY_MAX_EXTRACT, this);
         this.poweredDataAccess = new ContainerData() {

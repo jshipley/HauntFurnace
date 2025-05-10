@@ -1,0 +1,39 @@
+package com.jship.hauntfurnace.fabric;
+
+import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
+import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
+import com.jship.hauntfurnace.block.entity.PoweredEnderFurnaceBlockEntity;
+import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
+import com.jship.hauntfurnace.energy.fabric.EnergyStorageFabric;
+import com.jship.hauntfurnace.energy.fabric.EnergyStorageFactoryFabric;
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Items;
+import team.reborn.energy.api.EnergyStorage;
+
+public class HauntFurnaceFabric implements ModInitializer {
+
+    @Override
+    public void onInitialize() {
+        HauntFurnace.init();
+
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(content -> {
+            content.addAfter(Items.BLAST_FURNACE, ModBlocks.HAUNT_FURNACE.get(), ModBlocks.POWERED_HAUNT_FURNACE.get(),
+                    ModBlocks.ENDER_FURNACE.get(), ModBlocks.POWERED_ENDER_FURNACE.get());
+        });
+
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.BUILDING_BLOCKS).register(content -> {
+            content.addAfter(Items.END_STONE, ModBlocks.GILDED_END_STONE.get());
+        });
+
+        HauntFurnace.ENERGY_STORAGE_FACTORY = () -> new EnergyStorageFactoryFabric();
+        EnergyStorage.SIDED.registerForBlockEntity((blockEntity,
+                direction) -> ((EnergyStorageFabric) ((PoweredHauntFurnaceBlockEntity) blockEntity).energyStorage).fabricEnergyStorage,
+                ModBlockEntities.POWERED_HAUNT_FURNACE.get());
+        EnergyStorage.SIDED.registerForBlockEntity((blockEntity,
+                direction) -> ((EnergyStorageFabric) ((PoweredEnderFurnaceBlockEntity) blockEntity).energyStorage).fabricEnergyStorage,
+                ModBlockEntities.POWERED_ENDER_FURNACE.get());
+    }
+}

@@ -4,7 +4,7 @@
   "version": "${version}",
   "name": "Haunt Furnace",
   "description": "A furnace that haunts your items and transforms them into something new. Inspired by the Create mod.",
-  "authors": ["jshipley"],
+  "authors": ["jship"],
   "contact": {
     "homepage": "https://modrinth.com/mod/haunt-furnace",
     "sources": "https://github.com/jshipley/HauntFurnace"
@@ -13,24 +13,24 @@
   "icon": "assets/hauntfurnace/hauntfurnace.png",
   "environment": "*",
   "entrypoints": {
-    "main": ["com.jship.hauntfurnace.HauntFurnaceFabric"],
+    "main": ["com.jship.hauntfurnace.fabric.HauntFurnaceFabric"],
     "client": ["com.jship.hauntfurnace.client.fabric.HauntFurnaceClientFabric"],
     "fabric-datagen": [
-      "com.jship.hauntfurnace.datagen.HauntFurnaceDataGenFabric"
+      "com.jship.hauntfurnace.datagen.fabric.HauntFurnaceDataGenFabric"
     ],
     "rei_client": [
-      "com.jship.hauntfurnace.compat.fabric.rei.client.HauntFurnaceREIClient"
+      "com.jship.hauntfurnace.compat.rei.client.fabric.HauntFurnaceREIClient"
     ],
-    "rei_common": ["com.jship.hauntfurnace.compat.fabric.rei.HauntFurnaceREI"]
+    "rei_common": ["com.jship.hauntfurnace.compat.rei.fabric.HauntFurnaceREI"],
+    "modmenu": ["com.jship.hauntfurnace.config.fabric.ModMenuIntegration"]
   },
   "mixins": ["hauntfurnace.mixins.json"],
   "depends": {
     "fabricloader": ">=0.16.10",
     "minecraft": "~1.21.5",
     "java": ">=21",
-    "fabric-api": "*"
-  },
-  "suggests": {
-    "another-mod": "*"
+    "fabric-api": "*",
+    "architectury": ">=16.1",
+    "yet_another_config_lib_v3": ">=3.6.6"
   }
 }

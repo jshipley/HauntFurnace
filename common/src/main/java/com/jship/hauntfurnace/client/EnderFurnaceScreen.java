@@ -1,11 +1,14 @@
 package com.jship.hauntfurnace.client;
 
-import com.jship.hauntfurnace.HauntFurnace;
-import com.jship.hauntfurnace.menu.EnderFurnaceMenu;
-import dev.architectury.platform.Platform;
 import java.util.List;
 import java.util.Optional;
 
+import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
+import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
+import com.jship.hauntfurnace.menu.EnderFurnaceMenu;
+
+import dev.architectury.platform.Platform;
 import net.minecraft.client.gui.screens.inventory.AbstractFurnaceScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.network.chat.Component;
@@ -25,19 +28,19 @@ public class EnderFurnaceScreen extends AbstractFurnaceScreen<EnderFurnaceMenu> 
         // Neoforge made it easy to add a search category, so use it
         ? List.of(
             new RecipeBookComponent.TabInfo(
-                new ItemStack(HauntFurnace.Blocks.ENDER_FURNACE.get().asItem()),
+                new ItemStack(ModBlocks.ENDER_FURNACE.get().asItem()),
                 Optional.empty(),
-                HauntFurnace.Recipes.CORRUPTING_SEARCH_CATEGORY
+                ModRecipes.CORRUPTING_SEARCH_CATEGORY
             ),
-            new RecipeBookComponent.TabInfo(Items.END_STONE, HauntFurnace.Recipes.CORRUPTING_BLOCKS_CATEGORY.get()),
-            new RecipeBookComponent.TabInfo(Items.CHORUS_FRUIT, HauntFurnace.Recipes.CORRUPTING_FOOD_CATEGORY.get()),
-            new RecipeBookComponent.TabInfo(Items.ENDER_PEARL, Items.DRAGON_BREATH, HauntFurnace.Recipes.CORRUPTING_MISC_CATEGORY.get())
+            new RecipeBookComponent.TabInfo(Items.END_STONE, ModRecipes.CORRUPTING_BLOCKS_CATEGORY.get()),
+            new RecipeBookComponent.TabInfo(Items.CHORUS_FRUIT, ModRecipes.CORRUPTING_FOOD_CATEGORY.get()),
+            new RecipeBookComponent.TabInfo(Items.ENDER_PEARL, Items.DRAGON_BREATH, ModRecipes.CORRUPTING_MISC_CATEGORY.get())
         )
         // With fabric, I might need to delve into mixins and mutating Enums to get it to work, so don't bother
         : List.of(
-            new RecipeBookComponent.TabInfo(Items.END_STONE, HauntFurnace.Recipes.CORRUPTING_BLOCKS_CATEGORY.get()),
-            new RecipeBookComponent.TabInfo(Items.CHORUS_FRUIT, HauntFurnace.Recipes.CORRUPTING_FOOD_CATEGORY.get()),
-            new RecipeBookComponent.TabInfo(Items.ENDER_PEARL, Items.DRAGON_BREATH, HauntFurnace.Recipes.CORRUPTING_MISC_CATEGORY.get())
+            new RecipeBookComponent.TabInfo(Items.END_STONE, ModRecipes.CORRUPTING_BLOCKS_CATEGORY.get()),
+            new RecipeBookComponent.TabInfo(Items.CHORUS_FRUIT, ModRecipes.CORRUPTING_FOOD_CATEGORY.get()),
+            new RecipeBookComponent.TabInfo(Items.ENDER_PEARL, Items.DRAGON_BREATH, ModRecipes.CORRUPTING_MISC_CATEGORY.get())
         );
 
     public EnderFurnaceScreen(EnderFurnaceMenu menu, Inventory inventory, Component title) {

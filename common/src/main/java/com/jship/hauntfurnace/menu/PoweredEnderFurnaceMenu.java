@@ -1,6 +1,8 @@
 package com.jship.hauntfurnace.menu;
 
 import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModMenus;
+import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
 import com.jship.hauntfurnace.block.entity.PoweredEnderFurnaceBlockEntity;
 import com.jship.hauntfurnace.recipe.CorruptingRecipe;
 import java.util.List;
@@ -48,14 +50,14 @@ public class PoweredEnderFurnaceMenu extends RecipeBookMenu {
     }
 
     public PoweredEnderFurnaceMenu(int containerId, Inventory inventory, Container container, ContainerData data) {
-        super(HauntFurnace.Menus.POWERED_ENDER_FURNACE.get(), containerId);
+        super(ModMenus.POWERED_ENDER_FURNACE.get(), containerId);
         this.recipeBookType = RecipeBookType.FURNACE;
         checkContainerSize(container, SLOT_COUNT);
         checkContainerDataCount(data, PoweredEnderFurnaceBlockEntity.NUM_DATA_VALUES);
         this.container = container;
         this.data = data;
         this.level = inventory.player.level();
-        this.acceptedInputs = this.level.recipeAccess().propertySet(HauntFurnace.Recipes.ENDER_FURNACE_INPUT);
+        this.acceptedInputs = this.level.recipeAccess().propertySet(ModRecipes.ENDER_FURNACE_INPUT);
         this.addSlot(new Slot(container, INGREDIENT_SLOT, 56, 35));
         this.addSlot(
                 new Slot(container, IGNORED_SLOT, 0, 0) {

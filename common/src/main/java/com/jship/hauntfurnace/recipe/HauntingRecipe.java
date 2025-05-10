@@ -1,6 +1,8 @@
 package com.jship.hauntfurnace.recipe;
 
-import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
+import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
+
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
@@ -20,27 +22,27 @@ public class HauntingRecipe extends AbstractCookingRecipe {
     }
 
     public Item furnaceIcon() {
-        return HauntFurnace.Blocks.HAUNT_FURNACE.get().asItem();
+        return ModBlocks.HAUNT_FURNACE.get().asItem();
     }
 
     public RecipeSerializer<? extends AbstractCookingRecipe> getSerializer() {
-        return HauntFurnace.Recipes.HAUNTING_SERIALIZER.get();
+        return ModRecipes.HAUNTING_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<? extends AbstractCookingRecipe> getType() {
-        return HauntFurnace.Recipes.HAUNTING.get();
+        return ModRecipes.HAUNTING.get();
     }
 
     @Override
     public RecipeBookCategory recipeBookCategory() {
         switch (category) {
             case CookingBookCategory.BLOCKS:
-                return HauntFurnace.Recipes.HAUNTING_BLOCKS_CATEGORY.get();
+                return ModRecipes.HAUNTING_BLOCKS_CATEGORY.get();
             case CookingBookCategory.FOOD:
-                return HauntFurnace.Recipes.HAUNTING_FOOD_CATEGORY.get();
+                return ModRecipes.HAUNTING_FOOD_CATEGORY.get();
             default:
-                return HauntFurnace.Recipes.HAUNTING_MISC_CATEGORY.get();
+                return ModRecipes.HAUNTING_MISC_CATEGORY.get();
         }
     }
 }

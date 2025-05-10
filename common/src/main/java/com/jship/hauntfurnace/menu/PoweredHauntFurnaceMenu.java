@@ -2,7 +2,8 @@ package com.jship.hauntfurnace.menu;
 
 import java.util.List;
 
-import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModMenus;
+import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
 import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 
@@ -55,14 +56,14 @@ public class PoweredHauntFurnaceMenu extends RecipeBookMenu {
     }
 
     public PoweredHauntFurnaceMenu(int containerId, Inventory inventory, Container container, ContainerData data) {
-        super(HauntFurnace.Menus.POWERED_HAUNT_FURNACE.get(), containerId);
+        super(ModMenus.POWERED_HAUNT_FURNACE.get(), containerId);
         this.recipeBookType = RecipeBookType.FURNACE;
         checkContainerSize(container, SLOT_COUNT);
         checkContainerDataCount(data, PoweredHauntFurnaceBlockEntity.NUM_DATA_VALUES);
         this.container = container;
         this.data = data;
         this.level = inventory.player.level();
-        this.acceptedInputs = this.level.recipeAccess().propertySet(HauntFurnace.Recipes.HAUNT_FURNACE_INPUT);
+        this.acceptedInputs = this.level.recipeAccess().propertySet(ModRecipes.HAUNT_FURNACE_INPUT);
         this.addSlot(new Slot(container, INGREDIENT_SLOT, 56, 35));
         this.addSlot(new Slot(container, IGNORED_SLOT, 0, 0) {
             @Override

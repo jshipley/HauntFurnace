@@ -3,7 +3,9 @@ package com.jship.hauntfurnace.block;
 import org.jetbrains.annotations.Nullable;
 
 import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
 import com.jship.hauntfurnace.block.entity.PoweredEnderFurnaceBlockEntity;
+import com.jship.hauntfurnace.config.HauntFurnaceConfig;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
@@ -42,7 +44,7 @@ public class PoweredEnderFurnaceBlock extends AbstractFurnaceBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
             BlockEntityType<T> blockEntityType) {
         return level.isClientSide ? null
-                : AbstractFurnaceBlock.createTickerHelper(blockEntityType, HauntFurnace.BlockEntities.POWERED_ENDER_FURNACE.get(),
+                : AbstractFurnaceBlock.createTickerHelper(blockEntityType, ModBlockEntities.POWERED_ENDER_FURNACE.get(),
                         PoweredEnderFurnaceBlockEntity::serverTick);
     }
 
@@ -64,7 +66,7 @@ public class PoweredEnderFurnaceBlock extends AbstractFurnaceBlock {
             if (randomSource.nextDouble() < 0.1) {
                 level.playLocalSound(x, y, z, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
-            if (randomSource.nextDouble() < 0.02) {
+            if (randomSource.nextDouble() < 0.02 && !HauntFurnaceConfig.enderQuiet()) {
                 level.playLocalSound(x, y, z, SoundEvents.ENDERMAN_AMBIENT, SoundSource.BLOCKS, 0.2F, 0.2F, false);
             }
 
@@ -78,5 +80,5 @@ public class PoweredEnderFurnaceBlock extends AbstractFurnaceBlock {
             level.addParticle(ParticleTypes.SMOKE, x + xd, y + yd, z + zd, 0.0, 0.0, 0.0);
             level.addParticle(ParticleTypes.DRAGON_BREATH, x + xd, y + yd, z + zd, 0.0, 0.0, 0.0);
         }
-    }    
+    }
 }

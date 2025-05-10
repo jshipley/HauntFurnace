@@ -2,7 +2,7 @@ package com.jship.hauntfurnace.datagen;
 
 import java.util.concurrent.CompletableFuture;
 
-import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -19,10 +19,10 @@ public class BlockTagGenerator extends FabricTagProvider<Block> {
     @Override
     protected void addTags(HolderLookup.Provider lookup) {
         getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
-            .add(HauntFurnace.Blocks.HAUNT_FURNACE.get())
-            .add(HauntFurnace.Blocks.POWERED_HAUNT_FURNACE.get())
-            .add(HauntFurnace.Blocks.ENDER_FURNACE.get())
-            .add(HauntFurnace.Blocks.POWERED_ENDER_FURNACE.get())
-            .add(HauntFurnace.Blocks.GILDED_END_STONE.get());
+            .add(ModBlocks.HAUNT_FURNACE.get())
+            .add(ModBlocks.POWERED_HAUNT_FURNACE.get())
+            .add(ModBlocks.ENDER_FURNACE.get())
+            .add(ModBlocks.POWERED_ENDER_FURNACE.get())
+            .add(ModBlocks.GILDED_END_STONE.get());
     }    
 }

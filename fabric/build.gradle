@@ -49,6 +49,9 @@ dependencies {
     // modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
     // modRuntimeOnly "dev.emi:emi-fabric:${emi_version}"
 
+    modImplementation("dev.isxander:yet-another-config-lib:${yacl_version}-fabric")
+    modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
+
     // For testing
     modRuntimeOnly "curse.maven:jade-324717:6389824"
     modRuntimeOnly "curse.maven:energized-power-782147:6447322"
@@ -95,9 +98,10 @@ publishMods {
         projectId = "G05u0Ety"
         accessToken = providers.environmentVariable("MODRINTH_TOKEN")
 
-        minecraftVersions.add("1.21.5")
+        minecraftVersions.add("${minecraft_version}")
 
         requires("architectury-api")
+        requires("yacl")
         optional("rei")
 
         announcementTitle = "Fabric version on Modrinth"
@@ -107,11 +111,12 @@ publishMods {
         projectId = "875936"
         projectSlug = "haunt-furnace"
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
-        
-        minecraftVersions.add("1.21.5")
+
+        minecraftVersions.add("${minecraft_version}")
         javaVersions.add(JavaVersion.VERSION_21)
 
         requires("architectury-api")
+        requires("yacl")
         optional("roughly-enough-items")
 
         announcementTitle = "Fabric version on Curseforge"
