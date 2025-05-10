@@ -4,6 +4,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.jship.hauntfurnace.HauntFurnace;
 import com.jship.hauntfurnace.block.entity.EnderFurnaceBlockEntity;
+import com.jship.hauntfurnace.config.HauntFurnaceConfig;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
@@ -67,7 +68,7 @@ public class EnderFurnaceBlock extends AbstractFurnaceBlock {
             if (randomSource.nextDouble() < 0.1) {
                 level.playLocalSound(x, y, z, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
-            if (randomSource.nextDouble() < 0.01) {
+            if (randomSource.nextDouble() < 0.01 && !HauntFurnaceConfig.enderQuiet()) {
                 level.playLocalSound(x, y, z, SoundEvents.ENDER_DRAGON_AMBIENT, SoundSource.BLOCKS, 0.05F, 0.05F, false);
             }
 

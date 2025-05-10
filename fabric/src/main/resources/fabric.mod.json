@@ -5,7 +5,7 @@
     "name": "Haunt Furnace",
     "description": "A furnace that haunts your items and transforms them into something new. Inspired by the Create mod.",
     "authors": [
-      "jshipley"
+      "jship"
     ],
     "contact": {
       "homepage": "https://modrinth.com/mod/haunt-furnace",
@@ -32,16 +32,17 @@
         ],
         "emi": [
             "com.jship.hauntfurnace.client.compat.emi.HauntFurnaceEMI"
+        ],
+        "modmenu": [
+          "com.jship.hauntfurnace.config.fabric.ModMenuIntegration"
         ]
     },
     "depends": {
       "fabricloader": ">=0.16.10",
       "minecraft": "~1.21.1",
       "java": ">=21",
-      "fabric-api": "*"
-    },
-    "suggests": {
-      "another-mod": "*"
+      "fabric-api": "*",
+      "yet_another_config_lib_v3": ">=6.6.6"
     }
   }
   

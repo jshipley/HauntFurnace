@@ -7,11 +7,11 @@ license = "MIT"
 modId = "hauntfurnace"
 version = "${version}"
 displayName = "Haunt Furnace"
-authors = "jshipley"
+authors = "jship"
 description = '''
 A furnace that haunts your items and transforms them into something new. Inspired by the Create mod.
 '''
-logoFile = "hauntfurnace.png"
+logoFile = "assets/hauntfurnace/hauntfurnace.png"
 
 [[dependencies.hauntfurnace]]
 modId = "neoforge"
@@ -27,4 +27,11 @@ versionRange = "[1.21.1,)"
 ordering = "NONE"
 side = "BOTH"
 
+[[dependencies.hauntfurnace]]
+modId = "yet_another_config_lib_v3"
+mandatory = true
+type = "required"
+versionRange = "[3.6.6,)"
+ordering = "NONE"
+side = "CLIENT"
 

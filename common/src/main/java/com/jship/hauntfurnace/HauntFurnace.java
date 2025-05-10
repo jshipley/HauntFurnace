@@ -65,6 +65,10 @@ public class HauntFurnace {
 
     public static Supplier<EnergyStorageFactory<EnergyStorageWrapper>> ENERGY_STORAGE_FACTORY;
 
+    public static void init() {
+       
+    }
+
     public static ResourceLocation id(String path) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }

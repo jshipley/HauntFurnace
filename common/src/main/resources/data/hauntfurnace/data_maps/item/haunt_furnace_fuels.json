@@ -1,0 +1,19 @@
+{
+    "values": {
+        "#c:netherracks": {
+            "burn_time": 60
+        },
+        "minecraft:wither_rose": {
+            "burn_time": 200
+        },
+        "minecraft:sculk": {
+            "burn_time": 200
+        },
+        "#minecraft:soul_fire_base_blocks": {
+            "burn_time": 400
+        },
+        "#c:rods/blaze": {
+            "burn_time": 2400
+        }
+    }
+}
