@@ -51,6 +51,10 @@ dependencies {
 
     modImplementation("dev.isxander:yet-another-config-lib:${yacl_version}-fabric")
     modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
+
+    // For testing
+    modRuntimeOnly "curse.maven:jade-324717:6389824"
+    modRuntimeOnly "curse.maven:energized-power-782147:6447322"
 }
 
 loom {
@@ -62,10 +66,6 @@ loom {
             vmArg "-Dfabric-api.datagen.output-dir=${project(":common").file("src/generated")}"
             vmArg "-Dfabric-api.datagen.modid=hauntfurnace"
             runDir "build/datagen"
-        }
-        client {
-            client()
-            // property "fabric.log.level", "debug"
         }
     }
 }
@@ -100,6 +100,7 @@ publishMods {
         minecraftVersions.add("${minecraft_version}")
 
         requires("architectury-api")
+        requires("yacl")
         optional("emi")
         optional("rei")
         optional("jei")
@@ -116,6 +117,7 @@ publishMods {
         javaVersions.add(JavaVersion.VERSION_21)
 
         requires("architectury-api")
+        requires("yacl")
         optional("emi")
         optional("roughly-enough-items")
         optional("jei")

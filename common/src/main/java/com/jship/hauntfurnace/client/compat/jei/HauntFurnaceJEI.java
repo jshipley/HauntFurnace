@@ -49,7 +49,7 @@ public class HauntFurnaceJEI implements IModPlugin {
 
         RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
         
-        List<RecipeHolder<HauntingRecipe>> hauntingRecipeHolders = recipeManager.getAllRecipesFor(ModRecipes.HAUNTING_RECIPE.get());
+        List<RecipeHolder<HauntingRecipe>> hauntingRecipeHolders = recipeManager.getAllRecipesFor(ModRecipes.HAUNTING.get());
         List<HauntingRecipe> hauntingRecipes = new ArrayList<HauntingRecipe>();
         for(RecipeHolder<HauntingRecipe> recipeHolder : hauntingRecipeHolders) {
             hauntingRecipes.add(recipeHolder.value());
@@ -58,7 +58,7 @@ public class HauntFurnaceJEI implements IModPlugin {
         registration.addRecipes(HAUNTING_RECIPE_TYPE, hauntingRecipes);
         log.info("[Haunt Furnace] Registered haunting recipes: {}", hauntingRecipes.size());
 
-        List<RecipeHolder<CorruptingRecipe>> corruptingRecipeHolders = recipeManager.getAllRecipesFor(ModRecipes.CORRUPTING_RECIPE.get());
+        List<RecipeHolder<CorruptingRecipe>> corruptingRecipeHolders = recipeManager.getAllRecipesFor(ModRecipes.CORRUPTING.get());
         List<CorruptingRecipe> corruptingRecipes = new ArrayList<CorruptingRecipe>();
         for(RecipeHolder<CorruptingRecipe> recipeHolder : corruptingRecipeHolders) {
             corruptingRecipes.add(recipeHolder.value());

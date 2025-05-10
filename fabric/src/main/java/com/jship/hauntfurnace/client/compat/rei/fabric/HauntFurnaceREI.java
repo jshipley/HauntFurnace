@@ -1,4 +1,4 @@
-package com.jship.hauntfurnace.client.compat.fabric.rei;
+package com.jship.hauntfurnace.client.compat.rei.fabric;
 
 import com.jship.hauntfurnace.HauntFurnace;
 import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
@@ -43,8 +43,8 @@ public class HauntFurnaceREI implements REIClientPlugin {
 
     @Override
     public void registerDisplays(DisplayRegistry registry) {
-        registry.registerRecipeFiller(HauntingRecipe.class, ModRecipes.HAUNTING_RECIPE.get(), HauntingRecipeDisplay::new);
-        registry.registerRecipeFiller(CorruptingRecipe.class, ModRecipes.CORRUPTING_RECIPE.get(), CorruptingRecipeDisplay::new);
+        registry.registerRecipeFiller(HauntingRecipe.class, ModRecipes.HAUNTING.get(), HauntingRecipeDisplay::new);
+        registry.registerRecipeFiller(CorruptingRecipe.class, ModRecipes.CORRUPTING.get(), CorruptingRecipeDisplay::new);
     }
 
     @Override

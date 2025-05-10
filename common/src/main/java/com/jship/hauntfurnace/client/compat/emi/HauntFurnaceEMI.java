@@ -37,11 +37,11 @@ public class HauntFurnaceEMI implements EmiPlugin {
         
         RecipeManager recipeManager = registry.getRecipeManager();
 
-        for(RecipeHolder<HauntingRecipe> recipe : recipeManager.getAllRecipesFor(ModRecipes.HAUNTING_RECIPE.get())) {
+        for(RecipeHolder<HauntingRecipe> recipe : recipeManager.getAllRecipesFor(ModRecipes.HAUNTING.get())) {
             registry.addRecipe(new HauntingEMIRecipe(recipe.value()));
         }
 
-        for(RecipeHolder<CorruptingRecipe> recipe : recipeManager.getAllRecipesFor(ModRecipes.CORRUPTING_RECIPE.get())) {
+        for(RecipeHolder<CorruptingRecipe> recipe : recipeManager.getAllRecipesFor(ModRecipes.CORRUPTING.get())) {
             registry.addRecipe(new CorruptingEMIRecipe(recipe.value()));
         }
     }

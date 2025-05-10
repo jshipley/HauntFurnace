@@ -1,4 +1,4 @@
-package com.jship.hauntfurnace.network;
+package com.jship.hauntfurnace.network.fabric;
 
 import java.util.HashMap;
 import java.util.Map;

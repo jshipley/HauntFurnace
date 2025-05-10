@@ -1,4 +1,4 @@
-package com.jship.hauntfurnace.datagen;
+package com.jship.hauntfurnace.datagen.fabric;
 
 import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
 

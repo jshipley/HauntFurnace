@@ -50,42 +50,43 @@ public class HauntFurnace {
 
     public static final Supplier<RegistrarManager> MANAGER = Suppliers.memoize(() -> RegistrarManager.get(MOD_ID));
 
-    public static Registrar<Block> BLOCKS = MANAGER.get().get(Registries.BLOCK);
-    public static Registrar<BlockEntityType<?>> BLOCK_ENTITY_TYPES = MANAGER.get()
-            .get(Registries.BLOCK_ENTITY_TYPE);
-    public static Registrar<Item> ITEMS = MANAGER.get().get(Registries.ITEM);
+    public static final Registrar<Block> BLOCKS = MANAGER.get().get(Registries.BLOCK);
+    public static final Registrar<BlockEntityType<?>> BLOCK_ENTITY_TYPES = MANAGER.get().get(Registries.BLOCK_ENTITY_TYPE);
+    public static final Registrar<Item> ITEMS = MANAGER.get().get(Registries.ITEM);
 
     public static final Registrar<RecipeType<?>> RECIPE_TYPES = MANAGER.get().get(Registries.RECIPE_TYPE);
-    public static final Registrar<RecipeSerializer<?>> RECIPE_SERIALIZERS = MANAGER.get()
-            .get(Registries.RECIPE_SERIALIZER);
+    public static final Registrar<RecipeSerializer<?>> RECIPE_SERIALIZERS = MANAGER.get().get(Registries.RECIPE_SERIALIZER);
 
     public static final Registrar<MenuType<?>> MENUS = MANAGER.get().get(Registries.MENU);
 
     public class ModBlocks {
-        public static RegistrySupplier<Block> HAUNT_FURNACE = registerBlock(
+
+        public static final RegistrySupplier<HauntFurnaceBlock> HAUNT_FURNACE = registerBlock(
                 id("haunt_furnace"),
                 () -> new HauntFurnaceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FURNACE)),
                 true);
-        public static RegistrySupplier<Block> POWERED_HAUNT_FURNACE = registerBlock(
+
+        public static final RegistrySupplier<PoweredHauntFurnaceBlock> POWERED_HAUNT_FURNACE = registerBlock(
                 id("powered_haunt_furnace"),
                 () -> new PoweredHauntFurnaceBlock(
                         BlockBehaviour.Properties.ofFullCopy(Blocks.FURNACE)),
                 true);
 
-        public static RegistrySupplier<Block> ENDER_FURNACE = registerBlock(
+        public static final RegistrySupplier<EnderFurnaceBlock> ENDER_FURNACE = registerBlock(
                 id("ender_furnace"),
                 () -> new EnderFurnaceBlock(
                         BlockBehaviour.Properties.ofFullCopy(Blocks.FURNACE)
                                 .mapColor(MapColor.SAND)),
                 true);
-        public static RegistrySupplier<Block> POWERED_ENDER_FURNACE = registerBlock(
+
+        public static final RegistrySupplier<PoweredEnderFurnaceBlock> POWERED_ENDER_FURNACE = registerBlock(
                 id("powered_ender_furnace"),
                 () -> new PoweredEnderFurnaceBlock(
                         BlockBehaviour.Properties.ofFullCopy(Blocks.FURNACE)
                                 .mapColor(MapColor.SAND)),
                 true);
 
-        public static RegistrySupplier<Block> GILDED_END_STONE = registerBlock(
+        public static final RegistrySupplier<Block> GILDED_END_STONE = registerBlock(
                 id("gilded_end_stone"),
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.END_STONE)),
                 true);
@@ -105,26 +106,27 @@ public class HauntFurnace {
     }
 
     public class ModBlockEntities {
-        public static RegistrySupplier<BlockEntityType<HauntFurnaceBlockEntity>> HAUNT_FURNACE = BLOCK_ENTITY_TYPES
+
+        public static final RegistrySupplier<BlockEntityType<HauntFurnaceBlockEntity>> HAUNT_FURNACE = BLOCK_ENTITY_TYPES
                 .register(
                         id("haunt_furnace"),
                         () -> BlockEntityType.Builder.of(HauntFurnaceBlockEntity::new, ModBlocks.HAUNT_FURNACE.get())
                                 .build(null));
 
-        public static RegistrySupplier<BlockEntityType<PoweredHauntFurnaceBlockEntity>> POWERED_HAUNT_FURNACE = BLOCK_ENTITY_TYPES
+        public static final RegistrySupplier<BlockEntityType<PoweredHauntFurnaceBlockEntity>> POWERED_HAUNT_FURNACE = BLOCK_ENTITY_TYPES
                 .register(
                         id("powered_haunt_furnace"),
                         () -> BlockEntityType.Builder
                                 .of(PoweredHauntFurnaceBlockEntity::new, ModBlocks.POWERED_HAUNT_FURNACE.get())
                                 .build(null));
 
-        public static RegistrySupplier<BlockEntityType<EnderFurnaceBlockEntity>> ENDER_FURNACE = BLOCK_ENTITY_TYPES
+        public static final RegistrySupplier<BlockEntityType<EnderFurnaceBlockEntity>> ENDER_FURNACE = BLOCK_ENTITY_TYPES
                 .register(
                         id("ender_furnace"),
                         () -> BlockEntityType.Builder.of(EnderFurnaceBlockEntity::new, ModBlocks.ENDER_FURNACE.get())
                                 .build(null));
 
-        public static RegistrySupplier<BlockEntityType<PoweredEnderFurnaceBlockEntity>> POWERED_ENDER_FURNACE = BLOCK_ENTITY_TYPES
+        public static final RegistrySupplier<BlockEntityType<PoweredEnderFurnaceBlockEntity>> POWERED_ENDER_FURNACE = BLOCK_ENTITY_TYPES
                 .register(
                         id("powered_ender_furnace"),
                         () -> BlockEntityType.Builder
@@ -137,24 +139,24 @@ public class HauntFurnace {
 
     public class ModRecipes {
 
-        public static RegistrySupplier<RecipeType<HauntingRecipe>> HAUNTING_RECIPE = RECIPE_TYPES
+        public static final RegistrySupplier<RecipeType<HauntingRecipe>> HAUNTING = RECIPE_TYPES
                 .register(id("haunting"), () -> new RecipeType<HauntingRecipe>() {
                     @Override
                     public String toString() {
                         return "hauntfurnace:haunting";
                     }
                 });
-        public static RegistrySupplier<RecipeSerializer<HauntingRecipe>> HAUNTING_RECIPE_SERIALIZER = RECIPE_SERIALIZERS
+        public static RegistrySupplier<RecipeSerializer<HauntingRecipe>> HAUNTING_SERIALIZER = RECIPE_SERIALIZERS
                 .register(id("haunting"), () -> new SimpleCookingSerializer<HauntingRecipe>(HauntingRecipe::new, 200));
 
-        public static RegistrySupplier<RecipeType<CorruptingRecipe>> CORRUPTING_RECIPE = RECIPE_TYPES
+        public static final RegistrySupplier<RecipeType<CorruptingRecipe>> CORRUPTING = RECIPE_TYPES
                 .register(id("corrupting"), () -> new RecipeType<CorruptingRecipe>() {
                     @Override
                     public String toString() {
                         return "hauntfurnace:corrupting";
                     }
                 });
-        public static RegistrySupplier<RecipeSerializer<CorruptingRecipe>> CORRUPTING_RECIPE_SERIALIZER = RECIPE_SERIALIZERS
+        public static final RegistrySupplier<RecipeSerializer<CorruptingRecipe>> CORRUPTING_SERIALIZER = RECIPE_SERIALIZERS
                 .register(id("corrupting"),
                         () -> new SimpleCookingSerializer<CorruptingRecipe>(CorruptingRecipe::new, 200));
 
@@ -163,18 +165,18 @@ public class HauntFurnace {
     }
 
     public class ModMenus {
-        public static RegistrySupplier<MenuType<HauntFurnaceMenu>> HAUNT_FURNACE_MENU = MENUS.register(
+        public static RegistrySupplier<MenuType<HauntFurnaceMenu>> HAUNT_FURNACE = MENUS.register(
                 id("haunt_furnace"),
                 () -> new MenuType<HauntFurnaceMenu>(HauntFurnaceMenu::new, FeatureFlags.VANILLA_SET));
-        public static RegistrySupplier<MenuType<PoweredHauntFurnaceMenu>> POWERED_HAUNT_FURNACE_MENU = MENUS.register(
+        public static RegistrySupplier<MenuType<PoweredHauntFurnaceMenu>> POWERED_HAUNT_FURNACE = MENUS.register(
                 id("powered_haunt_furnace"),
                 () -> new MenuType<PoweredHauntFurnaceMenu>(PoweredHauntFurnaceMenu::new,
                         FeatureFlags.VANILLA_SET));
 
-        public static RegistrySupplier<MenuType<EnderFurnaceMenu>> ENDER_FURNACE_MENU = MENUS.register(
+        public static RegistrySupplier<MenuType<EnderFurnaceMenu>> ENDER_FURNACE = MENUS.register(
                 id("ender_furnace"),
                 () -> new MenuType<EnderFurnaceMenu>(EnderFurnaceMenu::new, FeatureFlags.VANILLA_SET));
-        public static RegistrySupplier<MenuType<PoweredEnderFurnaceMenu>> POWERED_ENDER_FURNACE_MENU = MENUS.register(
+        public static RegistrySupplier<MenuType<PoweredEnderFurnaceMenu>> POWERED_ENDER_FURNACE = MENUS.register(
                 id("powered_ender_furnace"),
                 () -> new MenuType<PoweredEnderFurnaceMenu>(PoweredEnderFurnaceMenu::new,
                         FeatureFlags.VANILLA_SET));
@@ -185,14 +187,14 @@ public class HauntFurnace {
 
     public static Supplier<EnergyStorageFactory<EnergyStorageWrapper>> ENERGY_STORAGE_FACTORY;
 
+    public static ResourceLocation id(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+    }
+
     public static void init() {
         ModBlocks.init();
         ModBlockEntities.init();
         ModRecipes.init();
         ModMenus.init();
-    }
-
-    public static ResourceLocation id(String path) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 }

@@ -1,4 +1,4 @@
-package com.jship.hauntfurnace.datagen;
+package com.jship.hauntfurnace.datagen.fabric;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;

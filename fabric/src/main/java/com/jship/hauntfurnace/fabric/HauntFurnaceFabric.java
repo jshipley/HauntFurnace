@@ -1,18 +1,19 @@
-package com.jship.hauntfurnace;
+package com.jship.hauntfurnace.fabric;
 
+import com.jship.hauntfurnace.HauntFurnace;
 import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
 import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
 import com.jship.hauntfurnace.block.entity.PoweredEnderFurnaceBlockEntity;
 import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
 import com.jship.hauntfurnace.data.fabric.FuelDataLoader;
 import com.jship.hauntfurnace.data.fabric.FuelMap;
-import com.jship.hauntfurnace.energy.EnergyStorageFabric;
 import com.jship.hauntfurnace.energy.EnergyStorageFactory;
-import com.jship.hauntfurnace.energy.EnergyStorageFactoryFabric;
 import com.jship.hauntfurnace.energy.EnergyStorageWrapper;
-import com.jship.hauntfurnace.network.Payloads;
-import com.jship.hauntfurnace.network.Payloads.EnderFurnaceFuelMapS2CPayload;
-import com.jship.hauntfurnace.network.Payloads.HauntFurnaceFuelMapS2CPayload;
+import com.jship.hauntfurnace.energy.fabric.EnergyStorageFabric;
+import com.jship.hauntfurnace.energy.fabric.EnergyStorageFactoryFabric;
+import com.jship.hauntfurnace.network.fabric.Payloads;
+import com.jship.hauntfurnace.network.fabric.Payloads.EnderFurnaceFuelMapS2CPayload;
+import com.jship.hauntfurnace.network.fabric.Payloads.HauntFurnaceFuelMapS2CPayload;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;

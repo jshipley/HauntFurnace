@@ -124,7 +124,7 @@ public class PoweredEnderFurnaceBlockEntity extends BlockEntity
             }
         };
         this.recipesUsed = new Object2IntOpenHashMap<ResourceLocation>();
-        this.quickCheck = RecipeManager.createCheck(ModRecipes.CORRUPTING_RECIPE.get());
+        this.quickCheck = RecipeManager.createCheck(ModRecipes.CORRUPTING.get());
     }
 
     @Override

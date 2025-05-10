@@ -29,41 +29,46 @@ subprojects {
 
     repositories {
         maven {
-            name "Xander Maven"
-            url "https://maven.isxander.dev/releases"
-        }
-        maven {
-            name "Terraformers"
-            url "https://maven.terraformersmc.com/"
-        }
-        maven {
-            name = 'ParchmentMC'
-            url = 'https://maven.parchmentmc.org/'
+            name "ParchmentMC"
+            url "https://maven.parchmentmc.org/"
         }
         exclusiveContent {
             forRepository {
                 maven {
-                    name = 'Sponge'
-                    url = 'https://repo.spongepowered.org/repository/maven-public'
+                    name "Sponge"
+                    url "https://repo.spongepowered.org/repository/maven-public"
                 }
             }
-            filter { includeGroupAndSubgroups('org.spongepowered') }
+            filter { includeGroupAndSubgroups("org.spongepowered") }
+        }
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name "Curseforge"
+                    url "https://cursemaven.com"
+                }
+            }
+            filter { includeGroup "curse.maven" }
         }
         maven {
-            name = 'BlameJared (JEI)'
-            url = 'https://maven.blamejared.com'
+            name "BlameJared (JEI)"
+            url "https://maven.blamejared.com"
         }
         maven {
-            name = 'Shedaniel (REI)'
-            url = 'https://maven.shedaniel.me'
+            name "Shedaniel (REI)"
+            url "https://maven.shedaniel.me"
         }
         maven {
-            name = "Architectury.dev"
-            url = "https://maven.architectury.dev"
+            name "Architectury.dev"
+            url "https://maven.architectury.dev"
         }
         maven {
-            name = "TerraformersMC (EMI)"
-            url = "https://maven.terraformersmc.com"
+            name "Xander Maven"
+            url "https://maven.isxander.dev/releases"
+        }
+        maven {
+            name "TerraformersMC"
+            url "https://maven.terraformersmc.com"
         }
     }
 

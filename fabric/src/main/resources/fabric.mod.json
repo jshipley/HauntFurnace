@@ -1,49 +1,38 @@
 {
-    "schemaVersion": 1,
-    "id": "hauntfurnace",
-    "version": "${version}",
-    "name": "Haunt Furnace",
-    "description": "A furnace that haunts your items and transforms them into something new. Inspired by the Create mod.",
-    "authors": [
-      "jship"
+  "schemaVersion": 1,
+  "id": "hauntfurnace",
+  "version": "${version}",
+  "name": "Haunt Furnace",
+  "description": "A furnace that haunts your items and transforms them into something new. Inspired by the Create mod.",
+  "authors": ["jship"],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/haunt-furnace",
+    "sources": "https://github.com/jshipley/HauntFurnace"
+  },
+  "license": "MIT",
+  "icon": "assets/hauntfurnace/hauntfurnace.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.jship.hauntfurnace.fabric.HauntFurnaceFabric"],
+    "client": ["com.jship.hauntfurnace.client.fabric.HauntFurnaceClientFabric"],
+    "fabric-datagen": [
+      "com.jship.hauntfurnace.datagen.fabric.HauntFurnaceDataGenFabric"
     ],
-    "contact": {
-      "homepage": "https://modrinth.com/mod/haunt-furnace",
-      "sources": "https://github.com/jshipley/HauntFurnace"
-    },
-    "license": "MIT",
-    "icon": "assets/hauntfurnace/hauntfurnace.png",
-    "environment": "*",
-    "entrypoints": {
-        "main": [
-            "com.jship.hauntfurnace.HauntFurnaceFabric"
-        ],
-        "client": [
-            "com.jship.hauntfurnace.client.HauntFurnaceClientFabric"
-        ],
-        "fabric-datagen": [
-            "com.jship.hauntfurnace.datagen.HauntFurnaceDataGenFabric"
-        ],
-        "jei_mod_plugin": [
-            "com.jship.hauntfurnace.client.compat.jei.HauntFurnaceJEI"
-        ],
-        "rei_client": [
-            "com.jship.hauntfurnace.client.compat.fabric.rei.HauntFurnaceREI"
-        ],
-        "emi": [
-            "com.jship.hauntfurnace.client.compat.emi.HauntFurnaceEMI"
-        ],
-        "modmenu": [
-          "com.jship.hauntfurnace.config.fabric.ModMenuIntegration"
-        ]
-    },
-    "depends": {
-      "fabricloader": ">=0.16.10",
-      "minecraft": "~1.21.1",
-      "java": ">=21",
-      "fabric-api": "*",
-      "architectury": ">=13.0",
-      "yet_another_config_lib_v3": ">=3.6.6"
-    }
+    "jei_mod_plugin": [
+      "com.jship.hauntfurnace.client.compat.jei.HauntFurnaceJEI"
+    ],
+    "rei_client": [
+      "com.jship.hauntfurnace.client.compat.rei.fabric.HauntFurnaceREI"
+    ],
+    "emi": ["com.jship.hauntfurnace.client.compat.emi.HauntFurnaceEMI"],
+    "modmenu": ["com.jship.hauntfurnace.config.fabric.ModMenuIntegration"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.10",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*",
+    "architectury": ">=13.0",
+    "yet_another_config_lib_v3": ">=3.6.6"
   }
-  
+}

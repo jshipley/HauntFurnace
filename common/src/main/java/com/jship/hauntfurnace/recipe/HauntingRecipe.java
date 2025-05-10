@@ -11,7 +11,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public class HauntingRecipe extends AbstractCookingRecipe {
     public HauntingRecipe(String group, CookingBookCategory category, Ingredient input, ItemStack result, float experience, int cookTime) {
-        super(ModRecipes.HAUNTING_RECIPE.get(), group, category, input, result, experience, cookTime);
+        super(ModRecipes.HAUNTING.get(), group, category, input, result, experience, cookTime);
     }
 
     public ItemStack getToastSymbol() {
@@ -19,7 +19,7 @@ public class HauntingRecipe extends AbstractCookingRecipe {
    }
 
    public RecipeSerializer<?> getSerializer() {
-      return ModRecipes.HAUNTING_RECIPE_SERIALIZER.get();
+      return ModRecipes.HAUNTING_SERIALIZER.get();
    }
 
    public boolean isSpecial() {

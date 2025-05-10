@@ -124,7 +124,7 @@ public class PoweredHauntFurnaceBlockEntity extends BlockEntity
             }
         };
         this.recipesUsed = new Object2IntOpenHashMap<ResourceLocation>();
-        this.quickCheck = RecipeManager.createCheck(ModRecipes.HAUNTING_RECIPE.get());
+        this.quickCheck = RecipeManager.createCheck(ModRecipes.HAUNTING.get());
     }
 
     @Override

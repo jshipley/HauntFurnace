@@ -11,7 +11,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public class CorruptingRecipe extends AbstractCookingRecipe {
     public CorruptingRecipe(String group, CookingBookCategory category, Ingredient input, ItemStack result, float experience, int cookTime) {
-        super(ModRecipes.CORRUPTING_RECIPE.get(), group, category, input, result, experience, cookTime);
+        super(ModRecipes.CORRUPTING.get(), group, category, input, result, experience, cookTime);
     }
 
     public ItemStack getToastSymbol() {
@@ -19,7 +19,7 @@ public class CorruptingRecipe extends AbstractCookingRecipe {
    }
 
    public RecipeSerializer<?> getSerializer() {
-      return ModRecipes.CORRUPTING_RECIPE_SERIALIZER.get();
+      return ModRecipes.CORRUPTING_SERIALIZER.get();
    }
 
    public boolean isSpecial() {

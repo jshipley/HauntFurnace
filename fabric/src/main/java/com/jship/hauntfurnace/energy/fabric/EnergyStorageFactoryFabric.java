@@ -1,4 +1,7 @@
-package com.jship.hauntfurnace.energy;
+package com.jship.hauntfurnace.energy.fabric;
+
+import com.jship.hauntfurnace.energy.EnergyStorageFactory;
+import com.jship.hauntfurnace.energy.EnergyStorageWrapper;
 
 import net.minecraft.world.level.block.entity.BlockEntity;
 

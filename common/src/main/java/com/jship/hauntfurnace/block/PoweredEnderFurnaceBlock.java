@@ -55,7 +55,7 @@ public class PoweredEnderFurnaceBlock extends AbstractFurnaceBlock {
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
         if (blockEntity instanceof PoweredEnderFurnaceBlockEntity) {
             player.openMenu((MenuProvider) blockEntity);
-            // player.awardStat(HauntFurnace.INTERACT_WITH_HAUNT_FURNACE);
+            // player.awardStat(HauntFurnace.INTERACT_WITH_ENDER_FURNACE);
         }
     }
 
@@ -80,7 +80,7 @@ public class PoweredEnderFurnaceBlock extends AbstractFurnaceBlock {
             double yd = randomSource.nextDouble() * 9.0 / 16.0;
             double zd = axis == Axis.Z ? (double) direction.getStepZ() * g : h;
             level.addParticle(ParticleTypes.SMOKE, x + xd, y + yd, z + zd, 0.0, 0.0, 0.0);
-            level.addParticle(ParticleTypes.SOUL, x + xd, y + yd, z + zd, 0.0, 0.0, 0.0);
+            level.addParticle(ParticleTypes.DRAGON_BREATH, x + xd, y + yd, z + zd, 0.0, 0.0, 0.0);
         }
     }
 }

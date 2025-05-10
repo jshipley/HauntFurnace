@@ -1,10 +1,7 @@
-package com.jship.hauntfurnace.client.compat.fabric.rei;
-
-import java.text.DecimalFormat;
-import java.util.Collections;
-import java.util.List;
+package com.jship.hauntfurnace.client.compat.rei.fabric;
 
 import com.google.common.collect.Lists;
+import com.jship.hauntfurnace.HauntFurnace;
 import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
 
 import me.shedaniel.math.Dimension;
@@ -18,9 +15,14 @@ import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
+
 import net.minecraft.network.chat.Component;
 
-public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDisplay> {
+import java.text.DecimalFormat;
+import java.util.Collections;
+import java.util.List;
+
+public class CorruptingRecipeCategory implements DisplayCategory<CorruptingRecipeDisplay> {
 
     @Override
     public Renderer getIcon() {
@@ -29,18 +31,18 @@ public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDis
 
     @Override
     public Component getTitle() {
-        return Component.translatable("hauntfurnace.action.haunting");
+        return Component.translatable("hauntfurnace.action.corrupting");
     }
 
     @Override
-    public List<Widget> setupDisplay(HauntingRecipeDisplay display, Rectangle bounds) {
+    public List<Widget> setupDisplay(CorruptingRecipeDisplay display, Rectangle bounds) {
         Point startPoint = new Point(bounds.getCenterX() - 41, bounds.y + 10);
         double cookingTime = display.getCookingTime();
         DecimalFormat df = new DecimalFormat("###.##");
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 9)));
-        widgets.add(new BurningAltFireWidget(new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)), 1)
+        widgets.add(new BurningAltFireWidget(new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)), 2)
                 .animationDurationMS(10000));
         widgets.add(Widgets.createLabel(new Point(bounds.x + bounds.width - 5, bounds.y + 5),
                 Component.translatable("category.rei.cooking.time&xp", df.format(display.getXp()), df.format(cookingTime / 20d))).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
@@ -57,7 +59,7 @@ public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDis
     }
 
     @Override
-    public DisplayRenderer getDisplayRenderer(HauntingRecipeDisplay display) {
+    public DisplayRenderer getDisplayRenderer(CorruptingRecipeDisplay display) {
         return SimpleDisplayRenderer.from(Collections.singletonList(display.getInputEntries().get(0)), display.getOutputEntries());
     }
 
@@ -66,7 +68,7 @@ public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDis
         return 49;
     }
     @Override
-    public CategoryIdentifier<? extends HauntingRecipeDisplay> getCategoryIdentifier() {
-        return HauntFurnaceREI.HAUNTING;
+    public CategoryIdentifier<? extends CorruptingRecipeDisplay> getCategoryIdentifier() {
+        return HauntFurnaceREI.CORRUPTING;
     }
 }

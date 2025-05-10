@@ -11,13 +11,13 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = HauntFurnace.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class HauntFurnaceClientForge {
+public class HauntFurnaceClientNeoforge {
     
     @SubscribeEvent
     public static void registerMenuScreens(RegisterMenuScreensEvent event) {
-        event.register(ModMenus.HAUNT_FURNACE_MENU.get(), HauntFurnaceScreen::new);
-        event.register(ModMenus.POWERED_HAUNT_FURNACE_MENU.get(), PoweredHauntFurnaceScreen::new);
-        event.register(ModMenus.ENDER_FURNACE_MENU.get(), EnderFurnaceScreen::new);
-        event.register(ModMenus.POWERED_ENDER_FURNACE_MENU.get(), PoweredEnderFurnaceScreen::new);
+        event.register(ModMenus.HAUNT_FURNACE.get(), HauntFurnaceScreen::new);
+        event.register(ModMenus.POWERED_HAUNT_FURNACE.get(), PoweredHauntFurnaceScreen::new);
+        event.register(ModMenus.ENDER_FURNACE.get(), EnderFurnaceScreen::new);
+        event.register(ModMenus.POWERED_ENDER_FURNACE.get(), PoweredEnderFurnaceScreen::new);
     }
 }

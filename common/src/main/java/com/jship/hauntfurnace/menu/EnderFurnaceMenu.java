@@ -13,11 +13,11 @@ import net.minecraft.world.item.ItemStack;
 
 public class EnderFurnaceMenu extends AbstractFurnaceMenu {
     public EnderFurnaceMenu(int i, Inventory inventory) {
-        super(ModMenus.ENDER_FURNACE_MENU.get(), ModRecipes.CORRUPTING_RECIPE.get(), RecipeBookType.FURNACE, i, inventory);
+        super(ModMenus.ENDER_FURNACE.get(), ModRecipes.CORRUPTING.get(), RecipeBookType.FURNACE, i, inventory);
     }
 
     public EnderFurnaceMenu(int i, Inventory inventory, Container container, ContainerData containerData) {
-        super(ModMenus.ENDER_FURNACE_MENU.get(), ModRecipes.CORRUPTING_RECIPE.get(), RecipeBookType.FURNACE, i, inventory, container, containerData);
+        super(ModMenus.ENDER_FURNACE.get(), ModRecipes.CORRUPTING.get(), RecipeBookType.FURNACE, i, inventory, container, containerData);
     }
 
     @Override
