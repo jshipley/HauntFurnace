@@ -2,7 +2,7 @@ package com.jship.hauntfurnace.datagen;
 
 import java.util.concurrent.CompletableFuture;
 
-import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
@@ -15,11 +15,11 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-        dropSelf(HauntFurnace.HAUNT_FURNACE_BLOCK.get());
-        dropSelf(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK.get());
-        dropSelf(HauntFurnace.ENDER_FURNACE_BLOCK.get());
-        dropSelf(HauntFurnace.POWERED_ENDER_FURNACE_BLOCK.get());
-        dropSelf(HauntFurnace.GILDED_END_STONE_BLOCK.get());
+        dropSelf(ModBlocks.HAUNT_FURNACE.get());
+        dropSelf(ModBlocks.POWERED_HAUNT_FURNACE.get());
+        dropSelf(ModBlocks.ENDER_FURNACE.get());
+        dropSelf(ModBlocks.POWERED_ENDER_FURNACE.get());
+        dropSelf(ModBlocks.GILDED_END_STONE.get());
     }
     
 }

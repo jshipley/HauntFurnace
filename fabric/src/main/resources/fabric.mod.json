@@ -42,7 +42,8 @@
       "minecraft": "~1.21.1",
       "java": ">=21",
       "fabric-api": "*",
-      "yet_another_config_lib_v3": ">=6.6.6"
+      "architectury": ">=13.0",
+      "yet_another_config_lib_v3": ">=3.6.6"
     }
   }
   

@@ -2,10 +2,11 @@ package com.jship.hauntfurnace.block;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
 import com.jship.hauntfurnace.block.entity.HauntFurnaceBlockEntity;
 import com.jship.hauntfurnace.config.HauntFurnaceConfig;
 import com.mojang.serialization.MapCodec;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
@@ -43,7 +44,7 @@ public class HauntFurnaceBlock extends AbstractFurnaceBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
             BlockEntityType<T> blockEntityType) {
         return level.isClientSide ? null
-                : AbstractFurnaceBlock.createTickerHelper(blockEntityType, HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY.get(),
+                : AbstractFurnaceBlock.createTickerHelper(blockEntityType, ModBlockEntities.HAUNT_FURNACE.get(),
                         HauntFurnaceBlockEntity::serverTick);
     }
 

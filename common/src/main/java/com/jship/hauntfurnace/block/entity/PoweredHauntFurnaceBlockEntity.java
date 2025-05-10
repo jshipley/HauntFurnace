@@ -1,9 +1,20 @@
 package com.jship.hauntfurnace.block.entity;
 
+import java.util.List;
+
+import org.jetbrains.annotations.Nullable;
+
+import com.google.common.collect.Lists;
+import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
+import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
+import com.jship.hauntfurnace.block.PoweredHauntFurnaceBlock;
 import com.jship.hauntfurnace.energy.EnergyStorageWrapper;
 import com.jship.hauntfurnace.menu.PoweredHauntFurnaceMenu;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -38,17 +49,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.List;
-
-import org.jetbrains.annotations.Nullable;
-
-import com.google.common.collect.Lists;
-import com.jship.hauntfurnace.HauntFurnace;
-import com.jship.hauntfurnace.block.PoweredHauntFurnaceBlock;
-
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 
 // This needs to use FE instead of fuel, so it needed to change a lot from the AbstractFurnaceBlockEntity.
 // The code for this is mostly based on the AbstractFurnaceBlockEntity.
@@ -86,7 +86,7 @@ public class PoweredHauntFurnaceBlockEntity extends BlockEntity
     private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends AbstractCookingRecipe> quickCheck;
 
     public PoweredHauntFurnaceBlockEntity(BlockPos pos, BlockState state) {
-        super(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK_ENTITY.get(), pos, state);
+        super(ModBlockEntities.POWERED_HAUNT_FURNACE.get(), pos, state);
         this.lockKey = LockCode.NO_LOCK;
         this.items = NonNullList.withSize(SLOT_COUNT, ItemStack.EMPTY);
         this.energyStorage = HauntFurnace.ENERGY_STORAGE_FACTORY.get().createEnergyStorage(ENERGY_CAPACITY, ENERGY_MAX_INSERT,
@@ -124,7 +124,7 @@ public class PoweredHauntFurnaceBlockEntity extends BlockEntity
             }
         };
         this.recipesUsed = new Object2IntOpenHashMap<ResourceLocation>();
-        this.quickCheck = RecipeManager.createCheck(HauntFurnace.HAUNTING_RECIPE.get());
+        this.quickCheck = RecipeManager.createCheck(ModRecipes.HAUNTING_RECIPE.get());
     }
 
     @Override

@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
 import com.jship.hauntfurnace.block.entity.PoweredEnderFurnaceBlockEntity;
 import com.jship.hauntfurnace.config.HauntFurnaceConfig;
 
@@ -45,7 +46,7 @@ public class PoweredEnderFurnaceBlock extends AbstractFurnaceBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
             BlockEntityType<T> blockEntityType) {
         return level.isClientSide ? null
-                : AbstractFurnaceBlock.createTickerHelper(blockEntityType, HauntFurnace.POWERED_ENDER_FURNACE_BLOCK_ENTITY.get(),
+                : AbstractFurnaceBlock.createTickerHelper(blockEntityType, ModBlockEntities.POWERED_ENDER_FURNACE.get(),
                         PoweredEnderFurnaceBlockEntity::serverTick);
     }
 

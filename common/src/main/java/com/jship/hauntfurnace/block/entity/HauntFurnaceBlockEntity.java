@@ -1,6 +1,7 @@
 package com.jship.hauntfurnace.block.entity;
 
-import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
+import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
 import com.jship.hauntfurnace.menu.HauntFurnaceMenu;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
@@ -15,7 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 // Extends AbstractFurnaceBlockEntity adding the haunting block entity, recipe, name, and menu
 public class HauntFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
     public HauntFurnaceBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(HauntFurnace.HAUNT_FURNACE_BLOCK_ENTITY.get(), blockPos, blockState, HauntFurnace.HAUNTING_RECIPE.get());
+        super(ModBlockEntities.HAUNT_FURNACE.get(), blockPos, blockState, ModRecipes.HAUNTING_RECIPE.get());
     }
 
     @Override

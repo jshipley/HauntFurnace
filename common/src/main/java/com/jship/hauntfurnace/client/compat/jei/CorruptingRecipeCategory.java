@@ -1,6 +1,7 @@
 package com.jship.hauntfurnace.client.compat.jei;
 
 import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
 import com.jship.hauntfurnace.recipe.CorruptingRecipe;
 
 import com.google.common.cache.CacheBuilder;
@@ -43,7 +44,7 @@ public class CorruptingRecipeCategory implements IRecipeCategory<CorruptingRecip
         animatedFlame = guiHelper.createAnimatedDrawable(staticFlame, 300, IDrawableAnimated.StartDirection.TOP, true);
         this.background = guiHelper.createDrawable(TEXTURE, 0, 114, 82, 54);
         this.regularCookTime = AbstractFurnaceBlockEntity.BURN_TIME_STANDARD;
-        this.icon = guiHelper.createDrawableItemStack(new ItemStack(HauntFurnace.ENDER_FURNACE_BLOCK.get()));
+        this.icon = guiHelper.createDrawableItemStack(new ItemStack(ModBlocks.ENDER_FURNACE.get()));
         this.localizedName = Component.translatable("hauntfurnace.action.corrupting");
         this.cachedArrows = CacheBuilder.newBuilder()
                 .maximumSize(25)

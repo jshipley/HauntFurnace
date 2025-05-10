@@ -1,6 +1,7 @@
 package com.jship.hauntfurnace.menu;
 
-import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModMenus;
+import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
 import com.jship.hauntfurnace.block.entity.EnderFurnaceBlockEntity;
 
 import net.minecraft.world.Container;
@@ -12,11 +13,11 @@ import net.minecraft.world.item.ItemStack;
 
 public class EnderFurnaceMenu extends AbstractFurnaceMenu {
     public EnderFurnaceMenu(int i, Inventory inventory) {
-        super(HauntFurnace.ENDER_FURNACE_MENU.get(), HauntFurnace.CORRUPTING_RECIPE.get(), RecipeBookType.FURNACE, i, inventory);
+        super(ModMenus.ENDER_FURNACE_MENU.get(), ModRecipes.CORRUPTING_RECIPE.get(), RecipeBookType.FURNACE, i, inventory);
     }
 
     public EnderFurnaceMenu(int i, Inventory inventory, Container container, ContainerData containerData) {
-        super(HauntFurnace.ENDER_FURNACE_MENU.get(), HauntFurnace.CORRUPTING_RECIPE.get(), RecipeBookType.FURNACE, i, inventory, container, containerData);
+        super(ModMenus.ENDER_FURNACE_MENU.get(), ModRecipes.CORRUPTING_RECIPE.get(), RecipeBookType.FURNACE, i, inventory, container, containerData);
     }
 
     @Override

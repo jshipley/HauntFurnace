@@ -1,7 +1,11 @@
 package com.jship.hauntfurnace.client.compat.fabric.rei;
 
+import java.text.DecimalFormat;
+import java.util.Collections;
+import java.util.List;
+
 import com.google.common.collect.Lists;
-import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
 
 import me.shedaniel.math.Dimension;
 import me.shedaniel.math.Point;
@@ -14,18 +18,13 @@ import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-
 import net.minecraft.network.chat.Component;
-
-import java.text.DecimalFormat;
-import java.util.Collections;
-import java.util.List;
 
 public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDisplay> {
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(HauntFurnace.HAUNT_FURNACE_BLOCK.get());
+        return EntryStacks.of(ModBlocks.HAUNT_FURNACE.get());
     }
 
     @Override

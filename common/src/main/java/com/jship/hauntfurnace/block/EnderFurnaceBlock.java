@@ -2,7 +2,7 @@ package com.jship.hauntfurnace.block;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
 import com.jship.hauntfurnace.block.entity.EnderFurnaceBlockEntity;
 import com.jship.hauntfurnace.config.HauntFurnaceConfig;
 import com.mojang.serialization.MapCodec;
@@ -43,7 +43,7 @@ public class EnderFurnaceBlock extends AbstractFurnaceBlock {
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
         if (level instanceof ServerLevel serverLevel) {
-            return createTickerHelper(blockEntityType, HauntFurnace.ENDER_FURNACE_BLOCK_ENTITY.get(), (levelx, blockPos, blockStatex, enderFurnaceBlockEntity) -> {
+            return createTickerHelper(blockEntityType, ModBlockEntities.ENDER_FURNACE.get(), (levelx, blockPos, blockStatex, enderFurnaceBlockEntity) -> {
                 EnderFurnaceBlockEntity.serverTick(serverLevel, blockPos, blockState, enderFurnaceBlockEntity);
             });
         }

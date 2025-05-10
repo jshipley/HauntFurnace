@@ -1,9 +1,12 @@
 package com.jship.hauntfurnace.datagen;
 
+import java.util.concurrent.CompletableFuture;
+
 import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
 import com.jship.hauntfurnace.recipe.CorruptingRecipe;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
-import java.util.concurrent.CompletableFuture;
+
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
@@ -12,12 +15,9 @@ import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -26,7 +26,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 
 public class RecipeGenerator extends FabricRecipeProvider {
@@ -37,7 +36,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
     public void buildRecipes(RecipeOutput output) {
         // Furnaces
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, HauntFurnace.HAUNT_FURNACE_BLOCK.get().asItem())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.HAUNT_FURNACE.get().asItem())
             .pattern("BBB")
             .pattern("BSB")
             .pattern("BBB")
@@ -46,16 +45,16 @@ public class RecipeGenerator extends FabricRecipeProvider {
             .unlockedBy("has_soul_fire", has(ItemTags.SOUL_FIRE_BASE_BLOCKS))
             .unlockedBy(getHasName(Items.BLACKSTONE), has(Items.BLACKSTONE))
             .save(output, HauntFurnace.id("crafting/haunt_furnace"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK.get().asItem())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.POWERED_HAUNT_FURNACE.get().asItem())
             .pattern("GGG")
             .pattern("GHG")
             .pattern("GRG")
             .define('G', Ingredient.of(Items.BLACKSTONE))
-            .define('H', Ingredient.of(HauntFurnace.HAUNT_FURNACE_BLOCK.get().asItem()))
+            .define('H', Ingredient.of(ModBlocks.HAUNT_FURNACE.get().asItem()))
             .define('R', ConventionalItemTags.REDSTONE_DUSTS)
-            .unlockedBy(getHasName(HauntFurnace.HAUNT_FURNACE_BLOCK.get().asItem()), has(HauntFurnace.HAUNT_FURNACE_BLOCK.get().asItem()))
+            .unlockedBy(getHasName(ModBlocks.HAUNT_FURNACE.get().asItem()), has(ModBlocks.HAUNT_FURNACE.get().asItem()))
             .save(output, HauntFurnace.id("crafting/powered_haunt_furnace"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, HauntFurnace.ENDER_FURNACE_BLOCK.get().asItem())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ENDER_FURNACE.get().asItem())
             .pattern("EEE")
             .pattern("EDE")
             .pattern("EEE")
@@ -63,14 +62,14 @@ public class RecipeGenerator extends FabricRecipeProvider {
             .define('D', of(Items.DRAGON_HEAD))
             .unlockedBy(getHasName(Items.DRAGON_HEAD), has(Items.DRAGON_HEAD))
             .save(output, HauntFurnace.id("crafting/ender_furnace"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, HauntFurnace.POWERED_ENDER_FURNACE_BLOCK.get().asItem())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.POWERED_ENDER_FURNACE.get().asItem())
             .pattern("GGG")
             .pattern("GEG")
             .pattern("GRG")
-            .define('G', of(HauntFurnace.GILDED_END_STONE_BLOCK.get()))
-            .define('E', of(HauntFurnace.ENDER_FURNACE_BLOCK.get()))
+            .define('G', of(ModBlocks.GILDED_END_STONE.get()))
+            .define('E', of(ModBlocks.ENDER_FURNACE.get()))
             .define('R', of(ConventionalItemTags.REDSTONE_DUSTS))
-            .unlockedBy(getHasName(HauntFurnace.ENDER_FURNACE_BLOCK.get()), has(HauntFurnace.ENDER_FURNACE_BLOCK.get()))
+            .unlockedBy(getHasName(ModBlocks.ENDER_FURNACE.get()), has(ModBlocks.ENDER_FURNACE.get()))
             .save(output, HauntFurnace.id("crafting/powered_ender_furnace"));
 
         // Gilding
@@ -82,7 +81,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
             .define('B', of(Items.BLACKSTONE))
             .unlockedBy(getHasName(Items.BLACKSTONE), has(Items.BLACKSTONE))
             .save(output, HauntFurnace.id("crafting/gilded_blackstone"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, HauntFurnace.GILDED_END_STONE_BLOCK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.GILDED_END_STONE.get())
             .pattern("NNN")
             .pattern("NEN")
             .pattern("NNN")
@@ -170,7 +169,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
             .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
             .rewards(AdvancementRewards.Builder.recipe(id))
             .requirements(AdvancementRequirements.Strategy.OR)
-            .addCriterion(getHasName(HauntFurnace.HAUNT_FURNACE_BLOCK.get().asItem()), has(HauntFurnace.HAUNT_FURNACE_BLOCK.get().asItem()));
+            .addCriterion(getHasName(ModBlocks.HAUNT_FURNACE.get().asItem()), has(ModBlocks.HAUNT_FURNACE.get().asItem()));
         output.accept(id, hauntingRecipe, criteria.build(id));
     }
 
@@ -182,7 +181,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
             .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
             .rewards(AdvancementRewards.Builder.recipe(id))
             .requirements(AdvancementRequirements.Strategy.OR)
-            .addCriterion(getHasName(HauntFurnace.ENDER_FURNACE_BLOCK.get().asItem()), has(HauntFurnace.ENDER_FURNACE_BLOCK.get().asItem()));
+            .addCriterion(getHasName(ModBlocks.ENDER_FURNACE.get().asItem()), has(ModBlocks.ENDER_FURNACE.get().asItem()));
         output.accept(id, corruptingRecipe, criteria.build(id));
     }
 }

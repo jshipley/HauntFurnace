@@ -1,6 +1,8 @@
 package com.jship.hauntfurnace.client.compat.emi;
 
 import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
+import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
 import com.jship.hauntfurnace.recipe.CorruptingRecipe;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 
@@ -16,13 +18,13 @@ import net.minecraft.world.item.crafting.RecipeManager;
 
 @EmiEntrypoint
 public class HauntFurnaceEMI implements EmiPlugin {
-    public static final ResourceLocation SPRITE_SHEET = ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "textures/gui/container/jei_gui.png");
-    public static final EmiStack HAUNT_FURNACE_WORKSTATION = EmiStack.of(HauntFurnace.HAUNT_FURNACE_BLOCK.get());
-    public static final EmiStack POWERED_HAUNT_FURNACE_WORKSTATION = EmiStack.of(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK.get());
-    public static final EmiRecipeCategory HAUNTING_CATEGORY = new EmiRecipeCategory(ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "haunt_furnace"), HAUNT_FURNACE_WORKSTATION, HAUNT_FURNACE_WORKSTATION, EmiRecipeSorting.compareOutputThenInput());
-    public static final EmiStack ENDER_FURNACE_WORKSTATION = EmiStack.of(HauntFurnace.ENDER_FURNACE_BLOCK.get());
-    public static final EmiStack POWERED_ENDER_FURNACE_WORKSTATION = EmiStack.of(HauntFurnace.POWERED_ENDER_FURNACE_BLOCK.get());
-    public static final EmiRecipeCategory CORRUPTING_CATEGORY = new EmiRecipeCategory(ResourceLocation.fromNamespaceAndPath(HauntFurnace.MOD_ID, "ender_furnace"), ENDER_FURNACE_WORKSTATION, ENDER_FURNACE_WORKSTATION, EmiRecipeSorting.compareOutputThenInput());
+    public static final ResourceLocation SPRITE_SHEET = HauntFurnace.id("textures/gui/container/jei_gui.png");
+    public static final EmiStack HAUNT_FURNACE_WORKSTATION = EmiStack.of(ModBlocks.HAUNT_FURNACE.get());
+    public static final EmiStack POWERED_HAUNT_FURNACE_WORKSTATION = EmiStack.of(ModBlocks.POWERED_HAUNT_FURNACE.get());
+    public static final EmiRecipeCategory HAUNTING_CATEGORY = new EmiRecipeCategory(HauntFurnace.id("haunt_furnace"), HAUNT_FURNACE_WORKSTATION, HAUNT_FURNACE_WORKSTATION, EmiRecipeSorting.compareOutputThenInput());
+    public static final EmiStack ENDER_FURNACE_WORKSTATION = EmiStack.of(ModBlocks.ENDER_FURNACE.get());
+    public static final EmiStack POWERED_ENDER_FURNACE_WORKSTATION = EmiStack.of(ModBlocks.POWERED_ENDER_FURNACE.get());
+    public static final EmiRecipeCategory CORRUPTING_CATEGORY = new EmiRecipeCategory(HauntFurnace.id("ender_furnace"), ENDER_FURNACE_WORKSTATION, ENDER_FURNACE_WORKSTATION, EmiRecipeSorting.compareOutputThenInput());
     
     @Override
     public void register(EmiRegistry registry) {
@@ -35,11 +37,11 @@ public class HauntFurnaceEMI implements EmiPlugin {
         
         RecipeManager recipeManager = registry.getRecipeManager();
 
-        for(RecipeHolder<HauntingRecipe> recipe : recipeManager.getAllRecipesFor(HauntFurnace.HAUNTING_RECIPE.get())) {
+        for(RecipeHolder<HauntingRecipe> recipe : recipeManager.getAllRecipesFor(ModRecipes.HAUNTING_RECIPE.get())) {
             registry.addRecipe(new HauntingEMIRecipe(recipe.value()));
         }
 
-        for(RecipeHolder<CorruptingRecipe> recipe : recipeManager.getAllRecipesFor(HauntFurnace.CORRUPTING_RECIPE.get())) {
+        for(RecipeHolder<CorruptingRecipe> recipe : recipeManager.getAllRecipesFor(ModRecipes.CORRUPTING_RECIPE.get())) {
             registry.addRecipe(new CorruptingEMIRecipe(recipe.value()));
         }
     }

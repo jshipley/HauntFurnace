@@ -2,6 +2,7 @@ package com.jship.hauntfurnace.client.compat.fabric.rei;
 
 import com.google.common.collect.Lists;
 import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
 
 import me.shedaniel.math.Dimension;
 import me.shedaniel.math.Point;
@@ -25,7 +26,7 @@ public class CorruptingRecipeCategory implements DisplayCategory<CorruptingRecip
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(HauntFurnace.HAUNT_FURNACE_BLOCK.get());
+        return EntryStacks.of(ModBlocks.HAUNT_FURNACE.get());
     }
 
     @Override

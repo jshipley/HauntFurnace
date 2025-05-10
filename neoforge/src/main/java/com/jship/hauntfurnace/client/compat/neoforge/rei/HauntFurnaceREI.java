@@ -1,19 +1,21 @@
 package com.jship.hauntfurnace.client.compat.fabric.rei;
 
 import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
+import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
 import com.jship.hauntfurnace.client.EnderFurnaceScreen;
 import com.jship.hauntfurnace.client.HauntFurnaceScreen;
 import com.jship.hauntfurnace.recipe.CorruptingRecipe;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 
 import me.shedaniel.math.Rectangle;
-import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.display.DisplaySerializerRegistry;
-import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
+import me.shedaniel.rei.api.common.category.CategoryIdentifier;
+import me.shedaniel.rei.api.common.display.DisplaySerializerRegistry;
+import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.resources.ResourceLocation;
 
 public class HauntFurnaceREI implements REIClientPlugin {
@@ -26,11 +28,11 @@ public class HauntFurnaceREI implements REIClientPlugin {
     @Override
     public void registerCategories(CategoryRegistry registry) {
         registry.add(new HauntingRecipeCategory());
-        registry.addWorkstations(HAUNTING, EntryStacks.of(HauntFurnace.HAUNT_FURNACE_BLOCK.get()));
-        registry.addWorkstations(HAUNTING, EntryStacks.of(HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK.get()));
+        registry.addWorkstations(HAUNTING, EntryStacks.of(ModBlocks.HAUNT_FURNACE.get()));
+        registry.addWorkstations(HAUNTING, EntryStacks.of(ModBlocks.POWERED_HAUNT_FURNACE.get()));
         registry.add(new CorruptingRecipeCategory());
-        registry.addWorkstations(CORRUPTING, EntryStacks.of(HauntFurnace.ENDER_FURNACE_BLOCK.get()));
-        registry.addWorkstations(CORRUPTING, EntryStacks.of(HauntFurnace.POWERED_ENDER_FURNACE_BLOCK.get()));
+        registry.addWorkstations(CORRUPTING, EntryStacks.of(ModBlocks.ENDER_FURNACE.get()));
+        registry.addWorkstations(CORRUPTING, EntryStacks.of(ModBlocks.POWERED_ENDER_FURNACE.get()));
     }
 
     @Override
@@ -41,8 +43,8 @@ public class HauntFurnaceREI implements REIClientPlugin {
 
     @Override
     public void registerDisplays(DisplayRegistry registry) {
-        registry.registerRecipeFiller(HauntingRecipe.class, HauntFurnace.HAUNTING_RECIPE.get(), HauntingRecipeDisplay::new);
-        registry.registerRecipeFiller(CorruptingRecipe.class, HauntFurnace.CORRUPTING_RECIPE.get(), CorruptingRecipeDisplay::new);
+        registry.registerRecipeFiller(HauntingRecipe.class, ModRecipes.HAUNTING_RECIPE.get(), HauntingRecipeDisplay::new);
+        registry.registerRecipeFiller(CorruptingRecipe.class, ModRecipes.CORRUPTING_RECIPE.get(), CorruptingRecipeDisplay::new);
     }
 
     @Override

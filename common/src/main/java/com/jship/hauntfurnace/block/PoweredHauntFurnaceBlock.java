@@ -1,7 +1,13 @@
 // Source code is decompiled from a .class file using FernFlower decompiler.
 package com.jship.hauntfurnace.block;
 
+import org.jetbrains.annotations.Nullable;
+
+import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
+import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
+import com.jship.hauntfurnace.config.HauntFurnaceConfig;
 import com.mojang.serialization.MapCodec;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
@@ -18,12 +24,6 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-
-import org.jetbrains.annotations.Nullable;
-
-import com.jship.hauntfurnace.HauntFurnace;
-import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
-import com.jship.hauntfurnace.config.HauntFurnaceConfig;
 
 public class PoweredHauntFurnaceBlock extends AbstractFurnaceBlock {
     public static final MapCodec<PoweredHauntFurnaceBlock> CODEC = PoweredHauntFurnaceBlock.simpleCodec(PoweredHauntFurnaceBlock::new);
@@ -45,7 +45,7 @@ public class PoweredHauntFurnaceBlock extends AbstractFurnaceBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
             BlockEntityType<T> blockEntityType) {
         return level.isClientSide ? null
-                : AbstractFurnaceBlock.createTickerHelper(blockEntityType, HauntFurnace.POWERED_HAUNT_FURNACE_BLOCK_ENTITY.get(),
+                : AbstractFurnaceBlock.createTickerHelper(blockEntityType, ModBlockEntities.POWERED_HAUNT_FURNACE.get(),
                         PoweredHauntFurnaceBlockEntity::serverTick);
     }
 

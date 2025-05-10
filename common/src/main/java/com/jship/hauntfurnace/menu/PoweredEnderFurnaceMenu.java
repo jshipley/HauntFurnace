@@ -1,6 +1,7 @@
 package com.jship.hauntfurnace.menu;
 
-import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModMenus;
+import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
 import com.jship.hauntfurnace.block.entity.PoweredEnderFurnaceBlockEntity;
 
 import net.minecraft.world.Container;
@@ -36,7 +37,7 @@ public class PoweredEnderFurnaceMenu extends RecipeBookMenu<SingleRecipeInput, A
     }
 
     public PoweredEnderFurnaceMenu(int syncId, Inventory inventory, Container container, ContainerData dataAccess) {
-        super(HauntFurnace.POWERED_ENDER_FURNACE_MENU.get(), syncId);
+        super(ModMenus.POWERED_ENDER_FURNACE_MENU.get(), syncId);
         this.recipeBookType = RecipeBookType.FURNACE;
         checkContainerSize(container, CRAFT_SLOTS);
         checkContainerDataCount(dataAccess, PoweredEnderFurnaceBlockEntity.PROPERTY_COUNT);
@@ -141,7 +142,7 @@ public class PoweredEnderFurnaceMenu extends RecipeBookMenu<SingleRecipeInput, A
     }
 
     protected boolean isHauntable(ItemStack itemStack) {
-        return this.level.getRecipeManager().getRecipeFor(HauntFurnace.CORRUPTING_RECIPE.get(), new SingleRecipeInput(itemStack), this.level).isPresent();
+        return this.level.getRecipeManager().getRecipeFor(ModRecipes.CORRUPTING_RECIPE.get(), new SingleRecipeInput(itemStack), this.level).isPresent();
     }
 
     public int getCookProgress() {
