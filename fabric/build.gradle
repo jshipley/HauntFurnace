@@ -53,8 +53,8 @@ dependencies {
     modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
 
     // For testing
-    modRuntimeOnly "curse.maven:jade-324717:6389824"
-    modRuntimeOnly "curse.maven:energized-power-782147:6447322"
+    modRuntimeOnly "curse.maven:jade-324717:6494189"
+    modRuntimeOnly "curse.maven:energized-power-782147:6341086"
 }
 
 loom {

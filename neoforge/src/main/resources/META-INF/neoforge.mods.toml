@@ -28,6 +28,14 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.hauntfurnace]]
+modId = "architectury"
+mandatory = true
+type = "required"
+versionRange = "[13.0,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.hauntfurnace]]
 modId = "yet_another_config_lib_v3"
 mandatory = true
 type = "required"

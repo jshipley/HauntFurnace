@@ -9,6 +9,7 @@ import com.jship.hauntfurnace.HauntFurnace;
 import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
 import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
 import com.jship.hauntfurnace.block.PoweredEnderFurnaceBlock;
+import com.jship.hauntfurnace.config.HauntFurnaceConfig;
 import com.jship.hauntfurnace.energy.EnergyStorageWrapper;
 import com.jship.hauntfurnace.menu.PoweredEnderFurnaceMenu;
 import com.jship.hauntfurnace.recipe.CorruptingRecipe;
@@ -65,10 +66,10 @@ public class PoweredEnderFurnaceBlockEntity extends BlockEntity
     public static final int COOK_TIME_TOTAL_PROPERTY_INDEX = 2;
     public static final int PROPERTY_COUNT = 3;
     public static final int DEFAULT_COOK_TIME = 100;
-    private static final int ENERGY_USAGE_PER_TICK = 10;
+    private static final int ENERGY_USAGE_PER_TICK = HauntFurnaceConfig.enderEnergyUsage();
     protected NonNullList<ItemStack> items;
-    public static final int ENERGY_CAPACITY = 1024;
-    public static final int ENERGY_MAX_INSERT = 32;
+    public static final int ENERGY_CAPACITY = HauntFurnaceConfig.enderEnergyCapacity();
+    public static final int ENERGY_MAX_INSERT = HauntFurnaceConfig.enderEnergyMaxInsert();
     public static final int ENERGY_MAX_EXTRACT = ENERGY_USAGE_PER_TICK;
 
     // This is a custom interface that should be implemented in the Forge/Fabric

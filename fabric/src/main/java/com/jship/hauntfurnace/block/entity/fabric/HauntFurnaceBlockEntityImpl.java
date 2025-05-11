@@ -17,7 +17,7 @@ public class HauntFurnaceBlockEntityImpl {
         if (HauntFurnaceConfig.hauntCustomFuels())
             burnDuration = FuelMap.HAUNT_FUEL_MAP.getOrDefault(stack.getItem(), 0);
         if (burnDuration <= 0 && HauntFurnaceConfig.hauntVanillaFuels())
-            burnDuration = FuelMap.HAUNT_FUEL_MAP.getOrDefault(stack.getItem(), 0);
+            burnDuration = AbstractFurnaceBlockEntity.getFuel().getOrDefault(stack.getItem(), 0);
         return burnDuration;
     }
 }

@@ -1,5 +1,9 @@
 package com.jship.hauntfurnace.config;
 
+import com.google.gson.GsonBuilder;
+import com.jship.hauntfurnace.HauntFurnace;
+
+import dev.architectury.platform.Platform;
 import dev.isxander.yacl3.api.ConfigCategory;
 import dev.isxander.yacl3.api.Option;
 import dev.isxander.yacl3.api.OptionDescription;
@@ -7,72 +11,79 @@ import dev.isxander.yacl3.api.OptionGroup;
 import dev.isxander.yacl3.api.YetAnotherConfigLib;
 import dev.isxander.yacl3.api.controller.IntegerFieldControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
-import lombok.AccessLevel;
+import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
+import dev.isxander.yacl3.config.v2.api.SerialEntry;
+import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import lombok.experimental.FieldDefaults;
-import lombok.experimental.UtilityClass;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
-@FieldDefaults(level=AccessLevel.PRIVATE)
 @Accessors(fluent=true)
-@UtilityClass
 public class HauntFurnaceConfig {
+    public static ConfigClassHandler<HauntFurnaceConfig> HANDLER = ConfigClassHandler.createBuilder(HauntFurnaceConfig.class)
+        .id(HauntFurnace.id("haunt_furnace_config"))
+        .serializer(config -> GsonConfigSerializerBuilder.create(config)
+            .setPath(Platform.getConfigFolder().resolve("haunt_furnace.json5"))
+            .appendGsonBuilder(GsonBuilder::setPrettyPrinting)
+            .setJson5(true)
+            .build())
+        .build();
 
     // Haunt furnace
-    final boolean defaultHauntQuiet = false;
-    @Getter @Setter
-    boolean hauntQuiet = defaultHauntQuiet;
+    public static final boolean defaultHauntQuiet = false;
+    @Getter @Setter @SerialEntry
+    public static boolean hauntQuiet = defaultHauntQuiet;
 
-    final boolean defaultHauntVanillaFuels = true;
-    @Getter @Setter
-    boolean hauntVanillaFuels = defaultHauntVanillaFuels;
+    public static final boolean defaultHauntVanillaFuels = true;
+    @Getter @Setter @SerialEntry
+    public static boolean hauntVanillaFuels = defaultHauntVanillaFuels;
 
-    final boolean defaultHauntCustomFuels = true;
-    @Getter @Setter
-    boolean hauntCustomFuels = defaultHauntCustomFuels;
+    public static final boolean defaultHauntCustomFuels = true;
+    @Getter @Setter @SerialEntry
+    public static boolean hauntCustomFuels = defaultHauntCustomFuels;
 
-    final int defaultHauntEnergyUsage = 10;
-    @Getter @Setter
-    int hauntEnergyUsage = defaultHauntEnergyUsage;
+    public static final int defaultHauntEnergyUsage = 10;
+    @Getter @Setter @SerialEntry
+    public static int hauntEnergyUsage = defaultHauntEnergyUsage;
 
-    final int defaultHauntEnergyCapacity = 1024;
-    @Getter @Setter
-    int hauntEnergyCapacity = defaultHauntEnergyCapacity;
+    public static final int defaultHauntEnergyCapacity = 1024;
+    @Getter @Setter @SerialEntry
+    public static int hauntEnergyCapacity = defaultHauntEnergyCapacity;
 
-    final int defaultHauntEnergyMaxInsert = 32;
-    @Getter @Setter
-    int hauntEnergyMaxInsert = defaultHauntEnergyMaxInsert;
+    public static final int defaultHauntEnergyMaxInsert = 32;
+    @Getter @Setter @SerialEntry
+    public static int hauntEnergyMaxInsert = defaultHauntEnergyMaxInsert;
 
     // Ender furnace
-    final boolean defaultEnderQuiet = false;
-    @Getter @Setter
-    boolean enderQuiet = defaultEnderQuiet;
+    public static final boolean defaultEnderQuiet = false;
+    @Getter @Setter @SerialEntry
+    public static boolean enderQuiet = defaultEnderQuiet;
 
-    final boolean defaultEnderVanillaFuels = true;
-    @Getter @Setter
-    boolean enderVanillaFuels = defaultEnderVanillaFuels;
+    public static final boolean defaultEnderVanillaFuels = true;
+    @Getter @Setter @SerialEntry
+    public static boolean enderVanillaFuels = defaultEnderVanillaFuels;
 
-    final boolean defaultEnderCustomFuels = true;
-    @Getter @Setter
-    boolean enderCustomFuels = defaultEnderCustomFuels;
+    public static final boolean defaultEnderCustomFuels = true;
+    @Getter @Setter @SerialEntry
+    public static boolean enderCustomFuels = defaultEnderCustomFuels;
 
-    final int defaultEnderEnergyUsage = 10;
-    @Getter @Setter
-    int enderEnergyUsage = defaultEnderEnergyUsage;
+    public static final int defaultEnderEnergyUsage = 10;
+    @Getter @Setter @SerialEntry
+    public static int enderEnergyUsage = defaultEnderEnergyUsage;
 
-    final int defaultEnderEnergyCapacity = 1024;
-    @Getter @Setter
-    int enderEnergyCapacity = defaultEnderEnergyCapacity;
+    public static final int defaultEnderEnergyCapacity = 1024;
+    @Getter @Setter @SerialEntry
+    public static int enderEnergyCapacity = defaultEnderEnergyCapacity;
 
-    final int defaultEnderEnergyMaxInsert = 32;
-    @Getter @Setter
-    int enderEnergyMaxInsert = defaultEnderEnergyMaxInsert;
+    public static final int defaultEnderEnergyMaxInsert = 32;
+    @Getter @Setter @SerialEntry
+    public static int enderEnergyMaxInsert = defaultEnderEnergyMaxInsert;
 
-    public Screen createConfig(Screen parentScreen) {
+    public static Screen createConfig(Screen parentScreen) {
         return YetAnotherConfigLib.createBuilder()
+                .save(() -> HANDLER.save())
                 .title(Component.literal("Haunt Furnace"))
                 .category(ConfigCategory.createBuilder()
                         .name(Component.translatable("Haunt Furnace"))

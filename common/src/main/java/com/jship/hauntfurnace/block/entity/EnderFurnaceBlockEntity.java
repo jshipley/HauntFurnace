@@ -2,7 +2,7 @@ package com.jship.hauntfurnace.block.entity;
 
 import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
 import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
-import com.jship.hauntfurnace.menu.HauntFurnaceMenu;
+import com.jship.hauntfurnace.menu.EnderFurnaceMenu;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.core.BlockPos;
@@ -26,7 +26,7 @@ public class EnderFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
 
     @Override
     protected AbstractContainerMenu createMenu(int id, Inventory inventory) {
-        return new HauntFurnaceMenu(id, inventory, this, this.dataAccess);
+        return new EnderFurnaceMenu(id, inventory, this, this.dataAccess);
     }
 
     @ExpectPlatform

@@ -69,7 +69,7 @@ public class PoweredEnderFurnaceBlock extends AbstractFurnaceBlock {
                 level.playLocalSound(x, y, z, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
             if (randomSource.nextDouble() < 0.02 && !HauntFurnaceConfig.enderQuiet()) {
-                level.playLocalSound(x, y, z, SoundEvents.PHANTOM_AMBIENT, SoundSource.BLOCKS, 0.2F, 0.2F, false);
+                level.playLocalSound(x, y, z, SoundEvents.ENDER_DRAGON_AMBIENT, SoundSource.BLOCKS, 0.05F, 0.05F, false);
             }
 
             Direction direction = (Direction) blockState.getValue(FACING);

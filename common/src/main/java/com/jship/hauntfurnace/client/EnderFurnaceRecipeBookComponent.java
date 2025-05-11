@@ -2,10 +2,11 @@ package com.jship.hauntfurnace.client;
 
 import java.util.Set;
 
+import com.jship.hauntfurnace.block.entity.EnderFurnaceBlockEntity;
+
 import net.minecraft.client.gui.screens.recipebook.AbstractFurnaceRecipeBookComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 
 public class EnderFurnaceRecipeBookComponent extends AbstractFurnaceRecipeBookComponent {
     private static final Component TOGGLE_CORRUPTIBLE_RECIPES_TEXT = Component.translatable("gui.recipebook.toggleRecipes.corruptible");
@@ -19,6 +20,6 @@ public class EnderFurnaceRecipeBookComponent extends AbstractFurnaceRecipeBookCo
 
     @Override
     protected Set<Item> getFuelItems() {
-        return AbstractFurnaceBlockEntity.getFuel().keySet();
+        return EnderFurnaceBlockEntity.getFuel().keySet();
     }
 }

@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 public class EnderFurnaceBlockEntityImpl {
     public static boolean isFuel(ItemStack stack) {
         return (HauntFurnaceConfig.enderCustomFuels() && FuelMap.ENDER_FUEL_MAP.containsKey(stack.getItem())
-            || HauntFurnaceConfig.enderVanillaFuels() && AbstractFurnaceBlockEntity.isFuel(stack));
+            || (HauntFurnaceConfig.enderVanillaFuels() && AbstractFurnaceBlockEntity.isFuel(stack)));
     }
 
     public static int getCustomBurnDuration(ItemStack stack) {
@@ -17,7 +17,7 @@ public class EnderFurnaceBlockEntityImpl {
         if (HauntFurnaceConfig.enderCustomFuels())
             burnDuration = FuelMap.ENDER_FUEL_MAP.getOrDefault(stack.getItem(), 0);
         if (burnDuration <= 0 && HauntFurnaceConfig.enderVanillaFuels())
-            burnDuration = AbstractFurnaceBlockEntity.getFuel().getOrDefault(stack, 0);
+            burnDuration = AbstractFurnaceBlockEntity.getFuel().getOrDefault(stack.getItem(), 0);
         return burnDuration;
     }    
 }

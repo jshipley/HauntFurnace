@@ -1,5 +1,7 @@
 package com.jship.hauntfurnace.fabric;
 
+import java.util.function.Supplier;
+
 import com.jship.hauntfurnace.HauntFurnace;
 import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
 import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
@@ -15,6 +17,7 @@ import com.jship.hauntfurnace.network.fabric.Payloads;
 import com.jship.hauntfurnace.network.fabric.Payloads.EnderFurnaceFuelMapS2CPayload;
 import com.jship.hauntfurnace.network.fabric.Payloads.HauntFurnaceFuelMapS2CPayload;
 
+import lombok.extern.slf4j.Slf4j;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -28,6 +31,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import team.reborn.energy.api.EnergyStorage;
 
+@Slf4j
 public class HauntFurnaceFabric implements ModInitializer {
     private static EnergyStorageFactory<EnergyStorageWrapper> ENERGY_STORAGE_FACTORY;
 
@@ -81,16 +85,15 @@ public class HauntFurnaceFabric implements ModInitializer {
         PayloadTypeRegistry.playS2C().register(Payloads.EnderFurnaceFuelMapS2CPayload.ID,
                 Payloads.EnderFurnaceFuelMapS2CPayload.CODEC);
         ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(
-                HauntFurnace.id("fuel_map_loader"), (provider) -> new FuelDataLoader(provider));
-        ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, resourceManager, success) -> {
-            if (!success)
-                return;
-            var hauntPayload = new HauntFurnaceFuelMapS2CPayload(FuelMap.HAUNT_FUEL_MAP);
-            var enderPayload = new EnderFurnaceFuelMapS2CPayload(FuelMap.ENDER_FUEL_MAP);
-            server.getPlayerList().getPlayers().forEach(player -> {
-                ServerPlayNetworking.send(player, hauntPayload);
-                ServerPlayNetworking.send(player, enderPayload);
-            });
+                HauntFurnace.id("fuel_map_loader"),
+                (provider) -> new FuelDataLoader(provider, "haunt_furnace_fuels", () -> FuelMap.HAUNT_FUEL_MAP));
+        ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(
+                HauntFurnace.id("fuel_map_loader"),
+                (provider) -> new FuelDataLoader(provider, "ender_furnace_fuels", () -> FuelMap.ENDER_FUEL_MAP));
+        ServerLifecycleEvents.SYNC_DATA_PACK_CONTENTS.register((player, joined) -> {
+            log.debug("Sending fuel maps to player {}", player);
+            ServerPlayNetworking.send(player, new HauntFurnaceFuelMapS2CPayload(FuelMap.HAUNT_FUEL_MAP));
+            ServerPlayNetworking.send(player, new EnderFurnaceFuelMapS2CPayload(FuelMap.ENDER_FUEL_MAP));
         });
 
         HauntFurnace.ENERGY_STORAGE_FACTORY = () -> ENERGY_STORAGE_FACTORY;
