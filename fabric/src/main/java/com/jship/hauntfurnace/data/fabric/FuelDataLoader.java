@@ -5,28 +5,33 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 import com.google.gson.JsonParser;
 import com.jship.hauntfurnace.HauntFurnace;
+import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.JsonOps;
 
-import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import lombok.extern.slf4j.Slf4j;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
 @Slf4j
 public class FuelDataLoader implements SimpleSynchronousResourceReloadListener {
 
-    HolderLookup.Provider lookupProvider;
+    private static final ResourceLocation hauntFuelMapLocation = HauntFurnace
+            .id("data_maps/item/haunt_furnace_fuels.json");
+    private static final ResourceLocation enderFuelMapLocation = HauntFurnace
+            .id("data_maps/item/ender_furnace_fuels.json");
 
-    public FuelDataLoader(HolderLookup.Provider lookupProvider) {
-        this.lookupProvider = lookupProvider;
+    public FuelDataLoader() {
     }
 
     @Override
@@ -36,33 +41,61 @@ public class FuelDataLoader implements SimpleSynchronousResourceReloadListener {
 
     @Override
     public void onResourceManagerReload(ResourceManager resourceManager) {
-        reloadFuelMap(resourceManager, "haunt_furnace_fuels", FuelMap.HAUNT_FUEL_MAP);
-        reloadFuelMap(resourceManager, "ender_furnace_fuels", FuelMap.ENDER_FUEL_MAP);
+        reloadFuelMap(resourceManager, "haunt_furnace_fuels", hauntFuelMapLocation, FuelMap.HAUNT_FUEL_REFERENCE_MAP);
+        reloadFuelMap(resourceManager, "ender_furnace_fuels", enderFuelMapLocation, FuelMap.ENDER_FUEL_REFERENCE_MAP);
     }
 
-    private void reloadFuelMap(ResourceManager resourceManager, String mapName, Map<Item, Integer> map) {
-        map.clear();
-        resourceManager.getResourceStack(HauntFurnace.id(mapName).withPrefix("data_maps/item/").withSuffix(".json"))
-            .forEach((resource) -> {
-                try (BufferedReader reader = resource.openAsReader()) {
-                    FuelMap fuel_data = FuelMap.CODEC.parse(JsonOps.INSTANCE, JsonParser.parseReader(reader)).getOrThrow();
-                    if (fuel_data.replace()) {
-                        log.warn("{} being replaced by datapack {}", mapName, resource.sourcePackId());
-                        FuelMap.HAUNT_FUEL_MAP.clear();
+    public void reloadFuelMap(ResourceManager resourceManager, String fuelMapName, ResourceLocation fuelMapLocation,
+            Map<Either<TagKey<Item>, ResourceKey<Item>>, Integer> fuelMap) {
+        fuelMap.clear();
+        resourceManager.getResourceStack(fuelMapLocation)
+                .stream()
+                .map((resource) -> {
+                    log.debug("Loading fuel map {}", fuelMapLocation);
+                    try (BufferedReader reader = resource.openAsReader()) {
+                        return FuelMap.CODEC.parse(JsonOps.INSTANCE, JsonParser.parseReader(reader)).getOrThrow(
+                                (message) -> new IOException(
+                                        "Error loading fuel map " + fuelMapLocation + ": " + message));
+                    } catch (IOException | NoSuchElementException e) {
+                        log.error(e.toString());
                     }
-                    fuel_data.fuelEntries().entrySet().forEach(entry -> {
-                        log.debug("Adding fuel: {}", entry.getKey());
-                        val itemRegistry = lookupProvider.lookup(Registries.ITEM).orElseThrow(() -> new IllegalStateException("Unable to read item registry"));
-                        entry.getKey().map(
-                                tag -> itemRegistry.get(tag).orElseThrow(() -> new NoSuchElementException("Unknown tag: " + tag.location())),
-                                key -> List.of(itemRegistry.get(key).orElseThrow(() -> new NoSuchElementException("Unknown item: " + key.location())))
-                            ).forEach(holder -> {
-                                map.put(holder.value(), entry.getValue().burnTime());
-                            });
+                    return null;
+                })
+                .filter(Objects::nonNull)
+                .forEach(map -> {
+                    if (map.replace()) {
+                        log.warn("{} being replaced by {}", fuelMapName, fuelMapLocation);
+                        fuelMap.clear();
+                    }
+                    map.fuelEntries().entrySet().forEach(entry -> {
+                        fuelMap.put(entry.getKey(), entry.getValue().burnTime());
                     });
-                } catch (IOException | IllegalStateException | NoSuchElementException e) {
-                    log.error("Error occurred while loading {} from datapack {}", mapName, resource.sourcePackId(), e);
-                }
-            });                        
+                });
+    }
+
+    public static void resolveFuelMapEntries(RegistryAccess registryAccess, String mapName,
+            Map<Either<TagKey<Item>, ResourceKey<Item>>, Integer> fuelReferenceMap, Map<Item, Integer> fuelMap) {
+        log.debug("Resolving fuel map: {}", mapName);
+        fuelMap.clear();
+        val itemRegistry = registryAccess.lookupOrThrow(Registries.ITEM);
+        for (var entry : fuelReferenceMap.entrySet()) {
+            log.debug("Adding fuel entry: {}", entry.getKey());
+            entry.getKey().map(
+                    tag -> {
+                        val items = itemRegistry.get(tag).orElseThrow(
+                                () -> new NoSuchElementException("Unknown tag: " + tag.location()));
+                        if (items.size() == 0) {
+                            throw new IllegalStateException("Empty tag: " + tag.location());
+                        }
+                        return items;
+                    },
+                    key -> List.of(itemRegistry.get(key).orElseThrow(
+                            () -> new NoSuchElementException("Unknown item: " + key.location()))))
+                    .forEach(holder -> {
+                        log.debug("Adding actual fuel: {} ({})", holder.value(),
+                                entry.getValue());
+                        fuelMap.put(holder.value(), entry.getValue());
+                    });
+        }
     }
 }

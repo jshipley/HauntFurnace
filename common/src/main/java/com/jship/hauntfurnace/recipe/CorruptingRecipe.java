@@ -1,6 +1,5 @@
 package com.jship.hauntfurnace.recipe;
 
-import com.jship.hauntfurnace.HauntFurnace;
 import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
 import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
 
@@ -17,7 +16,8 @@ public class CorruptingRecipe extends AbstractCookingRecipe {
 
     private final CookingBookCategory category;
 
-    public CorruptingRecipe(String group, CookingBookCategory category, Ingredient ingredient, ItemStack result, float experience, int cookTime) {
+    public CorruptingRecipe(String group, CookingBookCategory category, Ingredient ingredient, ItemStack result,
+            float experience, int cookTime) {
         super(group, category, ingredient, result, experience, cookTime);
         this.category = category;
     }

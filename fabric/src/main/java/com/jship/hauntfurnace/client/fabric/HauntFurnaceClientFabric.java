@@ -9,10 +9,12 @@ import com.jship.hauntfurnace.data.fabric.FuelMap;
 import com.jship.hauntfurnace.network.fabric.Payloads.EnderFurnaceFuelMapS2CPayload;
 import com.jship.hauntfurnace.network.fabric.Payloads.HauntFurnaceFuelMapS2CPayload;
 
+import lombok.extern.slf4j.Slf4j;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gui.screens.MenuScreens;
 
+@Slf4j
 public class HauntFurnaceClientFabric implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
@@ -25,12 +27,20 @@ public class HauntFurnaceClientFabric implements ClientModInitializer {
             context.client().execute(() -> {
                 FuelMap.HAUNT_FUEL_MAP.clear();
                 FuelMap.HAUNT_FUEL_MAP.putAll(payload.fuelMap());
+                log.debug("Client: haunt fuel map received");
+                payload.fuelMap().forEach((key, value) -> {
+                    log.debug("{}: {}", key, value);
+                });
             });
         });
         ClientPlayNetworking.registerGlobalReceiver(EnderFurnaceFuelMapS2CPayload.ID, (payload, context) -> {
             context.client().execute(() -> {
                 FuelMap.ENDER_FUEL_MAP.clear();
                 FuelMap.ENDER_FUEL_MAP.putAll(payload.fuelMap());
+                log.debug("Client: ender fuel map received");
+                payload.fuelMap().forEach((key, value) -> {
+                    log.debug("{}: {}", key, value);
+                });
             });
         });
     }    

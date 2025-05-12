@@ -1,3 +1,2 @@
-## Haunt Furnace v0.5.2
-
-* Fixed broken display category in REI plugin
+* Furnaces are now configurable
+* Custom configurable fuel maps added. Furnaces can use vanilla furnace fuels, custom furnace fuels, or both

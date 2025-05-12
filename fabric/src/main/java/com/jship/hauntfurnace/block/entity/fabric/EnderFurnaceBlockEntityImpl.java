@@ -5,19 +5,20 @@ import com.jship.hauntfurnace.data.fabric.FuelMap;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
+import net.minecraft.world.level.block.entity.FuelValues;
 
 public class EnderFurnaceBlockEntityImpl {
-    // public static boolean isFuel(ItemStack stack) {
-    //     return (HauntFurnaceConfig.enderCustomFuels() && FuelMap.ENDER_FUEL_MAP.containsKey(stack.getItem())
-    //         || HauntFurnaceConfig.enderVanillaFuels() && AbstractFurnaceBlockEntity.isFuel(stack));
-    // }
+    public static boolean isFuel(FuelValues fuelValues, ItemStack stack) {
+        return (HauntFurnaceConfig.enderCustomFuels() && FuelMap.ENDER_FUEL_MAP.containsKey(stack.getItem()))
+            || (HauntFurnaceConfig.enderVanillaFuels() && fuelValues.isFuel(stack));
+    }
 
-    public static int getCustomBurnDuration(ItemStack stack) {
+    public static int getCustomBurnDuration(FuelValues fuelValues, ItemStack stack) {
         int burnDuration = 0;
         if (HauntFurnaceConfig.enderCustomFuels())
             burnDuration = FuelMap.ENDER_FUEL_MAP.getOrDefault(stack.getItem(), 0);
-        // if (burnDuration <= 0 && HauntFurnaceConfig.enderVanillaFuels())
-        //     burnDuration = AbstractFurnaceBlockEntity.getFuel().getOrDefault(stack, 0);
+        if (burnDuration <= 0 && HauntFurnaceConfig.enderVanillaFuels())
+            burnDuration = fuelValues.burnDuration(stack);
         return burnDuration;
-    }    
+    }
 }

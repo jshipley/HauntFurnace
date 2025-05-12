@@ -31,16 +31,6 @@ public class HauntFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
     }
 
     @ExpectPlatform
-    public static boolean isFuel(ItemStack stack) {
-        throw new AssertionError();
-    }
-
-    @ExpectPlatform
-    public static int getCustomBurnDuration(ItemStack stack) {
-        throw new AssertionError();
-    }
-
-    @ExpectPlatform
     public static int getCustomBurnDuration(FuelValues fuelValues, ItemStack stack) {
         throw new AssertionError();
     }
@@ -49,4 +39,20 @@ public class HauntFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
     protected int getBurnDuration(FuelValues fuelValues, ItemStack stack) {
         return getCustomBurnDuration(fuelValues, stack);
     }
+
+    @ExpectPlatform
+    public static boolean isFuel(FuelValues fuelValues, ItemStack stack) {
+        throw new AssertionError();
+    }
+
+    @Override
+    public boolean canPlaceItem(int slot, ItemStack stack) {       
+        if (slot == HauntFurnaceBlockEntity.SLOT_RESULT) {
+           return false;
+        } else if (slot != HauntFurnaceBlockEntity.SLOT_FUEL) {
+           return true;
+        } else {
+           return isFuel(this.level.fuelValues(), stack);
+        }
+     }
 }

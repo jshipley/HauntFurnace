@@ -107,7 +107,7 @@ public class HauntFurnace {
                 boolean registerItem) {
             val blockSupplier = BLOCKS.register(id, block);
             if (registerItem) {
-                ITEMS.register(id, () -> new BlockItem(blockSupplier.get(), new Item.Properties()));
+                ITEMS.register(id, () -> new BlockItem(blockSupplier.get(), new Item.Properties().setId(itemKey(id))));
             }
             return blockSupplier;
         }

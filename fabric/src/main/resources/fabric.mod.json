@@ -19,7 +19,7 @@
       "com.jship.hauntfurnace.datagen.fabric.HauntFurnaceDataGenFabric"
     ],
     "rei_client": [
-      "com.jship.hauntfurnace.compat.rei.client.fabric.HauntFurnaceREIClient"
+      "com.jship.hauntfurnace.client.compat.rei.fabric.HauntFurnaceREI"
     ],
     "rei_common": ["com.jship.hauntfurnace.compat.rei.fabric.HauntFurnaceREI"],
     "modmenu": ["com.jship.hauntfurnace.config.fabric.ModMenuIntegration"]

@@ -2,7 +2,7 @@ package com.jship.hauntfurnace.block.entity;
 
 import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
 import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
-import com.jship.hauntfurnace.menu.HauntFurnaceMenu;
+import com.jship.hauntfurnace.menu.EnderFurnaceMenu;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.core.BlockPos;
@@ -27,12 +27,7 @@ public class EnderFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
 
     @Override
     protected AbstractContainerMenu createMenu(int id, Inventory inventory) {
-        return new HauntFurnaceMenu(id, inventory, this, this.dataAccess);
-    }
-
-    @ExpectPlatform
-    public static boolean isFuel(ItemStack stack) {
-        throw new AssertionError();
+        return new EnderFurnaceMenu(id, inventory, this, this.dataAccess);
     }
 
     @ExpectPlatform
@@ -44,4 +39,20 @@ public class EnderFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
     protected int getBurnDuration(FuelValues fuelValues, ItemStack stack) {
         return getCustomBurnDuration(fuelValues, stack);
     }
+
+    @ExpectPlatform
+    public static boolean isFuel(FuelValues fuelValues, ItemStack stack) {
+        throw new AssertionError();
+    }
+
+    @Override
+    public boolean canPlaceItem(int slot, ItemStack stack) {       
+        if (slot == HauntFurnaceBlockEntity.SLOT_RESULT) {
+           return false;
+        } else if (slot != HauntFurnaceBlockEntity.SLOT_FUEL) {
+           return true;
+        } else {
+           return isFuel(this.level.fuelValues(), stack);
+        }
+     }
 }

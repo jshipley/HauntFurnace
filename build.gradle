@@ -68,7 +68,7 @@ subprojects {
         }
         maven {
             name "TerraformersMC"
-            url "https://maven.terraformersmc.com/releases"
+            url "https://maven.terraformersmc.com"
         }
     }
 
