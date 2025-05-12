@@ -1,7 +1,5 @@
 package com.jship.hauntfurnace.fabric;
 
-import java.util.function.Supplier;
-
 import com.jship.hauntfurnace.HauntFurnace;
 import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
 import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
@@ -84,14 +82,18 @@ public class HauntFurnaceFabric implements ModInitializer {
                 Payloads.HauntFurnaceFuelMapS2CPayload.CODEC);
         PayloadTypeRegistry.playS2C().register(Payloads.EnderFurnaceFuelMapS2CPayload.ID,
                 Payloads.EnderFurnaceFuelMapS2CPayload.CODEC);
-        ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(
-                HauntFurnace.id("fuel_map_loader"),
-                (provider) -> new FuelDataLoader(provider, "haunt_furnace_fuels", () -> FuelMap.HAUNT_FUEL_MAP));
-        ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(
-                HauntFurnace.id("fuel_map_loader"),
-                (provider) -> new FuelDataLoader(provider, "ender_furnace_fuels", () -> FuelMap.ENDER_FUEL_MAP));
+        ResourceManagerHelper.get(PackType.SERVER_DATA).registerReloadListener(new FuelDataLoader());
         ServerLifecycleEvents.SYNC_DATA_PACK_CONTENTS.register((player, joined) -> {
             log.debug("Sending fuel maps to player {}", player);
+            if (FuelMap.HAUNT_FUEL_MAP.isEmpty() || !joined) {
+                // this should happen when data is sent to player because resources were
+                // reloaded. This may not be the best place to resolve the registry entries,
+                // but it's the best one I've been able to find so far.
+                FuelDataLoader.resolveFuelMapEntries(player.level().registryAccess(), "haunt_furnace_fuels",
+                        FuelMap.HAUNT_FUEL_REFERENCE_MAP, FuelMap.HAUNT_FUEL_MAP);
+                FuelDataLoader.resolveFuelMapEntries(player.level().registryAccess(), "ender_furnace_fuels",
+                        FuelMap.ENDER_FUEL_REFERENCE_MAP, FuelMap.ENDER_FUEL_MAP);
+            }
             ServerPlayNetworking.send(player, new HauntFurnaceFuelMapS2CPayload(FuelMap.HAUNT_FUEL_MAP));
             ServerPlayNetworking.send(player, new EnderFurnaceFuelMapS2CPayload(FuelMap.ENDER_FUEL_MAP));
         });

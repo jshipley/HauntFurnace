@@ -1,12 +1,13 @@
-package com.jship.hauntfurnace;
+package com.jship.hauntfurnace.neoforge;
 
+import com.jship.hauntfurnace.HauntFurnace;
 import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
 import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
 import com.jship.hauntfurnace.block.entity.PoweredEnderFurnaceBlockEntity;
 import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
 import com.jship.hauntfurnace.config.HauntFurnaceConfig;
 import com.jship.hauntfurnace.data.neoforge.FuelData;
-import com.jship.hauntfurnace.energy.EnergyStorageFactoryNeoforge;
+import com.jship.hauntfurnace.energy.neoforge.EnergyStorageFactoryNeoforge;
 
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;

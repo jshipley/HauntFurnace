@@ -1,7 +1,10 @@
 package com.jship.hauntfurnace.client.compat.rei.fabric;
 
+import java.text.DecimalFormat;
+import java.util.Collections;
+import java.util.List;
+
 import com.google.common.collect.Lists;
-import com.jship.hauntfurnace.HauntFurnace;
 import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
 
 import me.shedaniel.math.Dimension;
@@ -15,12 +18,7 @@ import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-
 import net.minecraft.network.chat.Component;
-
-import java.text.DecimalFormat;
-import java.util.Collections;
-import java.util.List;
 
 public class CorruptingRecipeCategory implements DisplayCategory<CorruptingRecipeDisplay> {
 
@@ -42,10 +40,13 @@ public class CorruptingRecipeCategory implements DisplayCategory<CorruptingRecip
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 9)));
-        widgets.add(new BurningAltFireWidget(new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)), 2)
+        widgets.add(new BurningAltFireWidget(
+                new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)), 2)
                 .animationDurationMS(10000));
         widgets.add(Widgets.createLabel(new Point(bounds.x + bounds.width - 5, bounds.y + 5),
-                Component.translatable("category.rei.cooking.time&xp", df.format(display.getXp()), df.format(cookingTime / 20d))).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
+                Component.translatable("category.rei.cooking.time&xp", df.format(display.getXp()),
+                        df.format(cookingTime / 20d)))
+                .noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
         widgets.add(Widgets.createArrow(new Point(startPoint.x + 24, startPoint.y + 8))
                 .animationDurationTicks(cookingTime));
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 61, startPoint.y + 9))
@@ -60,13 +61,15 @@ public class CorruptingRecipeCategory implements DisplayCategory<CorruptingRecip
 
     @Override
     public DisplayRenderer getDisplayRenderer(CorruptingRecipeDisplay display) {
-        return SimpleDisplayRenderer.from(Collections.singletonList(display.getInputEntries().get(0)), display.getOutputEntries());
+        return SimpleDisplayRenderer.from(Collections.singletonList(display.getInputEntries().get(0)),
+                display.getOutputEntries());
     }
 
     @Override
     public int getDisplayHeight() {
         return 49;
     }
+
     @Override
     public CategoryIdentifier<? extends CorruptingRecipeDisplay> getCategoryIdentifier() {
         return HauntFurnaceREI.CORRUPTING;

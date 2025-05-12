@@ -1,4 +1,4 @@
-package com.jship.hauntfurnace.client.compat.fabric.rei;
+package com.jship.hauntfurnace.client.compat.rei.fabric;
 
 import java.text.DecimalFormat;
 import java.util.Collections;

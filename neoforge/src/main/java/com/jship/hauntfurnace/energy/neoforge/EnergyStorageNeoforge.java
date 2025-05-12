@@ -1,4 +1,6 @@
-package com.jship.hauntfurnace.energy;
+package com.jship.hauntfurnace.energy.neoforge;
+
+import com.jship.hauntfurnace.energy.EnergyStorageWrapper;
 
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.energy.EnergyStorage;

@@ -1,7 +1,13 @@
 // Source code is decompiled from a .class file using FernFlower decompiler.
 package com.jship.hauntfurnace.block;
 
+import org.jetbrains.annotations.Nullable;
+
+import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
+import com.jship.hauntfurnace.block.entity.PoweredEnderFurnaceBlockEntity;
+import com.jship.hauntfurnace.config.HauntFurnaceConfig;
 import com.mojang.serialization.MapCodec;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
@@ -19,15 +25,9 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
-import org.jetbrains.annotations.Nullable;
-
-import com.jship.hauntfurnace.HauntFurnace;
-import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
-import com.jship.hauntfurnace.block.entity.PoweredEnderFurnaceBlockEntity;
-import com.jship.hauntfurnace.config.HauntFurnaceConfig;
-
 public class PoweredEnderFurnaceBlock extends AbstractFurnaceBlock {
-    public static final MapCodec<PoweredEnderFurnaceBlock> CODEC = PoweredEnderFurnaceBlock.simpleCodec(PoweredEnderFurnaceBlock::new);
+    public static final MapCodec<PoweredEnderFurnaceBlock> CODEC = PoweredEnderFurnaceBlock
+            .simpleCodec(PoweredEnderFurnaceBlock::new);
 
     public PoweredEnderFurnaceBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -69,7 +69,8 @@ public class PoweredEnderFurnaceBlock extends AbstractFurnaceBlock {
                 level.playLocalSound(x, y, z, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
             if (randomSource.nextDouble() < 0.02 && !HauntFurnaceConfig.enderQuiet()) {
-                level.playLocalSound(x, y, z, SoundEvents.ENDER_DRAGON_AMBIENT, SoundSource.BLOCKS, 0.05F, 0.05F, false);
+                level.playLocalSound(x, y, z, SoundEvents.ENDER_DRAGON_AMBIENT, SoundSource.BLOCKS, 0.05F, 0.05F,
+                        false);
             }
 
             Direction direction = (Direction) blockState.getValue(FACING);

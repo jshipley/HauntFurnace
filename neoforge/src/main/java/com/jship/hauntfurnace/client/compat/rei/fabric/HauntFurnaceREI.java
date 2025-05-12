@@ -1,4 +1,4 @@
-package com.jship.hauntfurnace.client.compat.fabric.rei;
+package com.jship.hauntfurnace.client.compat.rei.fabric;
 
 import com.jship.hauntfurnace.HauntFurnace;
 import com.jship.hauntfurnace.HauntFurnace.ModBlocks;

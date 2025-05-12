@@ -16,7 +16,7 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = HauntFurnace.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class HauntFurnaceClientNeoforge {
-    
+
     @SubscribeEvent
     public static void registerMenuScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenus.HAUNT_FURNACE.get(), HauntFurnaceScreen::new);

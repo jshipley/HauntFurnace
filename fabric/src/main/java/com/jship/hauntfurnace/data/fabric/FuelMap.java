@@ -36,8 +36,10 @@ import net.minecraft.world.item.Item;
  */
 public record FuelMap(boolean replace, Map<Either<TagKey<Item>, ResourceKey<Item>>, FuelEntry> fuelEntries) {
 
-    public static final Map<Item, Integer> HAUNT_FUEL_MAP = new HashMap<Item, Integer>();
-    public static final Map<Item, Integer> ENDER_FUEL_MAP = new HashMap<Item, Integer>();
+    public static final Map<Either<TagKey<Item>, ResourceKey<Item>>, Integer> HAUNT_FUEL_REFERENCE_MAP = new HashMap<>();
+    public static final Map<Item, Integer> HAUNT_FUEL_MAP = new HashMap<>();
+    public static final Map<Either<TagKey<Item>, ResourceKey<Item>>, Integer> ENDER_FUEL_REFERENCE_MAP = new HashMap<>();
+    public static final Map<Item, Integer> ENDER_FUEL_MAP = new HashMap<>();
 
     public record FuelEntry(int burnTime) {
         public static Codec<FuelEntry> CODEC = RecordCodecBuilder.create(instance -> instance.group(
