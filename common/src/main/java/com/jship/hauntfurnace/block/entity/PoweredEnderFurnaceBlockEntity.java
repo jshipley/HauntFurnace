@@ -1,6 +1,9 @@
 package com.jship.hauntfurnace.block.entity;
 
 import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
+import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
+import com.jship.hauntfurnace.config.HauntFurnaceConfig;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -39,9 +42,9 @@ public class PoweredEnderFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
     public static final int[] SLOTS_FOR_SIDES = new int[] { SLOT_INPUT };
     public static final int DATA_ENERGY_STORAGE = 4;
     public static final int NUM_DATA_VALUES = 5;
-    private static final int ENERGY_USAGE_PER_TICK = 10;
-    public static final int ENERGY_CAPACITY = 1024;
-    public static final int ENERGY_MAX_INSERT = 32;
+    private static final int ENERGY_USAGE_PER_TICK = HauntFurnaceConfig.enderEnergyUsage();
+    public static final int ENERGY_CAPACITY = HauntFurnaceConfig.enderEnergyCapacity();
+    public static final int ENERGY_MAX_INSERT = HauntFurnaceConfig.enderEnergyMaxInsert();
     public static final int ENERGY_MAX_EXTRACT = ENERGY_USAGE_PER_TICK;
 
     protected final ContainerData poweredDataAccess;
@@ -51,7 +54,7 @@ public class PoweredEnderFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
     public final EnergyStorageWrapper energyStorage;
 
     public PoweredEnderFurnaceBlockEntity(BlockPos pos, BlockState state) {
-        super(HauntFurnace.BlockEntities.POWERED_ENDER_FURNACE.get(), pos, state, HauntFurnace.Recipes.CORRUPTING.get());
+        super(ModBlockEntities.POWERED_ENDER_FURNACE.get(), pos, state, ModRecipes.CORRUPTING.get());
         this.items = NonNullList.withSize(NUM_SLOTS, ItemStack.EMPTY);
         this.energyStorage = HauntFurnace.ENERGY_STORAGE_FACTORY.get().createEnergyStorage(ENERGY_CAPACITY, ENERGY_MAX_INSERT, ENERGY_MAX_EXTRACT, this);
         this.poweredDataAccess = new ContainerData() {

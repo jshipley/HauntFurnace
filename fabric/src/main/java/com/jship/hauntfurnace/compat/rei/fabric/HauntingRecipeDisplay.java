@@ -28,32 +28,37 @@ public class HauntingRecipeDisplay extends BasicDisplay implements SimpleGridMen
     private double cookTime;
 
     public static DisplaySerializer<HauntingRecipeDisplay> SERIALIZER = DisplaySerializer.of(
-                RecordCodecBuilder.mapCodec(instance -> instance.group(
-                        EntryIngredient.codec().listOf().fieldOf("inputs").forGetter(HauntingRecipeDisplay::getInputEntries),
-                        EntryIngredient.codec().listOf().fieldOf("outputs").forGetter(HauntingRecipeDisplay::getOutputEntries),
-                        ResourceLocation.CODEC.optionalFieldOf("location").forGetter(HauntingRecipeDisplay::getDisplayLocation),
-                        Codec.FLOAT.fieldOf("xp").forGetter(display -> display.xp),
-                        Codec.DOUBLE.fieldOf("cookTime").forGetter(display -> display.cookTime)
-                ).apply(instance, HauntingRecipeDisplay::new)),
-                StreamCodec.composite(
-                        EntryIngredient.streamCodec().apply(ByteBufCodecs.list()), HauntingRecipeDisplay::getInputEntries,
-                        EntryIngredient.streamCodec().apply(ByteBufCodecs.list()), HauntingRecipeDisplay::getOutputEntries,
-                        ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), HauntingRecipeDisplay::getDisplayLocation,
-                        ByteBufCodecs.FLOAT, display -> display.xp,
-                        ByteBufCodecs.DOUBLE, display -> display.cookTime,
-                        HauntingRecipeDisplay::new));
+            RecordCodecBuilder.mapCodec(instance -> instance.group(
+                    EntryIngredient.codec().listOf().fieldOf("inputs")
+                            .forGetter(HauntingRecipeDisplay::getInputEntries),
+                    EntryIngredient.codec().listOf().fieldOf("outputs")
+                            .forGetter(HauntingRecipeDisplay::getOutputEntries),
+                    ResourceLocation.CODEC.optionalFieldOf("location")
+                            .forGetter(HauntingRecipeDisplay::getDisplayLocation),
+                    Codec.FLOAT.fieldOf("xp").forGetter(display -> display.xp),
+                    Codec.DOUBLE.fieldOf("cookTime").forGetter(display -> display.cookTime))
+                    .apply(instance, HauntingRecipeDisplay::new)),
+            StreamCodec.composite(
+                    EntryIngredient.streamCodec().apply(ByteBufCodecs.list()), HauntingRecipeDisplay::getInputEntries,
+                    EntryIngredient.streamCodec().apply(ByteBufCodecs.list()), HauntingRecipeDisplay::getOutputEntries,
+                    ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), HauntingRecipeDisplay::getDisplayLocation,
+                    ByteBufCodecs.FLOAT, display -> display.xp,
+                    ByteBufCodecs.DOUBLE, display -> display.cookTime,
+                    HauntingRecipeDisplay::new));
 
     public HauntingRecipeDisplay(RecipeHolder<HauntingRecipe> recipe) {
         this(List.of(EntryIngredients.ofIngredient(recipe.value().input())),
-            List.of(EntryIngredients.of(recipe.value().result())),
-            Optional.of(recipe.id().location()), recipe.value().experience(), recipe.value().cookingTime());
+                List.of(EntryIngredients.of(recipe.value().result())),
+                Optional.of(recipe.id().location()), recipe.value().experience(), recipe.value().cookingTime());
     }
 
-    public HauntingRecipeDisplay(List<EntryIngredient> input, List<EntryIngredient> output, Optional<ResourceLocation> id, CompoundTag tag) {
+    public HauntingRecipeDisplay(List<EntryIngredient> input, List<EntryIngredient> output,
+            Optional<ResourceLocation> id, CompoundTag tag) {
         this(input, output, id, tag.getFloat("xp").orElseThrow(), tag.getDouble("cookTime").orElseThrow());
     }
 
-    public HauntingRecipeDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<ResourceLocation> id, float xp, double cookTime) {
+    public HauntingRecipeDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs,
+            Optional<ResourceLocation> id, float xp, double cookTime) {
         super(inputs, outputs);
         this.xp = xp;
         this.cookTime = cookTime;
@@ -63,7 +68,7 @@ public class HauntingRecipeDisplay extends BasicDisplay implements SimpleGridMen
     public int getWidth() {
         return 1;
     }
-    
+
     @Override
     public int getHeight() {
         return 1;

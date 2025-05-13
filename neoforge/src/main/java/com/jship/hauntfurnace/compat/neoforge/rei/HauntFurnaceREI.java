@@ -1,6 +1,7 @@
 package com.jship.hauntfurnace.compat.neoforge.rei;
 
 import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModRecipes;
 import com.jship.hauntfurnace.compat.neoforge.rei.client.CorruptingRecipeClientDisplay;
 import com.jship.hauntfurnace.compat.neoforge.rei.client.HauntingRecipeClientDisplay;
 import com.jship.hauntfurnace.recipe.CorruptingRecipe;
@@ -16,17 +17,19 @@ import net.minecraft.resources.ResourceLocation;
 @REIPluginCommon
 public class HauntFurnaceREI implements REICommonPlugin {
     private static final ResourceLocation ID = HauntFurnace.id("rei_plugin");
-    public static final CategoryIdentifier<HauntingRecipeDisplay> HAUNTING = CategoryIdentifier.of(HauntFurnace.MOD_ID, "rei_haunting_category");
-    public static final CategoryIdentifier<CorruptingRecipeDisplay> CORRUPTING = CategoryIdentifier.of(HauntFurnace.MOD_ID, "rei_corrupting_category");
-    
+    public static final CategoryIdentifier<HauntingRecipeDisplay> HAUNTING = CategoryIdentifier.of(HauntFurnace.MOD_ID,
+            "rei_haunting_category");
+    public static final CategoryIdentifier<CorruptingRecipeDisplay> CORRUPTING = CategoryIdentifier
+            .of(HauntFurnace.MOD_ID, "rei_corrupting_category");
+
     @Override
     public void registerDisplays(ServerDisplayRegistry registry) {
         registry.beginRecipeFiller(HauntingRecipe.class)
-            .filterType(HauntFurnace.Recipes.HAUNTING.get())
-            .fill(HauntingRecipeDisplay::new);
+                .filterType(ModRecipes.HAUNTING.get())
+                .fill(HauntingRecipeDisplay::new);
         registry.beginRecipeFiller(CorruptingRecipe.class)
-            .filterType(HauntFurnace.Recipes.CORRUPTING.get())
-            .fill(CorruptingRecipeDisplay::new);
+                .filterType(ModRecipes.CORRUPTING.get())
+                .fill(CorruptingRecipeDisplay::new);
     }
 
     @Override

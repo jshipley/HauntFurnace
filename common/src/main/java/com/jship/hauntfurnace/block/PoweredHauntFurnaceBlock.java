@@ -22,7 +22,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 import com.jship.hauntfurnace.HauntFurnace;
+import com.jship.hauntfurnace.HauntFurnace.ModBlockEntities;
 import com.jship.hauntfurnace.block.entity.PoweredHauntFurnaceBlockEntity;
+import com.jship.hauntfurnace.config.HauntFurnaceConfig;
 
 public class PoweredHauntFurnaceBlock extends AbstractFurnaceBlock {
     public static final MapCodec<PoweredHauntFurnaceBlock> CODEC = PoweredHauntFurnaceBlock.simpleCodec(PoweredHauntFurnaceBlock::new);
@@ -44,7 +46,7 @@ public class PoweredHauntFurnaceBlock extends AbstractFurnaceBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
             BlockEntityType<T> blockEntityType) {
         return level.isClientSide ? null
-                : AbstractFurnaceBlock.createTickerHelper(blockEntityType, HauntFurnace.BlockEntities.POWERED_HAUNT_FURNACE.get(),
+                : AbstractFurnaceBlock.createTickerHelper(blockEntityType, ModBlockEntities.POWERED_HAUNT_FURNACE.get(),
                         PoweredHauntFurnaceBlockEntity::serverTick);
     }
 
@@ -66,7 +68,7 @@ public class PoweredHauntFurnaceBlock extends AbstractFurnaceBlock {
             if (randomSource.nextDouble() < 0.1) {
                 level.playLocalSound(x, y, z, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
-            if (randomSource.nextDouble() < 0.02) {
+            if (randomSource.nextDouble() < 0.02 && !HauntFurnaceConfig.hauntQuiet()) {
                 level.playLocalSound(x, y, z, SoundEvents.PHANTOM_AMBIENT, SoundSource.BLOCKS, 0.2F, 0.2F, false);
             }
 

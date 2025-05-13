@@ -1,10 +1,12 @@
 package com.jship.hauntfurnace.compat.rei.fabric;
 
-import com.google.common.collect.Lists;
-import com.jship.hauntfurnace.HauntFurnace;
 import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
+
+import com.google.common.collect.Lists;
+import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
+
 import me.shedaniel.math.Dimension;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
@@ -22,7 +24,7 @@ public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDis
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(HauntFurnace.Blocks.HAUNT_FURNACE.get());
+        return EntryStacks.of(ModBlocks.HAUNT_FURNACE.get());
     }
 
     @Override

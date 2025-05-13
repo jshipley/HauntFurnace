@@ -29,6 +29,10 @@ repositories {
         name = 'NeoForged'
         url = 'https://maven.neoforged.net/releases'
     }
+    maven {
+        name "KotlinForForge"
+        url "https://thedarkcolour.github.io/KotlinForForge/"
+    }
 }
 
 dependencies {
@@ -49,6 +53,10 @@ dependencies {
     // runtimeOnly("dev.emi:emi-neoforge:${emi_version}")
     // compileOnly("dev.emi:emi-neoforge:${emi_version}:api")
     // testCompileOnly("dev.emi:emi-neoforge:${emi_version}:api")
+
+    implementation("dev.isxander:yet-another-config-lib:${yacl_version}-neoforge") {
+        exclude group: "net.neoforged.fancymodloader", module: "loader"
+    }
 
     // for testing
     runtimeOnly "curse.maven:energized-power-782147:6447946"

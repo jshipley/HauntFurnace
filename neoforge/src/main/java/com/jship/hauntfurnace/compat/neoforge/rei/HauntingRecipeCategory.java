@@ -1,10 +1,12 @@
 package com.jship.hauntfurnace.compat.neoforge.rei;
 
-import com.google.common.collect.Lists;
-import com.jship.hauntfurnace.HauntFurnace;
 import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
+
+import com.google.common.collect.Lists;
+import com.jship.hauntfurnace.HauntFurnace.ModBlocks;
+
 import me.shedaniel.math.Dimension;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
@@ -22,7 +24,7 @@ public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDis
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(HauntFurnace.Blocks.HAUNT_FURNACE.get());
+        return EntryStacks.of(ModBlocks.HAUNT_FURNACE.get());
     }
 
     @Override
@@ -39,35 +41,34 @@ public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDis
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 9)));
         widgets.add(
-            new BurningAltFireWidget(
-                new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)), 1
-            ).animationDurationMS(10000)
-        );
+                new BurningAltFireWidget(
+                        new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)), 1)
+                        .animationDurationMS(10000));
         widgets.add(
-            Widgets.createLabel(
-                new Point(bounds.x + bounds.width - 5, bounds.y + 5),
-                Component.translatable("category.rei.cooking.time&xp", df.format(display.xp().orElse(0)), df.format(cookingTime / 20d))
-            )
-                .noShadow()
-                .rightAligned()
-                .color(0xFF404040, 0xFFBBBBBB)
-        );
-        widgets.add(Widgets.createArrow(new Point(startPoint.x + 24, startPoint.y + 8)).animationDurationTicks(cookingTime));
+                Widgets.createLabel(
+                        new Point(bounds.x + bounds.width - 5, bounds.y + 5),
+                        Component.translatable("category.rei.cooking.time&xp", df.format(display.xp().orElse(0)),
+                                df.format(cookingTime / 20d)))
+                        .noShadow()
+                        .rightAligned()
+                        .color(0xFF404040, 0xFFBBBBBB));
+        widgets.add(Widgets.createArrow(new Point(startPoint.x + 24, startPoint.y + 8))
+                .animationDurationTicks(cookingTime));
         widgets.add(
-            Widgets.createSlot(new Point(startPoint.x + 61, startPoint.y + 9))
-                .entries(display.getOutputEntries().get(0))
-                .disableBackground()
-                .markOutput()
-        );
+                Widgets.createSlot(new Point(startPoint.x + 61, startPoint.y + 9))
+                        .entries(display.getOutputEntries().get(0))
+                        .disableBackground()
+                        .markOutput());
         widgets.add(
-            Widgets.createSlot(new Point(startPoint.x + 1, startPoint.y + 1)).entries(display.getInputEntries().get(0)).markInput()
-        );
+                Widgets.createSlot(new Point(startPoint.x + 1, startPoint.y + 1))
+                        .entries(display.getInputEntries().get(0)).markInput());
         return widgets;
     }
 
     @Override
     public DisplayRenderer getDisplayRenderer(HauntingRecipeDisplay display) {
-        return SimpleDisplayRenderer.from(Collections.singletonList(display.getInputEntries().get(0)), display.getOutputEntries());
+        return SimpleDisplayRenderer.from(Collections.singletonList(display.getInputEntries().get(0)),
+                display.getOutputEntries());
     }
 
     @Override

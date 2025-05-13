@@ -1,0 +1,22 @@
+{
+    "values": {
+        "minecraft:dragon_breath": {
+            "burn_time": 20
+        },
+        "#c:ender_pearls": {
+            "burn_time": 200
+        },
+        "minecraft:sculk": {
+            "burn_time": 200
+        },
+        "minecraft:end_rod": {
+            "burn_time": 400
+        },
+        "minecraft:dragon_head": {
+            "burn_time": 2400
+        },
+        "minecraft:dragon_egg": {
+            "burn_time": 20000
+        }
+    }
+}

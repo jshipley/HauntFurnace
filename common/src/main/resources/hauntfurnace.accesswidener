@@ -18,3 +18,5 @@ accessible field net/minecraft/world/level/block/entity/AbstractFurnaceBlockEnti
 accessible field net/minecraft/world/level/block/entity/AbstractFurnaceBlockEntity cookingTotalTime I
 accessible field net/minecraft/world/level/block/entity/AbstractFurnaceBlockEntity litTimeRemaining I
 accessible field net/minecraft/world/level/block/entity/AbstractFurnaceBlockEntity litTotalTime I
+
+accessible field net/minecraft/world/inventory/AbstractFurnaceMenu acceptedInputs Lnet/minecraft/world/item/crafting/RecipePropertySet;
