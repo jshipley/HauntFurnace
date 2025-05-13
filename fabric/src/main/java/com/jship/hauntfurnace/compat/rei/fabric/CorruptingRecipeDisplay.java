@@ -1,4 +1,4 @@
-package com.jship.hauntfurnace.compat.fabric.rei;
+package com.jship.hauntfurnace.compat.rei.fabric;
 
 import java.util.List;
 import java.util.Optional;

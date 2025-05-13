@@ -98,6 +98,7 @@ publishMods {
         minecraftVersions.add("1.21.5")
 
         requires("architectury-api")
+        requires("yacl")
         optional("rei")
 
         announcementTitle = "Fabric version on Modrinth"
@@ -112,6 +113,7 @@ publishMods {
         javaVersions.add(JavaVersion.VERSION_21)
 
         requires("architectury-api")
+        requires("yacl")
         optional("roughly-enough-items")
 
         announcementTitle = "Fabric version on Curseforge"

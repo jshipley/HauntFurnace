@@ -1,8 +1,8 @@
-package com.jship.hauntfurnace.compat.fabric.rei;
+package com.jship.hauntfurnace.compat.rei.fabric;
 
 import com.jship.hauntfurnace.HauntFurnace;
-import com.jship.hauntfurnace.compat.fabric.rei.client.CorruptingRecipeClientDisplay;
-import com.jship.hauntfurnace.compat.fabric.rei.client.HauntingRecipeClientDisplay;
+import com.jship.hauntfurnace.compat.rei.client.fabric.CorruptingRecipeClientDisplay;
+import com.jship.hauntfurnace.compat.rei.client.fabric.HauntingRecipeClientDisplay;
 import com.jship.hauntfurnace.recipe.CorruptingRecipe;
 import com.jship.hauntfurnace.recipe.HauntingRecipe;
 

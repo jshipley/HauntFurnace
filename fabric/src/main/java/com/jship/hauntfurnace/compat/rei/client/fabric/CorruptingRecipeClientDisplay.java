@@ -1,4 +1,4 @@
-package com.jship.hauntfurnace.compat.fabric.rei.client;
+package com.jship.hauntfurnace.compat.rei.client.fabric;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -21,32 +21,32 @@ import java.util.OptionalDouble;
 
 import org.jetbrains.annotations.Nullable;
 
-public class HauntingRecipeClientDisplay extends BasicDisplay implements SimpleGridMenuDisplay {
+public class CorruptingRecipeClientDisplay extends BasicDisplay implements SimpleGridMenuDisplay {
     private final Optional<RecipeDisplayId> id;
 
-    public static DisplaySerializer<HauntingRecipeClientDisplay> SERIALIZER = DisplaySerializer.of(
+    public static DisplaySerializer<CorruptingRecipeClientDisplay> SERIALIZER = DisplaySerializer.of(
                 RecordCodecBuilder.mapCodec(instance -> instance.group(
-                        EntryIngredient.codec().listOf().fieldOf("inputs").forGetter(HauntingRecipeClientDisplay::getInputEntries),
-                        EntryIngredient.codec().listOf().fieldOf("outputs").forGetter(HauntingRecipeClientDisplay::getOutputEntries),
-                        Codec.INT.xmap(RecipeDisplayId::new, RecipeDisplayId::index).optionalFieldOf("id").forGetter(HauntingRecipeClientDisplay::recipeDisplayId)
-                ).apply(instance, HauntingRecipeClientDisplay::new)),
+                        EntryIngredient.codec().listOf().fieldOf("inputs").forGetter(CorruptingRecipeClientDisplay::getInputEntries),
+                        EntryIngredient.codec().listOf().fieldOf("outputs").forGetter(CorruptingRecipeClientDisplay::getOutputEntries),
+                        Codec.INT.xmap(RecipeDisplayId::new, RecipeDisplayId::index).optionalFieldOf("id").forGetter(CorruptingRecipeClientDisplay::recipeDisplayId)
+                ).apply(instance, CorruptingRecipeClientDisplay::new)),
                 StreamCodec.composite(
                         EntryIngredient.streamCodec().apply(ByteBufCodecs.list()),
-                        HauntingRecipeClientDisplay::getInputEntries,
+                        CorruptingRecipeClientDisplay::getInputEntries,
                         EntryIngredient.streamCodec().apply(ByteBufCodecs.list()),
-                        HauntingRecipeClientDisplay::getOutputEntries,
+                        CorruptingRecipeClientDisplay::getOutputEntries,
                         ByteBufCodecs.optional(ByteBufCodecs.INT.map(RecipeDisplayId::new, RecipeDisplayId::index)),
-                        HauntingRecipeClientDisplay::recipeDisplayId,
-                        HauntingRecipeClientDisplay::new
+                        CorruptingRecipeClientDisplay::recipeDisplayId,
+                        CorruptingRecipeClientDisplay::new
                 ), false);
 
-    public HauntingRecipeClientDisplay(FurnaceRecipeDisplay recipe, Optional<RecipeDisplayId> id) {
+    public CorruptingRecipeClientDisplay(FurnaceRecipeDisplay recipe, Optional<RecipeDisplayId> id) {
         this(List.of(EntryIngredients.ofSlotDisplay(recipe.ingredient())),
             List.of(EntryIngredients.ofSlotDisplay(recipe.result())),
             id);
     }
 
-    public HauntingRecipeClientDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<RecipeDisplayId> id) {
+    public CorruptingRecipeClientDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<RecipeDisplayId> id) {
         super(inputs, outputs, Optional.empty());
         this.id = id;
     }
@@ -60,7 +60,7 @@ public class HauntingRecipeClientDisplay extends BasicDisplay implements SimpleG
 
     @Override
     public CategoryIdentifier<?> getCategoryIdentifier() {
-        return HauntFurnaceREIClient.HAUNTING;
+        return HauntFurnaceREIClient.CORRUPTING;
     }
 
     @Override

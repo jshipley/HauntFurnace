@@ -19,9 +19,9 @@
       "com.jship.hauntfurnace.datagen.HauntFurnaceDataGenFabric"
     ],
     "rei_client": [
-      "com.jship.hauntfurnace.compat.fabric.rei.client.HauntFurnaceREIClient"
+      "com.jship.hauntfurnace.compat.rei.client.fabric.HauntFurnaceREIClient"
     ],
-    "rei_common": ["com.jship.hauntfurnace.compat.fabric.rei.HauntFurnaceREI"]
+    "rei_common": ["com.jship.hauntfurnace.compat.rei.fabric.HauntFurnaceREI"]
   },
   "mixins": ["hauntfurnace.mixins.json"],
   "depends": {

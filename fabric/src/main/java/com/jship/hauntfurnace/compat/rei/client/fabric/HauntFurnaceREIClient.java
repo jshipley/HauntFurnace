@@ -1,10 +1,11 @@
-package com.jship.hauntfurnace.compat.fabric.rei.client;
+package com.jship.hauntfurnace.compat.rei.client.fabric;
 
 import com.jship.hauntfurnace.HauntFurnace;
 import com.jship.hauntfurnace.client.EnderFurnaceScreen;
 import com.jship.hauntfurnace.client.HauntFurnaceScreen;
-import com.jship.hauntfurnace.compat.fabric.rei.CorruptingRecipeCategory;
-import com.jship.hauntfurnace.compat.fabric.rei.HauntingRecipeCategory;
+import com.jship.hauntfurnace.compat.rei.fabric.CorruptingRecipeCategory;
+import com.jship.hauntfurnace.compat.rei.fabric.HauntingRecipeCategory;
+
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;

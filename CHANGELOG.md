@@ -1,3 +1,3 @@
-## Haunt Furnace v0.5.2
+## Haunt Furnace v0.5.4
 
-* Fixed broken display category in REI plugin
+* (Fabric only) Fixed REI plugin that was broken due to namespace change

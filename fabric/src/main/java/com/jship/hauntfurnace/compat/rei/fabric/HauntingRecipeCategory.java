@@ -1,4 +1,4 @@
-package com.jship.hauntfurnace.compat.fabric.rei;
+package com.jship.hauntfurnace.compat.rei.fabric;
 
 import com.google.common.collect.Lists;
 import com.jship.hauntfurnace.HauntFurnace;
@@ -18,20 +18,20 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.network.chat.Component;
 
-public class CorruptingRecipeCategory implements DisplayCategory<CorruptingRecipeDisplay> {
+public class HauntingRecipeCategory implements DisplayCategory<HauntingRecipeDisplay> {
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(HauntFurnace.Blocks.ENDER_FURNACE.get());
+        return EntryStacks.of(HauntFurnace.Blocks.HAUNT_FURNACE.get());
     }
 
     @Override
     public Component getTitle() {
-        return Component.translatable("hauntfurnace.action.corrupting");
+        return Component.translatable("hauntfurnace.action.haunting");
     }
 
     @Override
-    public List<Widget> setupDisplay(CorruptingRecipeDisplay display, Rectangle bounds) {
+    public List<Widget> setupDisplay(HauntingRecipeDisplay display, Rectangle bounds) {
         Point startPoint = new Point(bounds.getCenterX() - 41, bounds.y + 10);
         double cookingTime = display.cookTime().orElse(0);
         DecimalFormat df = new DecimalFormat("###.##");
@@ -40,7 +40,7 @@ public class CorruptingRecipeCategory implements DisplayCategory<CorruptingRecip
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 9)));
         widgets.add(
             new BurningAltFireWidget(
-                new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)), 2
+                new Rectangle(new Point(startPoint.x + 1, startPoint.y + 20), new Dimension(14, 14)), 1
             ).animationDurationMS(10000)
         );
         widgets.add(
@@ -66,7 +66,7 @@ public class CorruptingRecipeCategory implements DisplayCategory<CorruptingRecip
     }
 
     @Override
-    public DisplayRenderer getDisplayRenderer(CorruptingRecipeDisplay display) {
+    public DisplayRenderer getDisplayRenderer(HauntingRecipeDisplay display) {
         return SimpleDisplayRenderer.from(Collections.singletonList(display.getInputEntries().get(0)), display.getOutputEntries());
     }
 
@@ -76,7 +76,7 @@ public class CorruptingRecipeCategory implements DisplayCategory<CorruptingRecip
     }
 
     @Override
-    public CategoryIdentifier<? extends CorruptingRecipeDisplay> getCategoryIdentifier() {
-        return HauntFurnaceREI.CORRUPTING;
+    public CategoryIdentifier<? extends HauntingRecipeDisplay> getCategoryIdentifier() {
+        return HauntFurnaceREI.HAUNTING;
     }
 }

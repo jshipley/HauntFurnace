@@ -1,11 +1,11 @@
-package com.jship.hauntfurnace.compat.fabric.rei.client;
+package com.jship.hauntfurnace.compat.rei.client.fabric;
 
 import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.jship.hauntfurnace.compat.fabric.rei.BurningAltFireWidget;
+import com.jship.hauntfurnace.compat.rei.fabric.BurningAltFireWidget;
 
 import me.shedaniel.math.Dimension;
 import me.shedaniel.math.Point;
