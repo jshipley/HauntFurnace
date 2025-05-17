@@ -21,7 +21,10 @@
     "rei_client": [
       "com.jship.hauntfurnace.compat.rei.client.fabric.HauntFurnaceREIClient"
     ],
-    "rei_common": ["com.jship.hauntfurnace.compat.rei.fabric.HauntFurnaceREI"]
+    "rei_common": ["com.jship.hauntfurnace.compat.rei.fabric.HauntFurnaceREI"],
+    "modmenu": [
+      "com.jship.hauntfurnace.config.fabric.ModMenuIntegration"
+    ]
   },
   "mixins": ["hauntfurnace.mixins.json"],
   "depends": {
