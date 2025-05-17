@@ -10,6 +10,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -32,6 +33,19 @@ public class HauntFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
     @ExpectPlatform
     public static boolean isFuel(ItemStack stack) {
         throw new AssertionError();
+    }
+
+    @Override
+    // override so that this class's isFuel will be called instead of the abstract class's isFuel
+    public boolean canPlaceItem(int slot, ItemStack stack) {
+        if (slot == 2) {
+            return false;
+        } else if (slot != 1) {
+            return true;
+        } else {
+            ItemStack itemStack = (ItemStack) this.items.get(1);
+            return isFuel(stack) || stack.is(Items.BUCKET) && !itemStack.is(Items.BUCKET);
+        }
     }
 
     @ExpectPlatform
