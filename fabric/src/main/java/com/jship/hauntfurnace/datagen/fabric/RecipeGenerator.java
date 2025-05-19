@@ -130,7 +130,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         of(ConventionalItemTags.BERRY_FOODS), new ItemStack(Items.GLOW_BERRIES), 0.2f, 200);
                 offerHaunting(this.output, "glow_ink_sac", CookingBookCategory.MISC, of(Items.INK_SAC),
                         new ItemStack(Items.GLOW_INK_SAC), 0.3f, 200);
-                offerHaunting(this.output, "glowstone", CookingBookCategory.MISC, of(Items.REDSTONE),
+                offerHaunting(this.output, "glowstone", CookingBookCategory.MISC, of(ConventionalItemTags.STORAGE_BLOCKS_REDSTONE),
                         new ItemStack(Items.GLOWSTONE), 0.7f, 200);
                 offerHaunting(this.output, "glowstone_dust", CookingBookCategory.MISC,
                         of(ConventionalItemTags.REDSTONE_DUSTS), new ItemStack(Items.GLOWSTONE_DUST), 0.4f, 200);
