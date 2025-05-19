@@ -100,7 +100,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
         offerHaunting(output, "gold_ingot", CookingBookCategory.MISC, of(ConventionalItemTags.COPPER_INGOTS), new ItemStack(Items.GOLD_INGOT), 1.0f, 200);
         offerHaunting(output, "glow_berries", CookingBookCategory.FOOD, of(ConventionalItemTags.BERRY_FOODS), new ItemStack(Items.GLOW_BERRIES), 0.2f, 200);
         offerHaunting(output, "glow_ink_sac", CookingBookCategory.MISC, of(Items.INK_SAC), new ItemStack(Items.GLOW_INK_SAC), 0.3f, 200);
-        offerHaunting(output, "glowstone", CookingBookCategory.MISC, of(Items.REDSTONE), new ItemStack(Items.GLOWSTONE), 0.7f, 200);
+        offerHaunting(output, "glowstone", CookingBookCategory.MISC, of(ConventionalItemTags.STORAGE_BLOCKS_REDSTONE), new ItemStack(Items.GLOWSTONE), 0.7f, 200);
         offerHaunting(output, "glowstone_dust", CookingBookCategory.MISC, of(ConventionalItemTags.REDSTONE_DUSTS), new ItemStack(Items.GLOWSTONE_DUST), 0.4f, 200);
         offerHaunting(output, "infested_chiseled_stone_bricks", CookingBookCategory.BLOCKS, of(Items.CHISELED_STONE_BRICKS), new ItemStack(Items.INFESTED_CHISELED_STONE_BRICKS), 0.1f, 200);
         offerHaunting(output, "infested_cracked_stone_bricks", CookingBookCategory.BLOCKS, of(Items.CRACKED_STONE_BRICKS), new ItemStack(Items.INFESTED_CRACKED_STONE_BRICKS), 0.1f, 200);

@@ -1,1 +1,1 @@
-* Fixed hoppers so that they can push custom fuels into the fuel slot
+* Fixed redstone block -> glowstone recipe
