@@ -1,1 +1,1 @@
-* Recipe - Fixed modid for blazingbamboo
+* Recipe - Fixed item id for blazingbamboo:blazing_bamboo
