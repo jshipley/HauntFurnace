@@ -4,7 +4,7 @@
         "item": "minecraft:bamboo"
     },
     "result": {
-        "id": "blazingbamboo:blazing_bamboo_item"
+        "id": "blazingbamboo:blazing_bamboo"
     },
     "experience": 0.4,
     "fabric:load_conditions": [
