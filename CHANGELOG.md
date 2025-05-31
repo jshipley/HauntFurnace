@@ -1,1 +1,1 @@
-* Fixed redstone block -> glowstone recipe
+* Recipe - Fixed modid for blazingbamboo
